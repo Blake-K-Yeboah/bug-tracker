@@ -1,0 +1,12 @@
+{
+  "name": "BugTracker",
+  "version": "1.0.0",
+  "description": "A Bug Tracker built with the mern stack",
+  "main": "server.js",
+  "repository": "https://github.com/Blake-K-Yeboah/bug-tracker.git",
+  "author": "Blake Yeboah <blakekyeboah@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
