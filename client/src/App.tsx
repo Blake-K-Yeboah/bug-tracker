@@ -8,10 +8,10 @@ import { authStore } from './stores/authStore';
 import { Provider } from 'mobx-react';
 
 // Import React Router Dom Stuff
-import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 // Import Pages
-import Home from './components/pages/Home';
+import Home from './components/pages/Home/Home';
 
 function App() {
   return (
@@ -21,7 +21,10 @@ function App() {
 
         <Switch>
 
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={(props) => {
+            if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
+            return <Home />
+          }} />
 
         </Switch>
 
