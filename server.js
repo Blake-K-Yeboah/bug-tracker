@@ -10,6 +10,9 @@ const bodyParser = require('body-parser');
 // Require passport
 const passport = require('passport');
 
+// Require User Router
+const users = require('./routes/api/user.routes');
+
 // Require User Model
 const User = require('./models/user.model');
 
@@ -42,6 +45,9 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
+
+// User Route
+app.use('/api/users', users);
 
 // Port Environment Variable or 5000
 const port = process.env.PORT || '5000';
