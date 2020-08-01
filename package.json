@@ -21,8 +21,10 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
+    "client-install": "yarn install --prefix client",
     "start": "yarn install && node server.js",
     "server": "nodemon server.js",
+    "client": "cd client && yarn start",
     "dev": "concurrently -kill-others \"yarn run server\" \"yarn run client\""
   }
 }
