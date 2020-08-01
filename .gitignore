@@ -1,5 +1,6 @@
 # Ignore Node Mudules
 node_modules/
+client/node_modules/
 
 # dotenv environment variables file
 .env
