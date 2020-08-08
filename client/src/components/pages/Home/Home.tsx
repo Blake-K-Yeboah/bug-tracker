@@ -1,10 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import SignUpForm from './SignUpForm';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Home = () => {
     return (
-        <>
+        <div className="home">
 
             <Helmet>
 
@@ -12,16 +13,21 @@ const Home = () => {
 
             </Helmet>
 
-            <div className="form-container">
+            <Container className="h-100">
 
-                <SignUpForm />
+                <Row className="h-100">
 
-                <img src="/img/night-city-bg.jpg" className="bg-img" alt="Background" />
+                    <Col lg={3} style={{ top: '50%', left: '50%', position: 'absolute', transform: 'translate(-50%, -50%)' }}>
 
-            </div>
+                        <SignUpForm />
 
+                    </Col>
 
-        </>
+                </Row>
+
+            </Container>
+
+        </div>
     )
 }
 
