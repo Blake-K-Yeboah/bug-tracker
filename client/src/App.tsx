@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 
 // Import Stores
 import { authStore } from './stores/authStore';
@@ -13,7 +12,14 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 // Import Pages
 import Home from './components/pages/Home/Home';
 
-function App() {
+// Import Bootstrap Styling
+import './assets/bootstrap.min.css';
+
+// Import My Styling
+import './App.scss';
+
+const App = () => {
+
   return (
     <Router>
 
