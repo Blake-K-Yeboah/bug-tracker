@@ -9,7 +9,7 @@ const Home = () => {
 
             <Helmet>
 
-                <title>Bug Tracker - Home</title>
+                <title>Bug Tracker - Register</title>
 
             </Helmet>
 
