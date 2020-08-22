@@ -6,16 +6,16 @@ const validateRegisterInput = data => {
     // Check Name Exists
     if (!data.name) {
         errors.name = "Name field is required"
+    } else {
+        // Check Name contains punctuation
+        const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+
+        for (let i = 0; i < punctuation.length; i++) {
+            if (data.name.includes(punctuation[i])) {
+                errors.name = "Name field contains punctuation"
+            }
+        };
     }
-
-    // Check Name contains punctuation
-    let punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
-
-    for (let i = 0; i < punctuation.length; i++) {
-        if (data.name && data.name.includes(punctuation[i])) {
-            errors.name = "Name field contains punctuation"
-        }
-    };
 
     // Check Name is below character limit
     if (data.name && data.name.length > 24) {
