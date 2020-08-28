@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 // Import Pages
 import Home from './components/pages/Home/Home';
 import Login from './components/pages/Login/Login';
+import Dashboard from './components/pages/Dashboard/Dashboard';
 
 // Import Bootstrap Styling
 import './assets/bootstrap.min.css';
@@ -36,6 +37,11 @@ const App = () => {
           <Route path="/login" render={(props) => {
             if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
             return <Login />
+          }} />
+
+          <Route path="/dashboard" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <Dashboard />
           }} />
 
         </Switch>
