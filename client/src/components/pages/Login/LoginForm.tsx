@@ -104,8 +104,6 @@ const SignUpForm = inject('authStore')(observer(({ authStore }: IStoreProps) => 
 
     }
 
-    console.log(success);
-
     return (
         <div className="pt-5 pb-4 bg-light rounded-lg">
 
