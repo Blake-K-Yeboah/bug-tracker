@@ -125,10 +125,10 @@ const SignUpForm = inject('authStore')(observer(({ authStore }: IStoreProps) => 
                                 {authStore.error && authStore.error.repeatedPassword ? <div className="invalid-feedback">{authStore.error.repeatedPassword}</div> : ''}
                             </InputGroup>
                         </Form.Group>
-                        <Button variant="info" type="submit" style={{ width: '100%', marginTop: 15, marginBottom: 15 }}>
+                        <Button variant="primary" type="submit" style={{ width: '100%', marginTop: 15, marginBottom: 15 }}>
                             Sign Up
                         </Button>
-                        <NavLink to="/login" className="text-info">Already have an account?</NavLink>
+                        <NavLink to="/login" className="text-primary">Already have an account?</NavLink>
                     </Form>
 
                 </Col>
