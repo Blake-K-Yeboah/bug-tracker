@@ -10,9 +10,11 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 // Import Pages
+import Register from './components/pages/Register/Register';
 
 // Import Styling
 import './App.scss';
+
 
 const App = () => {
 
@@ -25,7 +27,7 @@ const App = () => {
 
           <Route exact path="/" render={(props) => {
             if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
-            return <h1>Home</h1>
+            return <Register />
           }} />
 
         </Switch>
