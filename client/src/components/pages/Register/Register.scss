@@ -1,0 +1,27 @@
+$primary: #3f94d1;
+$darkGrey: #272727;
+$grey: #858585;
+
+.sign-up-form-container {
+    background: #ffffff;
+    width: 22.5vw;
+    min-width: 400px;
+    height: 60vh;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    border-radius: 10px;
+
+    .title {
+        color: $darkGrey;
+        font-weight: normal;
+        text-align:center;
+        margin: 1em 0 .5em 0;
+    }
+
+    .sub-text {
+        color: $grey;
+        text-align:center;
+    }
+}
