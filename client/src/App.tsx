@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Register from './components/pages/Register/Register';
 
 // Import Styling
-import './App.scss';
+import './style/App.scss';
 
 
 const App = () => {
