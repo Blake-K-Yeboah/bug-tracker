@@ -4,7 +4,14 @@ import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
-const SignUpForm = () => {
+// Import Mobx Inject and Observer
+import { inject, observer } from 'mobx-react';
+
+// Import Store Type
+import { IStoreProps } from '../../../types';
+import ErrorAlert from '../../alerts/ErrorAlert';
+
+let SignUpForm = ({ authStore }: IStoreProps) => {
 
     const [userInput, setUserInput] = useState({
         name: '',
@@ -21,6 +28,28 @@ const SignUpForm = () => {
 
     const [passwordType, setPasswordType] = useState('password');
 
+
+    const signUpHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        // Prevent Form Submission
+        e.preventDefault();
+
+        // Reset Error Value
+        authStore.setError(false);
+
+        // Validate Field Values
+        Object.values(userInput).forEach((value: string) => {
+            if (value.trim() === '') {
+                authStore.setError(true);
+            }
+        });
+
+        if (!authStore.error) {
+
+            // Make Request
+
+        }
+    }
+
     return (
         <div className="sign-up-form-container">
 
@@ -28,7 +57,9 @@ const SignUpForm = () => {
 
             <p className="sub-text">Fill out the following form to sign up</p>
 
-            <form className="sign-up-form">
+            <form className="sign-up-form" onSubmit={signUpHandler}>
+
+                {authStore.error ? <ErrorAlert message="There was an error with your submission" /> : ''}
 
                 <div className="form-group">
 
@@ -75,11 +106,15 @@ const SignUpForm = () => {
                 </div>
 
                 <NavLink to="/login" className="link">Already have an account?</NavLink>
+
             </form>
 
-        </div>
+        </div >
     )
 
 }
 
-export default SignUpForm
+// Inject Authstore in component
+SignUpForm = inject("authStore")(observer(SignUpForm));
+
+export default SignUpForm;
