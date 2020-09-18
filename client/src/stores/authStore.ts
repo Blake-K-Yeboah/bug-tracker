@@ -17,11 +17,11 @@ export class authstore {
     @observable user = this.token ? jwt_decode(this.token) : null;
 
     // Store Error
-    @observable error: any = null;
+    @observable error: boolean = false;
 
     // Action to change error
     @action
-    setError(err: any) {
+    setError(err: boolean) {
         this.error = err;
     }
 
