@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
 
 // Base Styles
-
 * {
     margin: 0;
     padding: 0;
@@ -18,3 +17,5 @@ body {
     height: 100vh;
     width:100vw;
 }
+
+@import 'alerts';
