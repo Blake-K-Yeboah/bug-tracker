@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 // Import React icons
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+// Import NavLink Component
 import { NavLink } from 'react-router-dom';
 
 // Import Mobx Inject and Observer
@@ -9,7 +11,15 @@ import { inject, observer } from 'mobx-react';
 
 // Import Store Type
 import { IStoreProps } from '../../../types';
+
+// Import Error Alert Component
 import ErrorAlert from '../../alerts/ErrorAlert';
+
+// Import useHistory hook
+import { useHistory } from 'react-router-dom';
+
+// Import Axios
+import axios from 'axios';
 
 let SignUpForm = ({ authStore }: IStoreProps) => {
 
@@ -28,25 +38,37 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
 
     const [passwordType, setPasswordType] = useState('password');
 
+    let history = useHistory();
+
+    // Set Error Function to not have to repeat both lines of code
+    const setError = (bool: boolean) => {
+        authStore.setError(bool);
+        setAlertShow(bool);
+    }
 
     const signUpHandler = (e: React.FormEvent<HTMLFormElement>) => {
         // Prevent Form Submission
         e.preventDefault();
 
         // Reset Error Value
-        authStore.setError(false);
+        setError(false);
 
         // Validate Field Values
         Object.values(userInput).forEach((value: string) => {
             if (value.trim() === '') {
-                authStore.setError(true);
-                setAlertShow(true);
+                setError(true);
             }
         });
 
         if (!authStore.error) {
 
-            // Make Request
+            axios.post('/api/users/register', userInput).then(res => {
+                setError(false);
+                history.push('/login?success=1');
+            }).catch(err => {
+                console.log(err.response.data)
+                setError(true);
+            })
 
         }
     }
@@ -54,13 +76,13 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
     const [alertShow, setAlertShow] = useState(authStore.error);
 
     return (
-        <div className="sign-up-form-container">
+        <div className="form-container">
 
             <h1 className="title">Sign Up</h1>
 
             <p className="sub-text">Fill out the following form to sign up</p>
 
-            <form className="sign-up-form" onSubmit={signUpHandler}>
+            <form className="form" onSubmit={signUpHandler}>
 
                 {alertShow ? <ErrorAlert message="There was an error with your submission" setShow={setAlertShow} /> : ''}
 
