@@ -3,18 +3,33 @@
     padding: .5em 0 .5em 10px;
     border: 1px solid transparent;
     border-radius: 5px;
-    
+    position: relative;
+
     .alert-text {
-        font-size: 1rem;
+        font-size: .9rem;
         font-weight: 400;
+    }
+
+    .cross {
+        position:absolute;
+        right: 15px;
+        top: 50%;
+        transform:translateY(-50%);
+        font-size: .75rem;
+        cursor: pointer;
     }
 
     &.alert-error {
         border-color: #ff0000;
         background: rgba(255,100,100,0.33);
 
-        .alert-text {
+        .alert-text, .cross {
             color: #cc0000;
         }
+
+    }
+
+    &.hidden {
+        display: none;
     }
 }
