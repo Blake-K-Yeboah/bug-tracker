@@ -40,6 +40,7 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
         Object.values(userInput).forEach((value: string) => {
             if (value.trim() === '') {
                 authStore.setError(true);
+                setAlertShow(true);
             }
         });
 
@@ -50,6 +51,8 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
         }
     }
 
+    const [alertShow, setAlertShow] = useState(authStore.error);
+
     return (
         <div className="sign-up-form-container">
 
@@ -59,7 +62,7 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
 
             <form className="sign-up-form" onSubmit={signUpHandler}>
 
-                {authStore.error ? <ErrorAlert message="There was an error with your submission" /> : ''}
+                {alertShow ? <ErrorAlert message="There was an error with your submission" setShow={setAlertShow} /> : ''}
 
                 <div className="form-group">
 
