@@ -3,9 +3,6 @@ import React from 'react';
 // Import React Helmet
 import { Helmet } from 'react-helmet';
 
-// Import Stylesheet
-import './Register.scss';
-
 // Import Page Components
 import SignUpForm from './SignUpForm';
 
