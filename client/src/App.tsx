@@ -12,10 +12,10 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 // Import Pages
 import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
+import Dashboard from './components/pages/Dashboard/Dashboard';
 
 // Import Styling
 import './style/App.scss';
-
 
 const App = () => {
 
@@ -36,6 +36,11 @@ const App = () => {
             if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
             authStore.setError(false);
             return <Login />
+          }} />
+
+          <Route exact path="/dashboard" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <Dashboard />
           }} />
 
         </Switch>
