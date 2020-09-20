@@ -14,6 +14,7 @@ import { IStoreProps } from '../../../types';
 
 // Import Error Alert Component
 import ErrorAlert from '../../alerts/ErrorAlert';
+import SuccessAlert from '../../alerts/SuccessAlert';
 
 // Import useHistory hook
 import { useHistory } from 'react-router-dom';
@@ -38,7 +39,7 @@ let LoginForm = ({ authStore }: IStoreProps) => {
     // Set Error Function to not have to repeat both lines of code
     const setError = (bool: boolean) => {
         authStore.setError(bool);
-        setAlertShow(bool);
+        setErrorAlertShow(bool);
     }
 
     const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,7 +63,11 @@ let LoginForm = ({ authStore }: IStoreProps) => {
         }
     }
 
-    const [alertShow, setAlertShow] = useState(authStore.error);
+    const urlParams = new URLSearchParams(window.location.search);
+    const success: boolean = urlParams.get('success') === "1" ? true : false;
+
+    const [errorAlertShow, setErrorAlertShow] = useState(authStore.error);
+    const [successAlertShow, setSuccessAlertShow] = useState(success);
 
     return (
         <div className="form-container">
@@ -73,7 +78,9 @@ let LoginForm = ({ authStore }: IStoreProps) => {
 
             <form className="form" onSubmit={loginHandler}>
 
-                {alertShow ? <ErrorAlert message="There was an error with your submission" setShow={setAlertShow} /> : ''}
+                {errorAlertShow ? <ErrorAlert message="There was an error with your submission" setShow={setErrorAlertShow} /> : ''}
+
+                {successAlertShow ? <SuccessAlert message="Account successfully created" setShow={setSuccessAlertShow} /> : ''}
 
                 <div className="form-group">
 
