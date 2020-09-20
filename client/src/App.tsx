@@ -28,11 +28,13 @@ const App = () => {
 
           <Route exact path="/" render={(props) => {
             if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
+            authStore.setError(false);
             return <Register />
           }} />
 
           <Route exact path="/login" render={(props) => {
             if (authStore.isAuthenticated) return <Redirect to="/dashboard" />
+            authStore.setError(false);
             return <Login />
           }} />
 
