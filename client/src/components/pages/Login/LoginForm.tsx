@@ -19,6 +19,12 @@ import SuccessAlert from '../../alerts/SuccessAlert';
 // Import useHistory hook
 import { useHistory } from 'react-router-dom';
 
+// Import Axios
+import axios from 'axios';
+
+// Import jwt-decode
+import jwt_decode from 'jwt-decode';
+
 let LoginForm = ({ authStore }: IStoreProps) => {
 
     const [userInput, setUserInput] = useState({
@@ -34,7 +40,7 @@ let LoginForm = ({ authStore }: IStoreProps) => {
 
     const [passwordType, setPasswordType] = useState('password');
 
-    //let history = useHistory();
+    let history = useHistory();
 
     // Set Error Function to not have to repeat both lines of code
     const setError = (bool: boolean) => {
@@ -58,7 +64,43 @@ let LoginForm = ({ authStore }: IStoreProps) => {
 
         if (!authStore.error) {
 
-            // Make Request
+            axios
+                .post("/api/users/login", userInput)
+                .then(res => {
+
+                    // Set token to cookies
+                    const { token } = res.data;
+
+                    let currentDate = new Date();
+
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+
+                    // Cookie Expires in 1 month
+                    document.cookie = `jwtToken=${token}; expires=${currentDate}`;
+
+                    authStore.setToken(token);
+
+                    // Set token to Auth header
+                    if (token) {
+                        // Apply authorization token to every request if logged in
+                        axios.defaults.headers.common["Authorization"] = token;
+                    } else {
+                        // Delete auth header
+                        delete axios.defaults.headers.common["Authorization"];
+                    }
+
+                    // Decode token to get user data
+                    const decoded = jwt_decode(token);
+
+                    // Set current user
+                    authStore.setCurrentUser(decoded);
+
+                    history.push('/dashboard');
+
+                })
+                .catch(err => {
+                    setError(true);
+                });
 
         }
     }
