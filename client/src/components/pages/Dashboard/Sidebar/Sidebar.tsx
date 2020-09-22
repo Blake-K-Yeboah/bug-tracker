@@ -1,8 +1,18 @@
 import React from 'react'
+
+// Import Styling
 import './Sidebar.scss';
+
+// Import Store Props type
 import { IStoreProps } from '../../../../types';
+
+// Import inject and observer for authStore access
 import { inject, observer } from 'mobx-react';
+
+// Import Link COmponent
 import Link from './Link';
+
+// Import Icons
 import { FaClipboardList, FaUsersCog, FaFolderPlus, FaTags, FaHistory, FaFolderOpen } from 'react-icons/fa';
 
 let Sidebar = ({ authStore }: IStoreProps) => {
