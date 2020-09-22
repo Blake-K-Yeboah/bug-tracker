@@ -60,7 +60,12 @@ let Sidebar = ({ authStore }: IStoreProps) => {
 
             </ul>
 
-            <p className="copyright-text">&copy; Copyright 2020</p>
+            <p className="small-text">&copy; Copyright 2020. Bug Tracker</p>
+
+            <p className="small-text">
+                Built by <a href="https://www.blakeyeboah.com/" className="link" target="_blank" rel="noopener noreferrer">Blake Yeboah</a>
+            </p>
+
         </div>
     )
 }
