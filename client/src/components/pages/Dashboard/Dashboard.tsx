@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import Sidebar from './Sidebar/Sidebar'
 
 const Dashboard = () => {
     return (
@@ -10,7 +11,14 @@ const Dashboard = () => {
 
             </Helmet>
 
-            <h1>Dashboard Page</h1>
+            <div className="page-content">
+
+                <Sidebar />
+
+                <h1>Dashboard Page</h1>
+
+            </div>
+
         </>
     )
 }
