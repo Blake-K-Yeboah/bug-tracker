@@ -1,0 +1,76 @@
+@import '../../../../style/variables';
+
+.sidebar {
+    background: #F9F9F9;
+    width:20vw;
+    position: absolute;
+    left:0;
+    top: 0;
+    height: 100vh;
+    font-family: Helvetica, sans-serif;
+
+    .sidebar-brand {
+        margin: 3em 0 3em 0;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+
+        .sidebar-brand-heading {
+            font-weight: normal;
+            font-size: 1.65rem;
+        }
+        
+        .sidebar-brand-img {
+            width: 40px;
+            height: 40px;
+            border-radius:50%;
+            margin-right: 15px;
+        }
+    }
+
+    .links-list {
+        margin-left: 4em;
+        list-style: none;
+
+        .links-list-item {
+            height: 30px;
+            margin: 1em 0;
+            position: relative;
+
+            .link {
+                color: $darkGrey;
+                font-size: 1rem;
+                text-decoration: none;
+                transition: color .2s ease-in-out;
+
+                .icon, .text {
+                    position: absolute;
+                    top: 50%;
+                    transform:translateY(-50%);
+                }
+
+                .text {
+                    left: 25px;
+                    font-weight: 600;
+                }
+
+                &:first-of-type {
+
+                    .text {
+                        padding-top: 2px;
+                    }
+
+                }
+
+                &.active {
+                    color: $primary;
+                }
+
+                &:hover {
+                    color: $primary;
+                }
+
+            }
+        }
+    }
+}
