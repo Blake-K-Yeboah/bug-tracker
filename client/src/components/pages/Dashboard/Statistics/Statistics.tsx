@@ -1,15 +1,22 @@
 import React from 'react';
+
+// Import Styling
 import './Statistics.scss';
 
 // Import Icons
 import { FaUsers, FaTags, FaHistory, FaFolderOpen } from 'react-icons/fa';
+
+// Import StatBox Component
 import StatBox from './StatBox';
+
+// Import Stat type
+import { IStat } from '../../../../types';
 
 const Statistics = () => {
 
 
-    // TODO - Update values from database when feature is added
-    const stats: any = [
+    // TODO - Update values from database when features are added
+    const stats: IStat[] = [
         {
             title: 'Projects',
             icon: FaFolderOpen,
@@ -37,7 +44,9 @@ const Statistics = () => {
 
             {stats.map((stat: any) => (
                 <StatBox title={stat.title} value={stat.value}>
+
                     {stat.icon()}
+
                 </StatBox>
             ))}
 
