@@ -3,12 +3,12 @@
 .statistics {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 2em;
+    grid-gap: 3em;
     width: 70vw;
 
     .stat-box {
         width: 100%;
-        height: 100px;
+        height: 90px;
         background: #fff;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -27,7 +27,7 @@
                 top:50%;
                 left:50%;
                 transform: translate(-50%, -50%);
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
         }
 
@@ -35,7 +35,7 @@
 
             .title {
                 color: $darkGrey;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: normal;
                 text-align:center;
                 padding: .5em 0 .25em 0;
@@ -44,7 +44,7 @@
             .value {
                 font-weight: 400;
                 color: $primary;
-                font-size: 2.3rem;
+                font-size: 2rem;
                 text-align:center;
             }
         }
