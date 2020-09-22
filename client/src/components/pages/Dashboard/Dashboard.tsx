@@ -15,7 +15,7 @@ const Dashboard = () => {
 
                 <Sidebar />
 
-                <h1 className="page-title">Dashboard Page</h1>
+                <h1 className="page-title">Dashboard</h1>
 
             </div>
 
