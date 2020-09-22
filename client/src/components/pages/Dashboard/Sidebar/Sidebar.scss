@@ -7,7 +7,7 @@
     left:0;
     top: 0;
     height: 100vh;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 
     .sidebar-brand {
         margin: 3em 0 3em 0;
@@ -52,14 +52,7 @@
                 .text {
                     left: 25px;
                     font-weight: 600;
-                }
-
-                &:first-of-type {
-
-                    .text {
-                        padding-top: 2px;
-                    }
-
+                    margin-top: -1px;
                 }
 
                 &.active {
@@ -71,6 +64,23 @@
                 }
 
             }
+        }
+    }
+
+    .small-text {
+        color: $grey;
+        font-size: .75em;
+        position:absolute;
+        left:50%;
+        bottom: 20px;
+        transform:translateX(-50%);
+
+        &:first-of-type {
+            bottom: 40px;
+        }
+
+        .link {
+            color: $primary;
         }
     }
 }
