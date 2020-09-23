@@ -4,7 +4,7 @@
     background: #f1f1f1;
     min-height: 100vh;
     height: 100%;
-    padding: 5vh 0 0 25vw;
+    padding: calc(50px + 5vh) 0 0 25vw;
     font-family: 'Segoe UI', sans-serif;
 
     .page-title {
