@@ -5,8 +5,8 @@
     width:20vw;
     position: absolute;
     left:0;
-    top: 0;
-    height: 100vh;
+    top: 50px;
+    height: calc(100vh - 50px);
     font-family: 'Segoe UI', sans-serif;
 
     .sidebar-brand {
