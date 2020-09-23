@@ -9,6 +9,9 @@ import Statistics from './Statistics/Statistics'
 import Navbar from './Navbar/Navbar';
 
 const Dashboard = () => {
+
+    // TODO - Add Other dashboard sections when all the features are created
+
     return (
         <>
             <Helmet>
