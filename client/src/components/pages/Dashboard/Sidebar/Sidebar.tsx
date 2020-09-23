@@ -20,7 +20,6 @@ let Sidebar = ({ authStore }: IStoreProps) => {
     const firstname: string = authStore.user ? authStore.user.name.split(' ')[0] : '';
 
     const userRole: string = authStore.user ? authStore.user.role : '';
-    console.log(userRole);
 
     const manageUserRolesLink = (
         <Link route="/manage-user-roles" text="Manage User Roles">
@@ -38,8 +37,6 @@ let Sidebar = ({ authStore }: IStoreProps) => {
         <div className="sidebar">
 
             <div className="sidebar-brand">
-
-                {authStore.user ? <img src={`${process.env.PUBLIC_URL}/uploads/profile/${authStore.user.profileIcon}`} alt="Profile Icon" className="sidebar-brand-img" /> : ''}
 
                 <h1 className="sidebar-brand-heading">
                     Welcome, {firstname as string}!

@@ -10,21 +10,11 @@
     font-family: 'Segoe UI', sans-serif;
 
     .sidebar-brand {
-        margin: 3em 0 3em 0;
-        display:flex;
-        align-items: center;
-        justify-content: center;
+        margin: 3em 0 3em 4em;
 
         .sidebar-brand-heading {
             font-weight: normal;
             font-size: 1.65rem;
-        }
-        
-        .sidebar-brand-img {
-            width: 40px;
-            height: 40px;
-            border-radius:50%;
-            margin-right: 15px;
         }
     }
 
