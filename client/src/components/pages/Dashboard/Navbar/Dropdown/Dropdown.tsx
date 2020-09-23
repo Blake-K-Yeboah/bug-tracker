@@ -8,8 +8,27 @@ import { IStoreProps } from '../../../../../types';
 import { inject, observer } from 'mobx-react';
 import { NavLink } from 'react-router-dom';
 
+import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
+
 let Dropdown = ({ display, authStore }: IStoreProps) => {
-    console.log(display)
+
+    let history = useHistory();
+
+    const logOutHandler = () => {
+
+        let currentDate = new Date();
+
+        currentDate.setMonth(currentDate.getMonth() - 1);
+
+        document.cookie = `jwtToken=; expires= ${currentDate}`;
+
+        delete Axios.defaults.headers.common["Authorization"];
+
+        authStore.setCurrentUser(null);
+
+        history.push('/login');
+    }
 
     return (
         <div className={`dropdown ${!display ? 'hidden' : ''}`}>
@@ -26,7 +45,7 @@ let Dropdown = ({ display, authStore }: IStoreProps) => {
 
             <NavLink to={`/profile/${authStore.user.id}/edit`} className="link" >Edit Profile</NavLink>
 
-            <button className="btn danger">Log Out</button>
+            <button className="btn danger" onClick={logOutHandler}>Log Out</button>
 
         </div>
     )
