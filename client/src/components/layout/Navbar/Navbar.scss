@@ -1,0 +1,37 @@
+@import '../../../style/variables';
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 60px;
+    width:100vw;
+    background: $primary;
+    z-index: 1;
+    display:flex;
+    justify-content: space-between;
+
+    .navbar-brand {
+        color: #fff;
+        font-weight: normal;
+        font-size: 1.25rem;
+        line-height: 60px;
+        margin-left: 3em;
+    }
+
+    .menu-icon {
+        color: #fff;
+        font-size: 1.25rem;
+        position:relative;
+        left: -4em;
+        top: 50%;
+        transform:translateY(-50%);
+        cursor:pointer;
+        transition: color .2s ease-in-out;
+        
+        &:hover {
+            color: #ccc;
+        }
+        
+    }
+}
