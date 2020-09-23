@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from './Sidebar/Sidebar'
 import Statistics from './Statistics/Statistics'
+import Navbar from './Navbar/Navbar';
 
 const Dashboard = () => {
     return (
@@ -17,6 +18,8 @@ const Dashboard = () => {
             </Helmet>
 
             <div className="page-content">
+
+                <Navbar />
 
                 <Sidebar />
 
