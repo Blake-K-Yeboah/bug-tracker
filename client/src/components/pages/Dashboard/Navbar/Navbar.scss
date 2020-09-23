@@ -1,0 +1,19 @@
+@import '../../../../style/variables';
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 50px;
+    width:100vw;
+    background: $primary;
+    z-index: 1;
+    
+    .navbar-brand {
+        color: #fff;
+        font-weight: normal;
+        font-size: 1.25rem;
+        line-height: 50px;
+        margin-left: 3em;
+    }
+}
