@@ -43,7 +43,7 @@ const Statistics = () => {
         <div className="statistics">
 
             {stats.map((stat: any) => (
-                <StatBox title={stat.title} value={stat.value}>
+                <StatBox title={stat.title} value={stat.value} key={stat.title}>
 
                     {stat.icon()}
 
