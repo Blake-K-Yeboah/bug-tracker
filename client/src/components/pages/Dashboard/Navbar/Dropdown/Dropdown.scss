@@ -3,7 +3,7 @@
 .dropdown {
     position:absolute;
     right: 2em;
-    top: 55px;
+    top: 60px;
     width: 15em;
     background: #F9F9F9;
     padding: 1em 0;
@@ -35,6 +35,7 @@
         .heading-img {
             width: 30px;
             margin-right: 7.5px;  
+            border-radius: 50%;
         }
 
         .heading-text {
