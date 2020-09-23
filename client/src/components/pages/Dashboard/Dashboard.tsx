@@ -4,9 +4,9 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 // Import Page Components
-import Sidebar from './Sidebar/Sidebar'
+import Sidebar from '../../layout/Sidebar/Sidebar'
 import Statistics from './Statistics/Statistics'
-import Navbar from './Navbar/Navbar';
+import Navbar from '../../layout/Navbar/Navbar';
 
 const Dashboard = () => {
 
