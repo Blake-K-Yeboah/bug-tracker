@@ -13,9 +13,11 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
+import ManageUserRoles from './components/pages/ManageUserRoles/ManageUserRoles';
 
 // Import Styling
 import './style/App.scss';
+import NotAllowed from './components/pages/NotAllowed/NotAllowed';
 
 const App = () => {
 
@@ -41,6 +43,12 @@ const App = () => {
           <Route exact path="/dashboard" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <Dashboard />
+          }} />
+
+          <Route exact path="/manage-user-roles" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            if (authStore.user.role !== 'admin' && authStore.user.role !== 'project-manager') return <NotAllowed />
+            return <ManageUserRoles />
           }} />
 
         </Switch>
