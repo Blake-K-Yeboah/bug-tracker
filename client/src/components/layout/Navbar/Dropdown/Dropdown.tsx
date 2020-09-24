@@ -11,6 +11,8 @@ import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
+import { FiLogOut } from 'react-icons/fi';
+
 let Dropdown = ({ display, authStore }: IStoreProps) => {
 
     let history = useHistory();
@@ -45,7 +47,7 @@ let Dropdown = ({ display, authStore }: IStoreProps) => {
 
             <NavLink to={`/profile/${authStore.user.id}/edit`} className="link" >Edit Profile</NavLink>
 
-            <button className="btn danger" onClick={logOutHandler}>Log Out</button>
+            <button className="btn danger has-icon" onClick={logOutHandler}>Log Out <FiLogOut className="icon" /></button>
 
         </div>
     )
