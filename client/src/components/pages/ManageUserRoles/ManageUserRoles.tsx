@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import UsersTable from './UsersTable/UsersTable';
 
 const ManageUserRoles = () => {
     return (
@@ -23,6 +24,8 @@ const ManageUserRoles = () => {
                 <Sidebar />
 
                 <h1 className="page-title">Manage User Roles</h1>
+
+                <UsersTable />
 
             </div>
 
