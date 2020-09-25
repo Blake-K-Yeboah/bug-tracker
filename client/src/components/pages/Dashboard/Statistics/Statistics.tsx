@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Import Styling
 import './Statistics.scss';
@@ -9,13 +9,20 @@ import { FaUsers, FaTags, FaHistory, FaFolderOpen } from 'react-icons/fa';
 // Import StatBox Component
 import StatBox from './StatBox';
 
-// Import Stat type
-import { IStat } from '../../../../types';
+// Import types
+import { IStat, IStoreProps } from '../../../../types';
 
-const Statistics = () => {
+// Import Mobx stuff
+import { inject, observer } from 'mobx-react';
+
+let Statistics = ({ usersStore }: IStoreProps) => {
 
 
     // TODO - Update values from database when features are added
+    useEffect(() => {
+        usersStore.fetchUsers();
+    }, [usersStore]);
+
     const stats: IStat[] = [
         {
             title: 'Projects',
@@ -25,7 +32,7 @@ const Statistics = () => {
         {
             title: 'Users',
             icon: FaUsers,
-            value: 20
+            value: usersStore.userCount
         },
         {
             title: 'Tickets',
@@ -53,5 +60,7 @@ const Statistics = () => {
         </div>
     )
 }
+
+Statistics = inject('usersStore')(observer(Statistics));
 
 export default Statistics;
