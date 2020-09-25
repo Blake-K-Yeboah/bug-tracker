@@ -22,19 +22,20 @@
 
         .head-row {
             height: 50px;
-            background: #F6F6F6;
+            background: #F1F1F1;
 
             .t-head {
                 width: 25%;
                 color: $darkGrey;
                 font-weight: 500;
                 font-size: 1rem;
+                border: .5px solid #e1e1e1;
             }
         }
 
         .row {
             height: 50px;
-            background: #fff;
+            background: #FFFFFF;
 
             .table-data {
                 color: $darkGrey;
@@ -42,6 +43,25 @@
                 font-size: 1rem;
                 text-align:center;
                 vertical-align:center;
+                border: .5px solid #e1e1e1;
+
+                select {
+                    background: transparent;
+                    border: 1px solid #999;
+                    padding: 5px 7.5px;
+                    font-weight: lighter;
+                    font-size: .75rem;
+                }
+
+                .btn {
+                    padding: 7.5px 10px;
+                    margin-left: 10px;
+                    font-size: .75rem;
+                }
+            }
+
+            &:nth-child(2n) {
+                background: #F9F9F9;
             }
         }
     }
