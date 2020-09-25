@@ -1,11 +1,11 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { Iuser } from '../types';
 import axios from 'axios';
 
 export class usersstore {
 
     // Store users 
-    @observable users: Iuser[] | null = null;
+    @observable users: Iuser[] = [];
 
     @action fetchUsers() {
         axios.get('/api/users').then(res => {
@@ -15,6 +15,10 @@ export class usersstore {
             }
 
         });
+    }
+
+    @computed get userCount() {
+        return this.users.length
     }
 
 }
