@@ -38,4 +38,14 @@
             background: darken($primary, 10%);
         }
     }
+
+    &:disabled {
+        color: $grey;
+        background: #eee;
+        cursor: default;
+
+        &:hover {
+            background: #eee;
+        }
+    }
 }
