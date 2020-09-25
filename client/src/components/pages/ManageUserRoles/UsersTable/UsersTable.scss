@@ -7,11 +7,42 @@
     border-radius: 12.5px;
     padding: 2em;
     position: relative;
-    
+
     .table-title {
         color: lighten($darkGrey, 15%);
         font-weight: 600;
         font-size: 1.5rem;
+        margin-bottom: .65em;
     }
 
+    .users-table {
+        width: 100%;
+        border-collapse: collapse;
+        max-height: 90%;
+
+        .head-row {
+            height: 50px;
+            background: #F6F6F6;
+
+            .t-head {
+                width: 25%;
+                color: $darkGrey;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+        }
+
+        .row {
+            height: 50px;
+            background: #fff;
+
+            .table-data {
+                color: $darkGrey;
+                font-weight: 400;
+                font-size: 1rem;
+                text-align:center;
+                vertical-align:center;
+            }
+        }
+    }
 }
