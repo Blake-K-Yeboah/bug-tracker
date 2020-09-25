@@ -144,4 +144,25 @@ router.post('/login', (req, res) => {
     });
 });
 
+// Update Role Route
+router.put('/:id/update/role', (req, res) => {
+
+    // Check user who submitted request is an admin or poject manager
+    const reqUserId = req.headers['Authorization'];
+
+    User.findById(reqUserId).then(user => {
+
+        // If there is no user return error
+        if (!user || (user.role != 'admin' && user.role != 'project-manager')) return res.status(401).json({ msg: "You dont have permission" });
+
+    });
+
+    User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((err, doc) => {
+        if (err) return res.send(500, err);
+        res.json(doc);
+    })
+
+
+})
+
 module.exports = router
