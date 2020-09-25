@@ -148,7 +148,7 @@ router.post('/login', (req, res) => {
 router.put('/:id/update/role', (req, res) => {
 
     // Check user who submitted request is an admin or poject manager
-    const reqUserId = req.headers['Authorization'];
+    const reqUserId = req.body.userId;
 
     User.findById(reqUserId).then(user => {
 
@@ -158,9 +158,12 @@ router.put('/:id/update/role', (req, res) => {
     });
 
     User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((err, doc) => {
-        if (err) return res.send(500, err);
-        res.json(doc);
-    })
+        if (err) {
+            return res.status(500).json(err)
+        } else {
+            res.json(doc);
+        }
+    });
 
 
 })
