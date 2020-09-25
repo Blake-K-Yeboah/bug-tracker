@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Statistics from './Statistics/Statistics'
 import Navbar from '../../layout/Navbar/Navbar';
+import { usersStore } from '../../../stores/usersStore';
 
 const Dashboard = () => {
 
