@@ -1,0 +1,17 @@
+@import '../../../../style/variables';
+
+.users-table-container {
+    background: #fff;
+    width: 70vw;
+    height: calc((100vh - 50px) - 14em);
+    border-radius: 12.5px;
+    padding: 2em;
+    position: relative;
+    
+    .table-title {
+        color: lighten($darkGrey, 15%);
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+}
