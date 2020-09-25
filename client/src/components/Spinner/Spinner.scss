@@ -1,0 +1,16 @@
+@import '../../style/variables';
+
+.spinner {
+    color: $primary;
+    font-size: 2rem;
+    position:absolute;
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+    transform: translate(-50%, -50%);
+    animation: spin infinite 2s;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
