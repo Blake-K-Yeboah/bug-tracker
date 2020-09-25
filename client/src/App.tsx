@@ -2,6 +2,7 @@ import React from 'react';
 
 // Import Stores
 import { authStore } from './stores/authStore';
+import { usersStore } from './stores/usersStore';
 
 // Import Provider
 import { Provider } from 'mobx-react';
@@ -14,17 +15,17 @@ import Register from './components/pages/Register/Register';
 import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import ManageUserRoles from './components/pages/ManageUserRoles/ManageUserRoles';
+import NotAllowed from './components/pages/NotAllowed/NotAllowed';
 
 // Import Styling
 import './style/App.scss';
-import NotAllowed from './components/pages/NotAllowed/NotAllowed';
 
 const App = () => {
 
   return (
     <Router>
 
-      <Provider authStore={authStore}>
+      <Provider authStore={authStore} usersStore={usersStore} >
 
         <Switch>
 
