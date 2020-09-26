@@ -13,9 +13,6 @@ const passport = require('passport');
 // Require User Router
 const users = require('./routes/api/user.routes');
 
-// Require User Model
-const User = require('./models/user.model');
-
 // Bodyparser middleware
 app.use(
     bodyParser.urlencoded({
