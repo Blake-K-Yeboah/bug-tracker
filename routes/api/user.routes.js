@@ -14,6 +14,9 @@ const validateLoginInput = require("../../validation/login");
 // Import User Model
 const User = require('../../models/user.model');
 
+// Import Change Model
+const Change = require('../../models/change.model');
+
 // Default User Route
 router.get('/:id?', (req, res) => {
 
@@ -75,7 +78,18 @@ router.post('/register', (req, res) => {
                     newUser.password = hash;
 
                     // Save New User to database
-                    newUser.save().then(user => res.json(user)).catch(err => console.log(err));
+                    newUser.save().then(user => {
+                        const newChange = new Change({
+                            userId: user._id,
+                            message: "created an account."
+                        });
+
+                        newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
+
+                        return res.json(user);
+                    }).catch(err => console.log(err));
+
+
                 })
             })
         }
