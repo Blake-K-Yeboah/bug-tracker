@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import { Iuser } from '../types';
+import { Iuser, IUsersStore } from '../types';
 import axios from 'axios';
 
 export class usersstore {
@@ -23,4 +23,4 @@ export class usersstore {
 
 }
 
-export const usersStore = new usersstore();
+export const usersStore: IUsersStore = new usersstore();
