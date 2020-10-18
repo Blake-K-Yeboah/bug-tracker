@@ -8,6 +8,10 @@ import Sidebar from '../../layout/Sidebar/Sidebar'
 import Statistics from './Statistics/Statistics'
 import Navbar from '../../layout/Navbar/Navbar';
 
+// Import Styling
+import './Dashboard.scss';
+import LatestActivity from './LatestActivity/LatestActivity';
+
 const Dashboard = () => {
 
     // TODO - Add Other dashboard sections when all the features are created
@@ -29,6 +33,12 @@ const Dashboard = () => {
                 <h1 className="page-title">Dashboard</h1>
 
                 <Statistics />
+
+                <div className="dashboard-grid">
+
+                    <LatestActivity />
+                    
+                </div>
 
             </div>
 
