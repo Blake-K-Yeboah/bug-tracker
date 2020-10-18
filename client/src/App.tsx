@@ -3,6 +3,7 @@ import React from 'react';
 // Import Stores
 import { authStore } from './stores/authStore';
 import { usersStore } from './stores/usersStore';
+import { changeStore } from './stores/changeStore';
 
 // Import Provider
 import { Provider } from 'mobx-react';
@@ -25,7 +26,7 @@ const App = () => {
   return (
     <Router>
 
-      <Provider authStore={authStore} usersStore={usersStore} >
+      <Provider authStore={authStore} usersStore={usersStore} changeStore={changeStore} >
 
         <Switch>
 
