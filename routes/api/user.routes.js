@@ -171,15 +171,27 @@ router.put('/:id/update/role', (req, res) => {
 
     });
 
-    User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((err, doc) => {
+    User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((user) => {
+        // Save Change to DB
+        const newChange = new Change({
+            userId: reqUserId,
+            message: `changed role of ${user.name} to ${req.body.role}`
+        });
+
+        newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
+
+        res.json(user);
+
+    }).catch(err => {
+
         if (err) {
-            return res.status(500).json(err)
-        } else {
-            res.json(doc);
+            console.log(err);
+            res.status(500).json({ msg: "A server errror occured."})
         }
+        
     });
 
 
 })
 
-module.exports = router
+module.exports = router;
