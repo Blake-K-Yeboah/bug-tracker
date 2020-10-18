@@ -37,6 +37,9 @@ mongoose
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
+// Get rid of deprecation warning
+mongoose.set('useFindAndModify', false);
+
 // Passport middleware
 app.use(passport.initialize());
 
