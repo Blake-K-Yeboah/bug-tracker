@@ -9,6 +9,7 @@ export interface Iuser {
     createdOn: Date
 }
 
+// Auth Store Interface
 export interface IAuthStore {
     token: string | null,
     isAuthenticated: boolean,
@@ -17,6 +18,27 @@ export interface IAuthStore {
     setError: (err: boolean) => void,
     setCurrentUser: (user: Iuser | null) => void,
     setToken: (token: string | null) => void
+}
+
+// Users Store Interface
+export interface IUsersStore {
+    users: Iuser[],
+    fetchUsers: () => void,
+    userCount: number
+}
+
+// Change Store Interface
+export interface IChangeStore {
+    changes: IChange[],
+    fetchChanges: () => void
+}
+
+// Change Interface
+export interface IChange {
+    _id: string,
+    userId: string,
+    message: string,
+    date: Date
 }
 
 // For Components with Stores as props
