@@ -10,8 +10,9 @@ const bodyParser = require('body-parser');
 // Require passport
 const passport = require('passport');
 
-// Require User Router
+// Require Routers
 const users = require('./routes/api/user.routes');
+const changes = require('./routes/api/changes.routes');
 
 // Bodyparser middleware
 app.use(
@@ -21,9 +22,6 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
-// Test Request
-app.get('/', (req, res) => res.send("Hello There!"));
 
 // DB Config
 const db = process.env.MONGOURI || require("./config/keys").mongoURI;
@@ -46,8 +44,9 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-// User Route
+// Routes
 app.use('/api/users', users);
+app.use('/api/changes', changes);
 
 // Port Environment Variable or 5000
 const port = process.env.PORT || '5000';
