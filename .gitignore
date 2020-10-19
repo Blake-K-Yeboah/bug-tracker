@@ -5,3 +5,7 @@ client/node_modules/
 # dotenv environment variables file
 .env
 .env.test
+
+#ignore debug.log
+debug.log
+client/debug.log
