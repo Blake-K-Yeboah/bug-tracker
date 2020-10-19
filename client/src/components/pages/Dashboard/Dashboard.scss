@@ -1,4 +1,16 @@
 .dashboard-grid {
+    display:grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 3em;
+    width:70vw;
+    margin-top: 2em;
+    height: 60vh;
+
+    // For testing
+    .placeholder {
+        background: #fff;
+        height:100%;
+        width:100%;
+        border-radius: 10px;
+    }
 }
