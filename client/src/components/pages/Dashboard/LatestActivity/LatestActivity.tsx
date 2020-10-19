@@ -17,7 +17,7 @@ let LatestActivity = ({ changeStore }: IStoreProps) => {
 
     return (
         <div className="latest-activity-container">
-            Latest Activity
+            <h3 className="heading">Latest Activity</h3>
         </div>
     )
 }
