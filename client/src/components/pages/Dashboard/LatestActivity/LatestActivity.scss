@@ -1,9 +1,18 @@
+// Import Variables
+@import '../../../../style/variables';
+
 .latest-activity-container {
     width:100%;
     background: #fff;
     height: 100%;
-    min-height: 55vh;
     display:flex;
     flex-direction: column;
-    
+    border-radius: 10px;
+
+    .heading {
+        color: $darkGrey;
+        font-weight: 500;
+        font-size: 1.25rem;
+        padding: 1em 0 0 1.75rem;
+    }
 }
