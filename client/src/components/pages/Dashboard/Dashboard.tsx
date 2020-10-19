@@ -38,6 +38,8 @@ const Dashboard = () => {
 
                     <LatestActivity />
                     
+                    <div className="placeholder"><br/></div>
+
                 </div>
 
             </div>
