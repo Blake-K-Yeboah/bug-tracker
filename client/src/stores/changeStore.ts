@@ -9,10 +9,15 @@ export class changestore {
     @action fetchChanges() {
         Axios.get('/api/changes').then(res => {
 
-            if (res.data.length > 0) {
-                this.changes = res.data;
-            }
-            
+            const parsedChanges = res.data.map((change: any) => {
+                return {
+                    ...change,
+                    properties: JSON.parse(change.properties)
+                }
+            });
+
+            this.changes = parsedChanges;
+                      
         });
     }
 }
