@@ -9,6 +9,8 @@ import { inject, observer } from 'mobx-react';
 // Import Types
 import { IStoreProps } from '../../../../types';
 
+import LatestActivityList from './LatestActivityList/LatestActivityList';
+
 let LatestActivity = ({ changeStore }: IStoreProps) => {
 
     useEffect(() => {
@@ -17,8 +19,12 @@ let LatestActivity = ({ changeStore }: IStoreProps) => {
 
     return (
         <div className="latest-activity-container">
+
             <h3 className="heading">Latest Activity</h3>
-        </div>
+
+            <LatestActivityList />
+
+        </div>  
     )
 }
 
