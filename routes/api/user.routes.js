@@ -79,9 +79,14 @@ router.post('/register', (req, res) => {
 
                     // Save New User to database
                     newUser.save().then(user => {
+                        const properties = {
+                            userId: user._id
+                        }
+
                         const newChange = new Change({
-                            userId: user._id,
-                            message: "created an account."
+                            message: "created an account.",
+                            type: "ACCOUNT_CREATED",
+                            properties: JSON.stringify(properties)
                         });
 
                         newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
@@ -172,15 +177,21 @@ router.put('/:id/update/role', (req, res) => {
     });
 
     User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((user) => {
-        // Save Change to DB
-        const newChange = new Change({
+        const properties = {
             userId: reqUserId,
-            message: `changed role of ${user.name} to ${req.body.role}`
+            changedUserId: user._id,
+            newRole: req.body.role
+        }
+
+        const newChange = new Change({
+            message: "changed role of ",
+            type: "ROLE_CHANGED",
+            properties: JSON.stringify(properties)
         });
 
         newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
 
-        res.json(user);
+        return res.json(user);
 
     }).catch(err => {
 
