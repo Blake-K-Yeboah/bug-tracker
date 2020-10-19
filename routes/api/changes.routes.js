@@ -10,7 +10,7 @@ const Change = require('../../models/change.model');
 // Return all changes
 router.get('/', (req, res) => {
     Change.find({}).then(changes => {
-        res.json(changes);
+        return res.json(changes);
     });
 });
 
