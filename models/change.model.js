@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ChangeSchema = new Schema({
-    userId: {
+    message: {
         type: String,
         required: true
     },
-    message: {
+    type: {
+        type: String,
+        required: true
+    },
+    properties: {
         type: String,
         required: true
     },
