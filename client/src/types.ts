@@ -30,7 +30,8 @@ export interface IUsersStore {
 // Change Store Interface
 export interface IChangeStore {
     changes: IChange[],
-    fetchChanges: () => void
+    fetchChanges: () => void,
+    changeCount: number
 }
 
 // Change Interface
