@@ -1,0 +1,34 @@
+@import '../../../../../../style/variables';
+
+.latest-activity-list .list-item {
+    list-style: none;
+    display: flex;
+    height: calc(100% / 7);
+
+    .profile-icon {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        position:relative;
+        top:50%;
+        transform:translateY(-50%);
+    }
+
+    .message {
+        font-size: 1rem;
+        color: $darkGrey;
+        line-height: 60px;
+        margin-left: 10px;
+
+        .link {
+            font-weight: bold;
+            color: $darkGrey;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}
