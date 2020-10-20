@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { IChange, IChangeStore } from '../types';
 
 export class changestore {
@@ -16,9 +16,13 @@ export class changestore {
                 }
             });
 
-            this.changes = parsedChanges;
+            this.changes = parsedChanges.reverse();
                       
         });
+    }
+
+    @computed get changeCount() {
+        return this.changes.length;
     }
 }
 
