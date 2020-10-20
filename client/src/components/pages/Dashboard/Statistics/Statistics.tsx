@@ -15,7 +15,7 @@ import { IStat, IStoreProps } from '../../../../types';
 // Import Mobx stuff
 import { inject, observer } from 'mobx-react';
 
-let Statistics = ({ usersStore }: IStoreProps) => {
+let Statistics = ({ usersStore, changeStore }: IStoreProps) => {
 
 
     // TODO - Update values from database when features are added
@@ -42,7 +42,7 @@ let Statistics = ({ usersStore }: IStoreProps) => {
         {
             title: 'Changes',
             icon: FaHistory,
-            value: 90
+            value: changeStore.changeCount
         }
     ]
 
@@ -61,6 +61,6 @@ let Statistics = ({ usersStore }: IStoreProps) => {
     )
 }
 
-Statistics = inject('usersStore')(observer(Statistics));
+Statistics = inject('usersStore', 'changeStore')(observer(Statistics));
 
 export default Statistics;
