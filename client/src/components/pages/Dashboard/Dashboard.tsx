@@ -38,7 +38,13 @@ const Dashboard = () => {
 
                     <LatestActivity />
                     
-                    <div className="placeholder"><br/></div>
+                    <div className="grid-item-container">
+
+                        <div className="placeholder"></div>
+                        
+                        <div className="placeholder"></div>
+
+                    </div>
 
                 </div>
 
