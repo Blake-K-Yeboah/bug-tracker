@@ -1,0 +1,48 @@
+@import '../../../../style/variables';
+
+.your-profile {
+    width:100%;
+    background: #fff;
+    height: 100%;
+    border-radius: 10px;
+
+    .heading {
+        color: $darkGrey;
+        font-weight: 400;
+        font-size: 1.5rem;
+        padding: 1em 0 0 1.75rem;
+    }
+
+    .your-profile-grid {
+        display: flex;
+        flex-direction: row;
+        position:relative;
+
+        .profile-icon {
+            width: 120px;
+            height: 120px;
+            position:relative;
+            top: 30px;
+            left: 2.25em;
+        }
+
+        .content {
+            position:relative;
+            left: 5em;
+            top: 25px;
+
+            .profile-name {
+                color: $darkGrey;
+                font-weight: 500;
+                font-size: 1.25rem;
+            }
+
+            .profile-bio {
+                color: $grey;
+                padding-top: 5px;
+                width: 75%;
+                line-height: 1.5;
+            }
+        }
+    }
+}
