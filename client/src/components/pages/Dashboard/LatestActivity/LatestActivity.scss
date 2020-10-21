@@ -15,4 +15,21 @@
         font-size: 1.5rem;
         padding: 1em 0 0 1.75rem;
     }
+
+    .view-all-link {
+        color: $primary;
+        text-decoration: none;
+        margin: 1em 0 0 2em;
+        width: 75px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .disabled-view-all-link {
+        color: lighten($grey, 20%);
+        margin: 1em 0 0 2em;
+        cursor: default;
+    }
 }
