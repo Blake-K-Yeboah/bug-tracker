@@ -11,6 +11,7 @@ import Navbar from '../../layout/Navbar/Navbar';
 // Import Styling
 import './Dashboard.scss';
 import LatestActivity from './LatestActivity/LatestActivity';
+import YourProfile from './YourProfile/YourProfile';
 
 const Dashboard = () => {
 
@@ -40,7 +41,7 @@ const Dashboard = () => {
                     
                     <div className="grid-item-container">
 
-                        <div className="placeholder"></div>
+                        <YourProfile />
                         
                         <div className="placeholder"></div>
 
