@@ -16,7 +16,7 @@ let LatestActivityList = ({ changeStore }: IStoreProps) => {
     return (
         <ul className="latest-activity-list">
             {
-                changeStore.changes.map((change: any) => {
+                changeStore.changes.slice(0,7).map((change: any) => {
                     return (
                      <ListItem change={change} key={change._id}/>
                     )
