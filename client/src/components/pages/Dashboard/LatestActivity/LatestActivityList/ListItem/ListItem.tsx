@@ -31,7 +31,7 @@ const ListItem = ({change}: any) => {
     let returnedJSX: null | JSX.Element = null;
 
     let checkUser = Object.keys(user).length !== 0;
-    let userName = checkUser ? user.name.split(' ')[0] : 'Loading';
+    let userName = checkUser ? user.name.split(' ')[0] : null;
     
     let checkChangedUser = Object.keys(changedUser).length !== 0;
     let changedUserName = checkChangedUser ? changedUser.name.split(' ')[0] : 'Loading';
@@ -44,20 +44,27 @@ const ListItem = ({change}: any) => {
         case 'ACCOUNT_CREATED':
             returnedJSX = (
                 <li className="list-item">
-                    <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
-                    <p className="message">
+                    
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                     : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ? <p className="message">
                         <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> created an account.
-                    </p>
+                    </p> : ''}
                 </li>
             );
             break;
         case 'ROLE_CHANGED':
             returnedJSX = (
                 <li className="list-item">
-                    <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
-                    <p className="message">
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                        : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ?  <p className="message">
                         <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message} <NavLink to={`/profile/${checkChangedUser ? changedUser._id : ''}`} className="link">{changedUserName}</NavLink> to <b>{roleDisplay}</b>
-                    </p>
+                    </p> : ''}
                 </li>
             );
             break;
