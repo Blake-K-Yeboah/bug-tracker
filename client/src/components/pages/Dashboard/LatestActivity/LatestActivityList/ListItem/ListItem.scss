@@ -1,17 +1,29 @@
 @import '../../../../../../style/variables';
 
+@keyframes loader {
+    0% {background: rgba(0,0,0,0.05)}
+    25% {background: rgba(0,0,0,0.1)}
+    50% {background: rgba(0,0,0,0.05)}
+    75% {background: rgba(0,0,0,0.1)}
+    100% {background: rgba(0,0,0,0.05)}
+}
+
 .latest-activity-list .list-item {
     list-style: none;
     display: flex;
     height: calc(100% / 7);
 
-    .profile-icon {
+    .profile-icon, .profile-icon-loader {
         border-radius: 50%;
         width: 35px;
         height: 35px;
         position:relative;
         top:50%;
         transform:translateY(-50%);
+    }
+
+    .profile-icon-loader {
+        animation: loader infinite 2s;
     }
 
     .message {
