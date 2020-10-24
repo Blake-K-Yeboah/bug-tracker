@@ -7,11 +7,12 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Statistics from './Statistics/Statistics'
 import Navbar from '../../layout/Navbar/Navbar';
+import LatestActivity from './LatestActivity/LatestActivity';
+import YourProfile from './YourProfile/YourProfile';
+import TipSection from './TipSection/TipSection';
 
 // Import Styling
 import './Dashboard.scss';
-import LatestActivity from './LatestActivity/LatestActivity';
-import YourProfile from './YourProfile/YourProfile';
 
 const Dashboard = () => {
 
@@ -43,7 +44,7 @@ const Dashboard = () => {
 
                         <YourProfile />
                         
-                        <div className="placeholder"></div>
+                        <TipSection />
 
                     </div>
 
