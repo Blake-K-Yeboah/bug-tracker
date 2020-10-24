@@ -17,6 +17,7 @@ import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import ManageUserRoles from './components/pages/ManageUserRoles/ManageUserRoles';
 import NotAllowed from './components/pages/NotAllowed/NotAllowed';
+import Projects from './components/pages/Projects/Projects';
 
 // Import Styling
 import './style/App.scss';
@@ -51,6 +52,11 @@ const App = () => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             if (authStore.user.role !== 'admin' && authStore.user.role !== 'project-manager') return <NotAllowed />
             return <ManageUserRoles />
+          }} />
+
+          <Route exact path="/projects" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <Projects />
           }} />
 
         </Switch>
