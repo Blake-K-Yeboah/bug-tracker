@@ -16,8 +16,6 @@ import './Dashboard.scss';
 
 const Dashboard = () => {
 
-    // TODO - Add Other dashboard sections when all the features are created
-
     return (
         <>
             <Helmet>
