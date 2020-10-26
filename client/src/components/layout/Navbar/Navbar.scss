@@ -2,7 +2,7 @@
 
 .navbar {
     position: absolute;
-    top: 0;
+    top: 0; 
     left:0;
     height: 60px;
     width:100vw;
@@ -23,7 +23,6 @@
         color: #fff;
         font-size: 1.25rem;
         position:relative;
-        left: -4em;
         top: 50%;
         transform:translateY(-50%);
         cursor:pointer;
@@ -33,5 +32,10 @@
             color: #ccc;
         }
         
+    }
+
+    .right-side-content {
+        display:flex;
+        padding-right: 4em;
     }
 }
