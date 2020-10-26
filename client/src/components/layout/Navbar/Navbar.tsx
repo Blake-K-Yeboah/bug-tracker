@@ -6,6 +6,7 @@ import './Navbar.scss';
 import { BsGrid3X3Gap } from 'react-icons/bs';
 
 import Dropdown from './Dropdown/Dropdown';
+import Search from './Search/Search';
 
 const Navbar = () => {
 
@@ -16,9 +17,15 @@ const Navbar = () => {
 
             <h1 className="navbar-brand">Bug Tracker</h1>
 
-            <BsGrid3X3Gap className="menu-icon" onClick={() => setShow(!show)} />
+            <div className="right-side-content">
 
-            <Dropdown display={show} />
+                <Search />
+                
+                <BsGrid3X3Gap className="menu-icon" onClick={() => setShow(!show)} />
+
+                <Dropdown display={show} />
+
+            </div>
 
         </nav>
     )
