@@ -14,13 +14,23 @@ import { IStat, IStoreProps } from '../../../../types';
 
 // Import Mobx stuff
 import { inject, observer } from 'mobx-react';
+import Axios from 'axios';
 
-let Statistics = ({ usersStore, changeStore }: IStoreProps) => {
+let Statistics = ({ usersStore, changeStore, authStore }: IStoreProps) => {
 
 
     // TODO - Update values from database when features are added
     useEffect(() => {
         usersStore.fetchUsers();
+        Axios.get('/api/projects', {
+            headers: {
+              'Authorization': authStore.token
+            }
+        }).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.error(err);
+        });
     }, [usersStore]);
 
     const stats: IStat[] = [
@@ -61,6 +71,6 @@ let Statistics = ({ usersStore, changeStore }: IStoreProps) => {
     )
 }
 
-Statistics = inject('usersStore', 'changeStore')(observer(Statistics));
+Statistics = inject('usersStore', 'changeStore', 'authStore')(observer(Statistics));
 
 export default Statistics;
