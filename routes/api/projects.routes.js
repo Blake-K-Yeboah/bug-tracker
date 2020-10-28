@@ -1,5 +1,7 @@
 // Required Packages
 const express = require('express');
+const jwt = require('express-jwt');
+const keys = require("../../config/keys");
 
 // Define Router
 const router = express.Router();
@@ -7,7 +9,7 @@ const router = express.Router();
 // Import Project Model
 const Project = require("../../models/project.model");
 
-router.get('/:id?', (req, res) => {
+router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
     
     let id = req.params.id;
 
@@ -31,6 +33,7 @@ router.get('/:id?', (req, res) => {
         });
 
     }
+
 });
 
 module.exports = router;
