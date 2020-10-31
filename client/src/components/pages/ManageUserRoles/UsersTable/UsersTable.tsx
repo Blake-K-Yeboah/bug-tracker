@@ -22,7 +22,7 @@ let UsersTable = ({ usersStore }: IStoreProps) => {
     return (
         <div className="users-table-container">
 
-            <h2 className="table-title">Table of Users</h2>
+            <h2 className="table-title">Table of Users ({usersStore.userCount} users)</h2>
 
             {!usersStore.users ? <Spinner /> :
                 <table className="users-table">
