@@ -22,7 +22,7 @@ let Statistics = ({ usersStore, changeStore, projectStore }: IStoreProps) => {
     useEffect(() => {
         usersStore.fetchUsers();
         projectStore.fetchProjects();
-    }, [usersStore]);
+    }, [usersStore, projectStore]);
 
     const stats: IStat[] = [
         {
