@@ -19,11 +19,7 @@ let Dropdown = ({ display, authStore }: IStoreProps) => {
 
     const logOutHandler = () => {
 
-        let currentDate = new Date();
-
-        currentDate.setMonth(currentDate.getMonth() - 1);
-
-        document.cookie = `jwtToken=; expires= ${currentDate}`;
+        localStorage.removeItem('jwtToken');
 
         delete Axios.defaults.headers.common["Authorization"];
 
