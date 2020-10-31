@@ -53,3 +53,19 @@ export interface IStat {
     value: number,
     icon: any // Icon has weird type
 }
+
+// Project Interface
+export interface Iproject {
+    name: string,
+    description: string,
+    usersList: string[],
+    owner: string,
+    ticketList: string[]
+}
+
+// Project Store Interface
+export interface IProjectStore {
+    projects: Iproject[],
+    fetchProjects: () => void,
+    projectCount: number
+}
