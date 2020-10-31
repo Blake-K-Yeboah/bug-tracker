@@ -8,7 +8,7 @@ import { Iuser, IAuthStore } from '../types';
 export class authstore {
 
     // Store JWT Token
-    @observable token: string | null = document.cookie.split('=')[1];
+    @observable token: string | null = localStorage.getItem('jwtToken');
 
     // Store authenticated boolean
     @observable isAuthenticated = this.token ? true : false;
