@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import ProjectActionsBar from './ProjectActionsBar/ProjectActionsBar';
 
 const Projects = () => {
 
@@ -25,6 +26,8 @@ const Projects = () => {
 
                 <h1 className="page-title">Projects</h1>
 
+                <ProjectActionsBar />
+                
             </div>
 
         </>
