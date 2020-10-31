@@ -50,6 +50,8 @@ let UsersTable = ({ usersStore }: IStoreProps) => {
                 </table>
             }
 
+            {usersStore.userCount > 9 ? <div className="blocker"></div> : ''}
+
         </div>
     )
 }

@@ -5,8 +5,23 @@
     width: 70vw;
     height: calc((100vh - 50px) - 14em);
     border-radius: 12.5px;
-    padding: 2em;
+    padding: 2em 2em 0em 2em;
     position: relative;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .blocker {
+        height: 2em;
+        background-color: transparent;
+        z-index: 1;
+        width:70vw;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+    }
 
     .table-title {
         color: lighten($darkGrey, 15%);
@@ -18,7 +33,6 @@
     .users-table {
         width: 100%;
         border-collapse: collapse;
-        max-height: 90%;
 
         .head-row {
             height: 50px;
