@@ -7,8 +7,12 @@ import { BsGrid3X3Gap } from 'react-icons/bs';
 
 import Dropdown from './Dropdown/Dropdown';
 import Search from './Search/Search';
+import Axios from 'axios';
 
 const Navbar = () => {
+
+    // Apply authorization token to every request if logged in
+    Axios.defaults.headers.common["Authorization"] = localStorage.getItem('jwtToken');
 
     const [show, setShow] = useState(false);
 
@@ -32,4 +36,4 @@ const Navbar = () => {
 
 }
 
-export default Navbar
+export default Navbar;
