@@ -4,6 +4,7 @@ import React from 'react';
 import { authStore } from './stores/authStore';
 import { usersStore } from './stores/usersStore';
 import { changeStore } from './stores/changeStore';
+import { projectStore } from './stores/projectStore';
 
 // Import Provider
 import { Provider } from 'mobx-react';
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <Router>
 
-      <Provider authStore={authStore} usersStore={usersStore} changeStore={changeStore} >
+      <Provider authStore={authStore} usersStore={usersStore} changeStore={changeStore} projectStore={projectStore} >
 
         <Switch>
 
