@@ -15,19 +15,20 @@ import { IStat, IStoreProps } from '../../../../types';
 // Import Mobx stuff
 import { inject, observer } from 'mobx-react';
 
-let Statistics = ({ usersStore, changeStore, authStore }: IStoreProps) => {
+let Statistics = ({ usersStore, changeStore, projectStore }: IStoreProps) => {
 
 
     // TODO - Update values from database when features are added
     useEffect(() => {
         usersStore.fetchUsers();
+        projectStore.fetchProjects();
     }, [usersStore]);
 
     const stats: IStat[] = [
         {
             title: 'Projects',
             icon: FaFolderOpen,
-            value: 12
+            value: projectStore.projectCount
         },
         {
             title: 'Users',
@@ -61,6 +62,6 @@ let Statistics = ({ usersStore, changeStore, authStore }: IStoreProps) => {
     )
 }
 
-Statistics = inject('usersStore', 'changeStore', 'authStore')(observer(Statistics));
+Statistics = inject('usersStore', 'changeStore', 'projectStore')(observer(Statistics));
 
 export default Statistics;
