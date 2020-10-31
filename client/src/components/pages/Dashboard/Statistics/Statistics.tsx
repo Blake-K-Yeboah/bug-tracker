@@ -22,11 +22,7 @@ let Statistics = ({ usersStore, changeStore, authStore }: IStoreProps) => {
     // TODO - Update values from database when features are added
     useEffect(() => {
         usersStore.fetchUsers();
-        Axios.get('/api/projects', {
-            headers: {
-              'Authorization': authStore.token
-            }
-        }).then(res => {
+        Axios.get('/api/projects').then(res => {
             console.log(res.data);
         }).catch(err => {
             console.error(err);
