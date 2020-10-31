@@ -68,15 +68,10 @@ let LoginForm = ({ authStore }: IStoreProps) => {
                 .post("/api/users/login", userInput)
                 .then(res => {
 
-                    // Set token to cookies
+                    // Set token to localStorage
                     const { token } = res.data;
 
-                    let currentDate = new Date();
-
-                    currentDate.setMonth(currentDate.getMonth() + 1);
-
-                    // Cookie Expires in 1 month
-                    document.cookie = `jwtToken=${token}; expires=${currentDate}`;
+                    localStorage.setItem('jwtToken', token);
 
                     authStore.setToken(token);
 
