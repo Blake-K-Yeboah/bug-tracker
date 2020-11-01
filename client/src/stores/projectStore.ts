@@ -4,9 +4,11 @@ import axios from 'axios';
 
 export class projectstore {
 
-    // Store users 
+    // Store projects
     @observable projects: Iproject[] = [];
 
+    @observable filteredProjects: Iproject[] = [];
+    
     @action fetchProjects() {
         axios.get('/api/projects').then(res => {
 
