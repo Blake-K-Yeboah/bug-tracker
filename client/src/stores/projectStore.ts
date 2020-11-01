@@ -7,7 +7,7 @@ export class projectstore {
     // Store projects
     @observable projects: Iproject[] = [];
 
-    @observable filteredProjects: Iproject[] = [];
+    @observable filteredProjects: Iproject[] = this.projects;
     
     @action fetchProjects() {
         axios.get('/api/projects').then(res => {
