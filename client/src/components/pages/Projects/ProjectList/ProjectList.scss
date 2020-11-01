@@ -1,0 +1,17 @@
+@import '../../../../style/variables';
+
+.project-list-container {
+    margin-top: 1.25em;
+    height: calc((100vh - 50px) - 19em);
+    width: 70vw;
+    background: #fff;
+    border-radius: 12.5px;
+
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: .65em;
+        padding: 1em 1.25em;
+    }
+}
