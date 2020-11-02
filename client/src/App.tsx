@@ -24,7 +24,7 @@ import Projects from './components/pages/Projects/Projects';
 import './style/App.scss';
 
 const App = () => {
-
+  
   return (
     <Router>
 
