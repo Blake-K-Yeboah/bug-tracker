@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 body {
     font-family: 'Quicksand', sans-serif;
 }
