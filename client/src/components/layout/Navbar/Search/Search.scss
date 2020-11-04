@@ -29,7 +29,7 @@
 
     .search-results {
         width: 300px;
-        height: 275px;
+        height: 285px;
         background: #fff;
         z-index: 1;
         margin-top: 2em;
@@ -38,6 +38,7 @@
         opacity: 1;
         transition: opacity .5s ease-in-out;
         padding: 1em;
+        border-radius: 7.5px;
 
         &::after {
             content: '';
@@ -45,6 +46,7 @@
             border-bottom-color: #fff;
             position: absolute;
             top: -30px;
+            left: 10px;
         }
 
         &.hidden {
@@ -54,8 +56,42 @@
         .result-heading {
             color: $darkGrey;
             font-weight: 500;
+            padding-bottom: .5em;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: .5em;
         }
 
+        .result {
+            padding: .5em;
+            text-decoration: none;
+            display:block;
+
+            .profile-pic {
+                width:30px;
+                position: relative;
+                top: 10px;
+                border-radius: 50%;
+            }
+
+            .name {
+                color: $grey;
+                margin-left: 10px;
+                font-weight: 400;
+            }
+
+            .icon {
+                font-size: 1.5rem;
+                position: relative;
+                top: 6.5px;
+                color: $primary;
+            }
+
+            &:hover {
+                .name {
+                    font-weight: 500;
+                }
+            }
+        }
     }
 
 }
