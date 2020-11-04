@@ -56,6 +56,7 @@ export interface IStat {
 
 // Project Interface
 export interface Iproject {
+    _id: string,
     name: string,
     description: string,
     usersList: string[],
