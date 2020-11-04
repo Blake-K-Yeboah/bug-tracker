@@ -11,7 +11,7 @@ export class usersstore {
         axios.get('/api/users').then(res => {
 
             if (res.data.length > 0) {
-                this.users = [...res.data, ...res.data, ...res.data, ...res.data, ...res.data, ...res.data];
+                this.users = res.data;
             }
 
         });
