@@ -12,6 +12,77 @@
         font-weight: 400;
         font-size: 1.5rem;
         margin-bottom: .65em;
-        padding: 1em 1.25em;
+        padding: 1em 1.25em .25em;
+    }
+
+    .projects-table {
+        width: 95%;
+        border-collapse: collapse;
+        margin: 0 auto;
+
+        .head-row {
+            height: 40px;
+            background: #F1F1F1;
+
+            .t-head {
+                width: 25%;
+                color: $darkGrey;
+                font-weight: 500;
+                font-size: 1rem;
+                border: .5px solid #e1e1e1;
+            }
+        }
+
+        .row {
+            height: 50px;
+            background: #FFFFFF;
+
+            .table-data {
+                color: $darkGrey;
+                font-weight: 400;
+                font-size: 1rem;
+                text-align:center;
+                vertical-align:center;
+                border: .5px solid #e1e1e1;
+
+                select {
+                    background: transparent;
+                    border: 1px solid #ccc;
+                    padding: 5px 7.5px;
+                    font-weight: lighter;
+                    font-size: .75rem;
+                }
+
+                .btn {
+                    padding: 7.5px 10px;
+                    margin-left: 10px;
+                    font-size: .75rem;
+                }
+
+                &.owner-td {
+                    .profileIcon {
+                        width: 30px;
+                        position: relative;
+                        top: 2px;
+                    }
+                    .name {
+                        color: $darkGrey;
+                        position: relative;
+                        top: -8px;
+                        margin-left: 10px;
+                        text-decoration: none;
+                        font-weight: 500;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2n) {
+                background: #F9F9F9;
+            }
+        }
     }
 }
