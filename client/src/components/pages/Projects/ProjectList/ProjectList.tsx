@@ -42,6 +42,8 @@ let ProjectList = ({ projectStore }: IStoreProps) => {
                         })}
                     </tbody>
                 </table>}
+            
+            {projectStore.projectCount > 9 ? <div className="blocker"></div> : ''}
 
         </div>
     )
