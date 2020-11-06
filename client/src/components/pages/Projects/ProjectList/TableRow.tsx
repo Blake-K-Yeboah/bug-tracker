@@ -28,7 +28,9 @@ const TableRow = ({ project }: any ) => {
                 {owner !== { profileIcon: '', name: '', _id: '' } ? <><img src={`${process.env.PUBLIC_URL}/uploads/profile/${owner.profileIcon}`} className="profileIcon" alt="Profile Icon" /><NavLink className="name" to={`/profile/${owner._id}`}>{owner.name}</NavLink></> : ''}
             </td>
             <td className="table-data">
-                {project.name}
+                <NavLink className="btn-container" to={`/project/${project._id}`}>
+                    <button className="btn primary">View Project</button>
+                </NavLink>
             </td>
         </tr>
     )
