@@ -1,6 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import React, { useEffect } from 'react'
 import { FaPlus } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 import { IStoreProps, Iuser } from '../../../../types';
 
 // Import Styling
@@ -48,7 +49,11 @@ let ProjectActionsBar = ({ usersStore }: IStoreProps) => {
 
             <div className="new-project-section">
 
-                <button className="btn primary has-icon">Create New Project <FaPlus className="icon" /></button>
+                <NavLink className="btn-container" to="/projects/new">
+
+                    <button className="btn primary has-icon">Create New Project <FaPlus className="icon" /></button>
+
+                </NavLink>
                 
             </div>
 
