@@ -1,0 +1,30 @@
+@import '../../../../style/variables';
+
+.new-project-container {
+    background: #fff;
+    width: 40vw;
+    height: calc((100vh - 50px) - 14em);
+    border-radius: 12.5px;
+    padding: 2em 2em 0em 2em;
+    position: absolute;
+    left: 60%;
+    top:53.5%;
+    transform:translate(-50%, -50%);
+
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: .35em;
+        text-align:center;
+    }
+
+    .sub-text {
+        color: $grey;
+        font-weight: lighter;
+        font-style: italic;
+        letter-spacing: 0.05px;
+        font-size: 1rem;
+        text-align:center;
+    }
+}
