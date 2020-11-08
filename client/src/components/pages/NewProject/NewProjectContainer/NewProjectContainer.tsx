@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Imported Styling
 import './NewProjectContainer.scss';
 
 const NewProjectContainer = () => {
