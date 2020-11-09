@@ -12,7 +12,7 @@ const TipSection = () => {
     const tipArray = [
         "Useful profile actions can be found by pressing the menu icon in navbar",
         "You can browse every change ever made on the history page",
-        "The side bar has useful navigation links for every page",
+        "The side bar has useful navigation links to every page",
         "",
         "",
         "",
