@@ -14,10 +14,11 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
 
     const [userInput, setUserInput] = useState({
         title: '',
-        description: ''
+        description: '',
+        owner: ''
     });
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value});
     }
 
@@ -49,13 +50,13 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
                     <div className="form-group">
 
                         <label className="input-label">Owner</label>
-                        <select className="select">
+                        <select className="select" onChange={onChange} id="owner" value={userInput.owner}>
 
                         {usersStore.userCount === 0 ? '' : usersStore.users.map((user: Iuser) => {
                         
                             if (user.role === "project-manager" || user.role === "admin") {
                                 return (
-                                    <option value={user.name} key={user._id}>{user.name}</option>
+                                    <option value={user._id} key={user._id}>{user.name}</option>
                                 )
                             } else {
                                 return ''
