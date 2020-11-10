@@ -1,7 +1,9 @@
+import Axios from 'axios';
 import { inject, observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { IStoreProps, Iuser } from '../../../../types';
+import ErrorAlert from '../../../alerts/ErrorAlert';
 
 // Imported Styling
 import './NewProjectContainer.scss';
@@ -22,16 +24,24 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value});
     }
 
+    const [show, setShow] = useState(true);
+
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        Axios.post('/api/projects/create')
+    }
+
     return (
         <div className="new-project-container">
             
             <h2 className="heading">Create New Project</h2>
 
-            <p className="sub-text">Fill out the following form to create a new project</p>
-            
             <div className="form-container new-project-form-container">
 
-                <form className="new-project-form form">
+                <form className="new-project-form form" onSubmit={submitHandler}>
+
+                    {show ? <ErrorAlert message="There was an error." setShow={setShow} /> : ''}
 
                     <div className="form-group">
 
