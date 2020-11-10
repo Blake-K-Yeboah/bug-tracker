@@ -15,7 +15,7 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
     }, [usersStore]);
 
     const [userInput, setUserInput] = useState({
-        title: '',
+        name: '',
         description: '',
         owner: ''
     });
@@ -24,12 +24,23 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value});
     }
 
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        Axios.post('/api/projects/create')
+
+        const body = {
+            ...userInput,
+            owner: userInput.owner === '' ? usersStore.users.filter((user: Iuser) => user.role === 'project-manager'|| user.role === 'admin')[0]._id : userInput.owner
+        }
+
+        console.log(body);
+
+        /*Axios.post('/api/projects/create', body).then(res => {
+            console.log(res.data);
+        }).catch(error => {
+            console.log(error.response.data);
+        });*/
     }
 
     return (
@@ -45,8 +56,8 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
 
                     <div className="form-group">
 
-                        <label className="input-label" htmlFor="title">Title</label>
-                        <input type="text" className="input" placeholder="Title: " id="title" onChange={onChange} value={userInput.title} />
+                        <label className="input-label" htmlFor="name">Name</label>
+                        <input type="text" className="input" placeholder="Name: " id="name" onChange={onChange} value={userInput.name} />
 
                     </div>
 
@@ -62,12 +73,14 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
                         <label className="input-label">Owner</label>
                         <select className="select" onChange={onChange} id="owner" value={userInput.owner}>
 
-                        {usersStore.userCount === 0 ? '' : usersStore.users.map((user: Iuser) => {
-                        
+                        {usersStore.userCount === 0 ? '' : usersStore.users.map((user: Iuser, index: number) => {
+
                             if (user.role === "project-manager" || user.role === "admin") {
+                                
                                 return (
                                     <option value={user._id} key={user._id}>{user.name}</option>
                                 )
+
                             } else {
                                 return ''
                             }
