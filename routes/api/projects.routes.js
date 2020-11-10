@@ -63,7 +63,7 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
         } else {
 
             // Check owner is admin or project
-            User.findById(req.body.userId).then(user => {
+            User.findById(req.body.owner).then(user => {
                 if (!user) {
                     return res.status(400).json({ owner: "No user with that ID" });
                 } else if (user.role != "admin" && user.role != 'project-manager') {
@@ -75,7 +75,7 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
             const newProject = new Project({
                 name: req.body.name,
                 description: req.body.description,
-                owner: req.body.userId
+                owner: req.body.owner
             });
 
             newProject.save().then(project => {
