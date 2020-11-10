@@ -22,7 +22,7 @@ const validateProjectInput = data => {
         errors.description = "Description exceeds 100 character limit";
     }
 
-    if (!data.userId) {
+    if (!data.owner) {
         errors.owner = "A value for owner must be passed through"
     }
 
