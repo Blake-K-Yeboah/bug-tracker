@@ -59,13 +59,13 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
 
         // Check if project exists with same name
         if (project) {
-            res.status(400).json({ name: 'Project with same name exists'});
+            res.status(400).json({ name: 'Project with same name exists.'});
         } else {
 
             // Check owner is admin or project
             User.findById(req.body.owner).then(user => {
                 if (!user) {
-                    return res.status(400).json({ owner: "No user with that ID" });
+                    return res.status(400).json({ owner: "No user with that ID." });
                 } else if (user.role != "admin" && user.role != 'project-manager') {
                     return res.status(401).json({ owner: "You dont have permission." });
                 }
