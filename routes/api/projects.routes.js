@@ -90,7 +90,7 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
                     properties: JSON.stringify(properties)
                 });
 
-                newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
+                newChange.save().then(change => {  }).catch(err => console.log(err));
 
                 return res.json(project);
 
