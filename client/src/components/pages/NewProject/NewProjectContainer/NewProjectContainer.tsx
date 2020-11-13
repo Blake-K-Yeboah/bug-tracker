@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { IStoreProps, Iuser } from '../../../../types';
 import ErrorAlert from '../../../alerts/ErrorAlert';
+import SuccessAlert from '../../../alerts/SuccessAlert';
 
 // Imported Styling
 import './NewProjectContainer.scss';
@@ -24,8 +25,9 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value});
     }
 
-    const [show, setShow] = useState(false);
-
+    const [errorShow, setErrorShow] = useState(false);
+    const [successShow, setSuccessShow] = useState(false);
+    
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -36,11 +38,13 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
 
         console.log(body);
 
-        /*Axios.post('/api/projects/create', body).then(res => {
-            console.log(res.data);
+        Axios.post('/api/projects/create', body).then(res => {
+            setErrorShow(false);
+            setSuccessShow(true);
         }).catch(error => {
-            console.log(error.response.data);
-        });*/
+            setSuccessShow(false);
+            setErrorShow(true);
+        });
     }
 
     return (
@@ -52,7 +56,8 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
 
                 <form className="new-project-form form" onSubmit={submitHandler}>
 
-                    {show ? <ErrorAlert message="There was an error." setShow={setShow} /> : ''}
+                    {errorShow ? <ErrorAlert message="An error occured. Try again later" setShow={setErrorShow} /> : ''}
+                    {successShow ? <SuccessAlert message="Successfully created!" setShow={setSuccessShow} /> : ''}
 
                     <div className="form-group">
 
