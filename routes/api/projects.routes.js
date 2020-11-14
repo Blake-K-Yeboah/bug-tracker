@@ -100,4 +100,20 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
 
 });
 
+router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+
+    const projectId = req.params.id;
+
+    Project.findByIdAndDelete(projectId, (err, doc) => {
+
+        if (err) { 
+
+            return res.send(500, err);
+
+        }
+
+    });
+
+});
+
 module.exports = router;
