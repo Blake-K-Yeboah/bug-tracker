@@ -31,9 +31,10 @@ const TableRow = ({ project }: any ) => {
                 : ''}
             </td>
             <td className="table-data">
-                <NavLink className="btn-container" to={`/project/${project._id}`}>
+                <NavLink className="btn-link-container" to={`/project/${project._id}`}>
                     <button className="btn primary">View Project</button>
                 </NavLink>
+                <button className="btn danger">Delete Project</button>
             </td>
         </tr>
     )
