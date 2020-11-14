@@ -1,20 +1,31 @@
 import Axios from 'axios';
+import { inject, observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
+import { IStoreProps } from '../../../../types';
 
-const TableRow = ({ project }: any ) => {
+let TableRow = ({ project, projectStore }: IStoreProps ) => {
 
     const [owner, setOwner] = useState({ profileIcon: '', name: '', _id: '' });
 
     useEffect(() => {
 
-        Axios.get(`/api/users/${project.owner}`).then((res) => {
+        Axios.get(`/api/users/${project.owner}`).then(res => {
             setOwner(res.data);
         }).catch(err => {
             console.error(err);
         });
 
     }, [project.owner]);
+
+    const deleteHandler = () => {
+        Axios.delete(`/api/projects/${project._id}`).then(res => {
+            projectStore.fetchProjects();
+            window.location.reload();
+        }).catch(err => {
+            alert('An Error Occured');
+        });
+    };
 
     return (
         <tr className="row">
@@ -34,11 +45,13 @@ const TableRow = ({ project }: any ) => {
                 <NavLink className="btn-link-container" to={`/project/${project._id}`}>
                     <button className="btn primary">View Project</button>
                 </NavLink>
-                <button className="btn danger">Delete Project</button>
+                <button className="btn danger" onClick={deleteHandler}>Delete Project</button>
             </td>
         </tr>
     )
 
 }
+
+TableRow = inject('projectStore')(observer(TableRow));
 
 export default TableRow
