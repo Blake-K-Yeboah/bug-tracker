@@ -61,7 +61,8 @@ export interface Iproject {
     description: string,
     usersList: string[],
     owner: string,
-    ticketList: string[]
+    ticketList: string[],
+    createdOn: Date
 }
 
 // Project Store Interface
