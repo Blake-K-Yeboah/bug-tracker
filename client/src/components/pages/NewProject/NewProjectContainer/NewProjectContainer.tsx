@@ -41,6 +41,11 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
         Axios.post('/api/projects/create', body).then(res => {
             setErrorShow(false);
             setSuccessShow(true);
+            setUserInput({
+                name: '',
+                description: '',
+                owner: ''
+            });
         }).catch(error => {
             setSuccessShow(false);
             setErrorShow(true);
