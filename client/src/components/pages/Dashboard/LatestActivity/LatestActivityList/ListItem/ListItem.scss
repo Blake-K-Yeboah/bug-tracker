@@ -1,12 +1,5 @@
 @import '../../../../../../style/variables';
-
-@keyframes loader {
-    0% {background: rgba(0,0,0,0.05)}
-    25% {background: rgba(0,0,0,0.1)}
-    50% {background: rgba(0,0,0,0.05)}
-    75% {background: rgba(0,0,0,0.1)}
-    100% {background: rgba(0,0,0,0.05)}
-}
+@import '../../../../../../style/animations';
 
 .latest-activity-list .list-item {
     list-style: none;
