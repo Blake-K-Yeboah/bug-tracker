@@ -25,7 +25,10 @@ const TableRow = ({ project }: any ) => {
                 {project.description}
             </td>
             <td className="table-data owner-td">
-                {owner !== { profileIcon: '', name: '', _id: '' } ? <><img src={`${process.env.PUBLIC_URL}/uploads/profile/${owner.profileIcon}`} className="profileIcon" alt="Profile Icon" /><NavLink className="name" to={`/profile/${owner._id}`}>{owner.name}</NavLink></> : ''}
+                {owner !== { profileIcon: '', name: '', _id: '' } ? <>
+                    <img src={`${process.env.PUBLIC_URL}/uploads/profile/${owner.profileIcon}`} className="profileIcon" alt="Profile Icon" />
+                    <NavLink className="name" to={`/profile/${owner._id}`}>{owner.name}</NavLink> </> 
+                : ''}
             </td>
             <td className="table-data">
                 <NavLink className="btn-container" to={`/project/${project._id}`}>
