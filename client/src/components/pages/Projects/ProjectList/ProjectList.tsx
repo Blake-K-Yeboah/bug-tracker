@@ -32,7 +32,7 @@ let ProjectList = ({ projectStore }: IStoreProps) => {
                                 Owner
                             </th>
                             <th className="t-head">
-                                Project Link
+                                Project Links
                             </th>
                         </tr>
                     </thead>
