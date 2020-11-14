@@ -7,18 +7,22 @@ import { IStoreProps, Iuser } from '../../../../types';
 // Import Styling
 import './ProjectActionsBar.scss';
 
-let ProjectActionsBar = ({ usersStore }: IStoreProps) => {
+let ProjectActionsBar = ({ usersStore, projectStore }: IStoreProps) => {
     
     useEffect(() => {
         usersStore.fetchUsers();
     }, [usersStore]);
+
+    const sortByOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        projectStore.setProjectSort(e.target.value);
+    }
 
     return (
         <div className="project-actions-bar">
             
             <label htmlFor="sort-select">Sort By</label>
 
-            <select className="sort-select" id="sort-select">
+            <select className="sort-select" id="sort-select" onChange={sortByOnChange}>
 
                 <option value="a-z">Name (A-Z)</option>
                 <option value="z-a">Name (Z-A)</option>
@@ -61,6 +65,6 @@ let ProjectActionsBar = ({ usersStore }: IStoreProps) => {
     )
 }
 
-ProjectActionsBar = inject("usersStore")(observer(ProjectActionsBar));
+ProjectActionsBar = inject("usersStore", "projectStore")(observer(ProjectActionsBar));
 
 export default ProjectActionsBar;
