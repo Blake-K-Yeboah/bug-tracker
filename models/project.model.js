@@ -24,6 +24,10 @@ const ProjectSchema = new Schema({
         type: Array,
         required: false,
         default: []
+    },
+    createdOn: {
+        type: Date,
+        default: Date.now()
     }
 });
 
