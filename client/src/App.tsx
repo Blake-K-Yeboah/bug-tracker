@@ -23,6 +23,7 @@ import Projects from './components/pages/Projects/Projects';
 // Import Styling
 import './style/App.scss';
 import NewProject from './components/pages/NewProject/NewProject';
+import UserProfile from './components/pages/UserProfile/UserProfile';
 
 const App = () => {
   
@@ -64,6 +65,11 @@ const App = () => {
           <Route exact path="/projects/new" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <NewProject />
+          }} />
+
+          <Route exact path="/profile/:id" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <UserProfile {...props} />
           }} />
 
         </Switch>
