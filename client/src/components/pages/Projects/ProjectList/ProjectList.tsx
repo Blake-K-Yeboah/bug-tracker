@@ -7,7 +7,7 @@ import './ProjectList.scss';
 import Spinner from '../../../Spinner/Spinner';
 import TableRow from './TableRow';
 
-let ProjectList = ({ projectStore }: IStoreProps) => {
+let ProjectList = ({ projectStore, authStore }: IStoreProps) => {
 
     useEffect(() => {
         projectStore.fetchProjects();
@@ -37,7 +37,14 @@ let ProjectList = ({ projectStore }: IStoreProps) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projectStore.projects.map((project: Iproject) => {
+                        {projectStore.projects.filter((project: Iproject) => { 
+                            if (project.usersList.includes(authStore.user.id) || project.owner === authStore.user.id) {
+                                return true
+                            } else {
+                                return false
+                            }
+                            
+                        }).map((project: Iproject) => {
                             return <TableRow project={project} key={project._id} />
                         })}
                     </tbody>
@@ -49,6 +56,6 @@ let ProjectList = ({ projectStore }: IStoreProps) => {
     )
 }
 
-ProjectList = inject("projectStore")(observer(ProjectList));
+ProjectList = inject("projectStore", "authStore")(observer(ProjectList));
 
 export default ProjectList;
