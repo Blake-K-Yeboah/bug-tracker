@@ -41,7 +41,7 @@ export class projectstore {
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
                     const dateA = new Date(a.createdOn).getTime();
                     const dateB = new Date(b.createdOn).getTime();
-                    return dateA > dateB ? 1 : -1; 
+                    return dateA > dateB ? -1 : 1; 
                 });
                 break;
 
@@ -49,7 +49,7 @@ export class projectstore {
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
                     const dateA = new Date(a.createdOn).getTime();
                     const dateB = new Date(b.createdOn).getTime();
-                    return dateA < dateB ? 1 : -1; 
+                    return dateA < dateB ? -1 : 1; 
                 });
                 break;
         }
