@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+
+// Import Axios
 import Axios from 'axios';
 
 const UserProfile: any = ({ match }: any) => {
