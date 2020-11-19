@@ -109,7 +109,23 @@ router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), 
         if (err) { 
 
             return res.send(500, err);
+            
+        } else {
 
+            const properties = {
+                userId: doc.owner,
+                projectName: doc.name
+            }
+
+            const newChange = new Change({
+                message: "project called ",
+                type: "PROJECT_DELETED",
+                properties: JSON.stringify(properties)
+            });
+
+            newChange.save().then(change => {  }).catch(err => console.log(err));
+
+            return res.json(project);
         }
 
     });
