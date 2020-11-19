@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react';
 // Import Types
 import { IStoreProps } from '../../../../types';
 
+// Import Page Components
 import LatestActivityList from './LatestActivityList/LatestActivityList';
 import { NavLink } from 'react-router-dom';
 
