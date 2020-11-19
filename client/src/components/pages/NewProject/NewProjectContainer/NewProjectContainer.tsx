@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { inject, observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 import { IStoreProps, Iuser } from '../../../../types';
 import ErrorAlert from '../../../alerts/ErrorAlert';
 import SuccessAlert from '../../../alerts/SuccessAlert';
@@ -55,6 +56,8 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
     return (
         <div className="new-project-container">
             
+            <NavLink className="back-to-projects" to="/projects/">&lt; Back To Projects</NavLink>
+
             <h2 className="heading">Create New Project</h2>
 
             <div className="form-container new-project-form-container">
