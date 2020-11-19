@@ -37,4 +37,16 @@
             transform:translateX(-50%);
         }
     }
+
+    .back-to-projects {
+        position: absolute;
+        top: 2em;
+        left: 3em;
+        color: $primary;
+        text-decoration:none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
