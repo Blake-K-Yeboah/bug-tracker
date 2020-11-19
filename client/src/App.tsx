@@ -19,11 +19,12 @@ import Dashboard from './components/pages/Dashboard/Dashboard';
 import ManageUserRoles from './components/pages/ManageUserRoles/ManageUserRoles';
 import NotAllowed from './components/pages/NotAllowed/NotAllowed';
 import Projects from './components/pages/Projects/Projects';
+import NewProject from './components/pages/NewProject/NewProject';
+import UserProfile from './components/pages/UserProfile/UserProfile';
 
 // Import Styling
 import './style/App.scss';
-import NewProject from './components/pages/NewProject/NewProject';
-import UserProfile from './components/pages/UserProfile/UserProfile';
+
 
 const App = () => {
   
