@@ -15,41 +15,64 @@ export class projectstore {
         switch(this.projectSort) {
             case "a-z":
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
+                    
                     if ( a.name < b.name ){
                         return -1;
-                      }
-                      if ( a.name > b.name ){
+                    }
+                    
+                    if ( a.name > b.name ){
                         return 1;
-                      }
-                      return 0;
+                    }
+                    
+                    return 0;
+
                 });
                 break;
 
             case "z-a":
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
+                    
                     if ( a.name < b.name ){
                         return 1;
-                      }
-                      if ( a.name > b.name ){
+                    }
+                  
+                    if ( a.name > b.name ){
                         return -1;
-                      }
-                      return 0;
+                    }
+                      
+                    return 0;
+
                 });
                 break;
 
-            case "newest-first":
+            case "owner-a-z":
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
-                    const dateA = new Date(a.createdOn).getTime();
-                    const dateB = new Date(b.createdOn).getTime();
-                    return dateA > dateB ? -1 : 1; 
-                });
-                break;
+                    if ( a.owner < b.owner ){
+                        return -1;
+                    }
+                    
+                    if ( a.owner > b.owner ){
+                        return 1;
+                    }
+                    
+                    return 0;
 
-            case "oldest-first":
+                    });
+                    break;
+
+            case "owner-z-a":
                 this.projects = this.projects.slice().sort((a: Iproject, b: Iproject) => {
-                    const dateA = new Date(a.createdOn).getTime();
-                    const dateB = new Date(b.createdOn).getTime();
-                    return dateA < dateB ? -1 : 1; 
+                    
+                        if ( a.owner < b.owner ){
+                        return 1;
+                    }
+                    
+                        if ( a.owner > b.owner ){
+                        return -1;
+                    }
+                    
+                    return 0;
+
                 });
                 break;
         }
