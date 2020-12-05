@@ -33,23 +33,26 @@
     .users-table {
         width: 100%;
         border-collapse: collapse;
+        border: .5px solid #e1e1e1;
 
         .head-row {
             height: 50px;
-            background: #F1F1F1;
+            background: #F9F9F9;
+            border: .5px solid #e1e1e1;
 
             .t-head {
                 width: 25%;
                 color: $darkGrey;
                 font-weight: 500;
                 font-size: 1rem;
-                border: .5px solid #e1e1e1;
             }
         }
 
         .row {
             height: 50px;
             background: #FFFFFF;
+            border: .5px solid #e1e1e1;
+            
 
             .table-data {
                 color: $darkGrey;
@@ -57,7 +60,6 @@
                 font-size: 1rem;
                 text-align:center;
                 vertical-align:center;
-                border: .5px solid #e1e1e1;
 
                 select {
                     background: transparent;
@@ -72,10 +74,6 @@
                     margin-left: 10px;
                     font-size: .75rem;
                 }
-            }
-
-            &:nth-child(2n) {
-                background: #F9F9F9;
             }
         }
     }
