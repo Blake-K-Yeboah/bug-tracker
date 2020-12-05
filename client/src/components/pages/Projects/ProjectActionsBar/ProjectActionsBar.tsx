@@ -26,8 +26,9 @@ let ProjectActionsBar = ({ usersStore, projectStore }: IStoreProps) => {
 
                 <option value="a-z">Name (A-Z)</option>
                 <option value="z-a">Name (Z-A)</option>
-                <option value="newest-first">Newest First</option>
-                <option value="oldest-first">Oldest First</option>
+                
+                <option value="owner-a-z">Owner (A-Z)</option>
+                <option value="owner-z-a">Owner (Z-A)</option>
 
             </select>
 
