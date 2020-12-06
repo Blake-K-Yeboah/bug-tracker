@@ -6,9 +6,13 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import InfoSection from './InfoSection/InfoSection';
 
 // Import Axios
 import Axios from 'axios';
+
+// Import Styling
+import './UserProfile.scss';
 
 const UserProfile: any = ({ match }: any) => {
 
@@ -38,8 +42,17 @@ const UserProfile: any = ({ match }: any) => {
 
                 <Sidebar />
 
-                <h1 className="page-title">User Profile: {user ? user.name : ''}</h1>
+                <h1 className="page-title">User Profile</h1>
                 
+                <div className="user-profile-grid">
+
+                    <InfoSection user={user} />
+                    <div className="placeholder"></div>
+                    <div className="placeholder"></div>
+                    <div className="placeholder"></div>
+
+                </div>
+
             </div>
 
         </>
