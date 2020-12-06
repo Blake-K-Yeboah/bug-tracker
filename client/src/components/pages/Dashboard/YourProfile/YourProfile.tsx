@@ -25,7 +25,9 @@ let YourProfile = ({ authStore }: IStoreProps) => {
                     <p className="profile-bio">{authStore.user.bio === "" ? "No Bio" : authStore.user.bio > 190 ? `${authStore.user.bio.substr(0, 190)}...` : authStore.user.bio}</p>
 
                 </div>
+
             </div>
+            
         </div>
     )
 }
