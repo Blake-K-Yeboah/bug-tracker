@@ -12,6 +12,7 @@ import Axios from 'axios';
 
 // Import Styling
 import './UserProfile.scss';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const UserProfile: any = ({ match }: any) => {
 
@@ -45,7 +46,8 @@ const UserProfile: any = ({ match }: any) => {
                 
                 <div className="user-profile-grid">
 
-                    <div className="placeholder"></div>
+                    <ProfileInfo user={user} />
+                    
                     <div className="placeholder"></div>
 
                 </div>
