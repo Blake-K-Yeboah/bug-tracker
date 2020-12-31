@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
-import InfoSection from './InfoSection/InfoSection';
 
 // Import Axios
 import Axios from 'axios';
@@ -46,8 +45,6 @@ const UserProfile: any = ({ match }: any) => {
                 
                 <div className="user-profile-grid">
 
-                    <InfoSection user={user} />
-                    <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
 

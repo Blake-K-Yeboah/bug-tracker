@@ -1,8 +1,7 @@
 .user-profile-grid {
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 3em;
+    grid-template-columns: 2fr 5fr;
+    column-gap: 2em;
     width:70vw;
     margin-top: 2em;
     height: 70vh;  
