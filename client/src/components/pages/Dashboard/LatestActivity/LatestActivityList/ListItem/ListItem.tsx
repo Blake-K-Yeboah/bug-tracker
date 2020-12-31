@@ -37,7 +37,9 @@ const ListItem = ({change}: any) => {
     let changedUserName = checkChangedUser ? changedUser.name.split(' ')[0] : 'Loading';
 
     const role = change.properties.newRole;
-    const roleDisplay = role === "developer" ||  role === "submitter" ? `${role[0].toUpperCase()}${role.substr(1, role.length)}` : '';
+    
+    const roleDisplay = role === 'project-manager' ? 'Project Manager' : 
+                        role ? `${role.charAt(0).toUpperCase()}${role.slice(1, role.length)}` : '';
 
     switch(change.type) {
 
