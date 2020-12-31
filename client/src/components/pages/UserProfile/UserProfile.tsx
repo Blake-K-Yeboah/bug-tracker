@@ -6,13 +6,13 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 // Import Axios
 import Axios from 'axios';
 
 // Import Styling
 import './UserProfile.scss';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const UserProfile: any = ({ match }: any) => {
 
