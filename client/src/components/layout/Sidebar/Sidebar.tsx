@@ -33,6 +33,8 @@ let Sidebar = ({ authStore }: IStoreProps) => {
         </Link>
     )
 
+    const year = new Date().getFullYear();
+
     return (
         <div className="sidebar">
 
@@ -67,7 +69,7 @@ let Sidebar = ({ authStore }: IStoreProps) => {
 
             </ul>
 
-            <p className="small-text">&copy; Copyright 2020. Bug Tracker</p>
+            <p className="small-text">&copy; Copyright {year as number} Bug Tracker</p>
 
             <p className="small-text">
                 Built by <a href="https://www.blakeyeboah.com/" className="link" target="_blank" rel="noopener noreferrer">Blake Yeboah</a>
