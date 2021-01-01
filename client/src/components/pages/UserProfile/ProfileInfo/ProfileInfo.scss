@@ -72,4 +72,11 @@
 
         }
     }
+
+    .btn {
+        margin: 1em 0;
+        position:relative;
+        left:50%;
+        transform:translateX(-50%);
+    }
 }
