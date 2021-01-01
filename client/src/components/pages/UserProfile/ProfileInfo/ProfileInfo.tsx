@@ -7,13 +7,20 @@ import './ProfileInfo.scss';
 import profileHeader from './profile-header.jpg';
 
 // Import Icons
-import { FaEnvelope, FaUser } from 'react-icons/fa';
+import { FaEnvelope, FaUser, FaCalendar } from 'react-icons/fa';
 
-const ProfileInfo: any = ({ user }: any) => {
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
 
-    const role = user && user.role === 'project-manager' ? 'Project Manager' : 
-                 user ? `${user.role.charAt(0).toUpperCase()}${user.role.slice(1,user.role.length)}` : 
-                 '';
+let ProfileInfo: any = ({ user, authStore }: any) => {
+
+    const role: string = user && user.role === 'project-manager' ? 'Project Manager' : user ? `${user.role.charAt(0).toUpperCase()}${user.role.slice(1,user.role.length)}` : '';
+
+    const date: null | Date = user ? new Date(user.createdOn) : null;
+
+    const displayDate = date ? `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` : '';
+
+    const loggedInUserId = authStore.user.id;
 
     return (
 
@@ -40,9 +47,19 @@ const ProfileInfo: any = ({ user }: any) => {
 
                         <FaUser className="icon" />
 
-                        <span className="text">{role}</span>
+                        <span className="text">{role as string}</span>
 
                     </div>
+
+                    <div className="user-icon-group">
+
+                        <FaCalendar className="icon" />
+
+                        <span className="text">{displayDate as string}</span>
+
+                    </div>
+
+                    {loggedInUserId === user._id ? 'Edit Profile' : ''}
 
                 </> :
 
@@ -54,5 +71,7 @@ const ProfileInfo: any = ({ user }: any) => {
 
     )
 }
+
+ProfileInfo = inject("authStore")(observer(ProfileInfo));
 
 export default ProfileInfo
