@@ -30,7 +30,7 @@ let Search = ({ usersStore, projectStore}: IStoreProps) => {
       setSearchResults({ projects: [], users: [] });
     }
 
-  }, [searchInput, usersStore.users, projectStore.projects]);
+  }, [searchInput, usersStore, projectStore]);
 
   return (
       <div className="search">
