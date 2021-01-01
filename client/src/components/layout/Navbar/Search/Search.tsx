@@ -16,6 +16,8 @@ let Search = ({ usersStore, projectStore}: IStoreProps) => {
   const userLengthCondition = searchResults.users.length > searchResults.projects.length;
 
   useEffect(() => {
+    usersStore.fetchUsers();
+    projectStore.fetchProjects();
     
     if (searchInput !== '') {
       setSearchDisplay(true);
