@@ -7,7 +7,7 @@ import './ProfileInfo.scss';
 import profileHeader from './profile-header.jpg';
 
 // Import Icons
-import { FaEnvelope, FaUser, FaCalendar } from 'react-icons/fa';
+import { FaEnvelope, FaUser, FaCalendar, FaPen } from 'react-icons/fa';
 
 // Import MobX Stuff
 import { inject, observer } from 'mobx-react';
@@ -22,6 +22,8 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
 
     const loggedInUserId = authStore.user.id;
 
+    const editProfileBtn = <button className="btn has-icon light">Edit Profile <FaPen className="icon" /></button>
+
     return (
 
         <div className="profile-info">
@@ -33,7 +35,7 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
 
                     <h3 className="user-name">{user.name}</h3>
 
-                    <p className="user-bio">{user.bio}</p>
+                    <p className="user-bio">{user.bio || 'No Bio'}</p>
 
                     <div className="user-icon-group">
 
@@ -59,7 +61,7 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
 
                     </div>
 
-                    {loggedInUserId === user._id ? 'Edit Profile' : ''}
+                    {loggedInUserId === user._id ? editProfileBtn : ''}
 
                 </> :
 
