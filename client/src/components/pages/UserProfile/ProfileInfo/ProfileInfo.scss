@@ -46,10 +46,14 @@
 
     .user-icon-group {
         width: 55%;
-        margin: 2em auto;
+        margin: 1em auto;
+
+        &:first-of-type {
+            margin-top: 2em;
+        }
 
         .icon {
-            color: #444;
+            color: #666;
             background-color: #e5e5e5;
             padding: 8.5px;
             width: 30px;
@@ -59,12 +63,12 @@
         }
 
         .text {
-            color: #444;
+            color: #666;
             font-size: .9rem;
             position:relative;
             top:-10px;
             left: 20px;
-            font-weight: 500;
+            font-weight: 400;
 
         }
     }
