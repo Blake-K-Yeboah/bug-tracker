@@ -76,3 +76,13 @@
         }
     }
 }
+
+.dropdown-overlay {
+    width: 100vw;
+    height: 100vh;
+    background:black;
+    position:absolute;
+    z-index: 1;
+    left:0;
+    top:0;
+}
