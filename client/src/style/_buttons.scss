@@ -39,6 +39,16 @@
         }
     }
 
+
+    &.light {
+        color: #555555;
+        background: #eee;
+
+        &:hover {
+            background: #ddd;
+        }
+    }
+
     &:disabled {
         color: $grey;
         background: #eee;
