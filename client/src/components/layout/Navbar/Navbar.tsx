@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import './Navbar.scss';
 
 import { BsGrid3X3Gap } from 'react-icons/bs';
-import { AiOutlineFolderOpen } from 'react-icons/ai'
+import { AiOutlineBug } from 'react-icons/ai'
 
 import Dropdown from './Dropdown/Dropdown';
 import Search from './Search/Search';
@@ -20,7 +20,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
 
-            <h1 className="navbar-brand"> <AiOutlineFolderOpen className="icon" /> Bug Tracker</h1>
+            <h1 className="navbar-brand"> <AiOutlineBug className="icon" /> Bug Tracker</h1>
 
             <div className="right-side-content">
 
