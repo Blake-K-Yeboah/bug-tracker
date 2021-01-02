@@ -8,6 +8,7 @@ import { AiOutlineBug } from 'react-icons/ai'
 
 import Dropdown from './Dropdown/Dropdown';
 import Search from './Search/Search';
+
 import Axios from 'axios';
 
 const Navbar = () => {
