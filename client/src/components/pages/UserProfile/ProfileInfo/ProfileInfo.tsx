@@ -27,10 +27,11 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
     return (
 
         <div className="profile-info">
-            
-            <img src={profileHeader} alt="Header" className="header-img" />
 
             { user ? <>
+            
+                    <img src={profileHeader} alt="Header" className="header-img" />
+
                     <img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-img" />
 
                     <h3 className="user-name">{user.name}</h3>
@@ -65,7 +66,19 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
 
                 </> :
 
-                ''
+                <>
+
+                    <div className="loader header"></div>
+
+                    <div className="loader profile-pic"></div>
+
+                    <div className="loader text"></div>
+
+                    <div className="loader text"></div>
+
+                    <div className="loader text"></div>
+
+                </>
             
             }
 
