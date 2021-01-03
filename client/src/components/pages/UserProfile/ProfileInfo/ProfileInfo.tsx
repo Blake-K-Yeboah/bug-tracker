@@ -12,6 +12,9 @@ import { FaEnvelope, FaUser, FaCalendar, FaPen } from 'react-icons/fa';
 // Import MobX Stuff
 import { inject, observer } from 'mobx-react';
 
+// Import NavLink
+import { NavLink } from 'react-router-dom';
+
 let ProfileInfo: any = ({ user, authStore }: any) => {
 
     const role: string = user && user.role === 'project-manager' ? 'Project Manager' : user ? `${user.role.charAt(0).toUpperCase()}${user.role.slice(1,user.role.length)}` : '';
@@ -22,7 +25,7 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
 
     const loggedInUserId = authStore.user.id;
 
-    const editProfileBtn = <button className="btn has-icon light">Edit Profile <FaPen className="icon" /></button>
+    const editProfileBtn = <NavLink to={`/profile/${user ? user._id : ''}/edit`}><button className="btn has-icon light">Edit Profile <FaPen className="icon" /></button></NavLink>
 
     return (
 
