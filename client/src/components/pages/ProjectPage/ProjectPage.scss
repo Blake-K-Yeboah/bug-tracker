@@ -1,0 +1,17 @@
+.project-page-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width:70vw;
+    margin-top: 2em;
+    height: 70vh;  
+    gap: 2em;
+
+    // For testing
+    .placeholder {
+        background: #fff;
+        height:100%;
+        width:100%;
+        border-radius: 10px;
+    }
+}
