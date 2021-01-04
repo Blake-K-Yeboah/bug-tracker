@@ -6,7 +6,11 @@ let TableRow = ({ user, authStore }: any) => {
 
     const [role, setRole] = useState(user.role);
 
+    const [isChanged, setIsChanged] = useState(false);
+
     const selectChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+
+        setIsChanged(e.target.value !== user.role);
 
         setRole(e.target.value);
 
@@ -35,9 +39,12 @@ let TableRow = ({ user, authStore }: any) => {
 
     const updateHandler = () => {
         Axios.put(`/api/users/${user._id}/update/role`, { role, userId: authStore.user.id }).then(res => {
+
             // Success
             setRole(res.data.role);
-            alert('Successfully Updated')
+            alert('Successfully Updated');
+            window.location.reload();
+
         }).catch(err => {
             console.log(err);
         })
@@ -55,7 +62,7 @@ let TableRow = ({ user, authStore }: any) => {
                 {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
             </td>
             <td className="table-data role-td">
-                <select defaultValue={role} onChange={selectChangeHandler} disabled={user._id === authStore.user.id}>
+                <select defaultValue={role} onChange={selectChangeHandler} disabled={user._id === authStore.user.id} className={isChanged ? 'changed' : ''} >
 
                     {roleOptions.map((roleOption: any) => {
                         return <option value={roleOption.value} key={roleOption.value}>{roleOption.displayName as string}</option>
