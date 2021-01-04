@@ -63,10 +63,24 @@
 
                 select {
                     background: transparent;
-                    border: 1px solid #ccc;
+                    border: 1px solid #ddd;
                     padding: 5px 7.5px;
                     font-weight: lighter;
                     font-size: .75rem;
+                    cursor:pointer;
+
+                    &:disabled {
+                        cursor: default;
+                    }
+
+                    &.changed {
+                        color: #ffbb00;
+                        border-color: #ffbb00;
+                    }
+
+                    option {
+                        color: #000;
+                    }
                 }
 
                 .btn {
