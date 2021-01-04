@@ -21,6 +21,7 @@ import NotAllowed from './components/pages/NotAllowed/NotAllowed';
 import Projects from './components/pages/Projects/Projects';
 import NewProject from './components/pages/NewProject/NewProject';
 import UserProfile from './components/pages/UserProfile/UserProfile';
+import ProjectPage from './components/pages/ProjectPage/ProjectPage';
 
 // Import Styling
 import './style/App.scss';
@@ -71,6 +72,11 @@ const App = () => {
           <Route exact path="/profile/:id" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <UserProfile {...props} />
+          }} />
+
+          <Route exact path="/project/:id" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <ProjectPage {...props} />
           }} />
 
         </Switch>
