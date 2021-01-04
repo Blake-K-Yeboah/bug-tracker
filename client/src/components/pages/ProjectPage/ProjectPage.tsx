@@ -10,6 +10,9 @@ import Navbar from '../../layout/Navbar/Navbar';
 // Import Axios
 import Axios from 'axios';
 
+// Import Styling
+import './ProjectPage.scss';
+
 const ProjectPage = ({ match }: any) => {
 
     const projectId = match.params.id;
@@ -39,6 +42,15 @@ const ProjectPage = ({ match }: any) => {
                 <Sidebar />
 
                 <h1 className="page-title">Project</h1>
+                
+                <div className="project-page-grid">
+
+                    <div className="placeholder"></div>
+                    <div className="placeholder"></div>
+                    <div className="placeholder"></div>
+                    <div className="placeholder"></div>
+
+                </div>
                 
             </div>
 
