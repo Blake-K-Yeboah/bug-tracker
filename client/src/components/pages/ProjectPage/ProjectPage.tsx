@@ -12,6 +12,7 @@ import Axios from 'axios';
 
 // Import Styling
 import './ProjectPage.scss';
+import Details from './Details/Details';
 
 const ProjectPage = ({ match }: any) => {
 
@@ -45,7 +46,7 @@ const ProjectPage = ({ match }: any) => {
                 
                 <div className="project-page-grid">
 
-                    <div className="placeholder"></div>
+                    <Details project={project} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
