@@ -17,5 +17,9 @@
         color: $grey;
         margin: 1em 2em;
         display:block;
+
+        &:first-of-type {
+            margin: 0 2em 1em 2em;
+        }
     }
 }
