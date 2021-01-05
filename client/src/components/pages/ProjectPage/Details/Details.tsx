@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Details.scss';
 import { inject, observer } from 'mobx-react';
 import { Iuser } from '../../../../types';
+import { FaPen } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 let Details = ({ project, usersStore }: any) => {
 
@@ -13,7 +15,11 @@ let Details = ({ project, usersStore }: any) => {
 
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
-    console.log(project);
+    const [btnShowEdit, setBtnShowEdit] = useState(false);
+
+    const mouseEnterHandler = function() {
+        setTimeout(() => setBtnShowEdit(true), 250);
+    }
 
     return (
         <div className="project-details">
@@ -25,6 +31,13 @@ let Details = ({ project, usersStore }: any) => {
                 <span className="project-detail"><b>Created On</b>: { date ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` : ''}</span>
                 <span className="project-detail"><b>User Count</b>: {project.usersList.length + 1}</span>
                 <span className="project-detail"><b>Ticket Count</b>: {project.ticketList.length}</span>
+                
+                <NavLink to={`/project/${project._id}/edit`}>
+                    <button className="btn primary has-icon edit-btn" onMouseEnter={mouseEnterHandler} onMouseLeave={() => setBtnShowEdit(false)}>
+                        {btnShowEdit ? 'Edit' : ''}
+                        <FaPen className="icon" />
+                    </button>
+                </NavLink>
 
             </> : ''}
         </div>
