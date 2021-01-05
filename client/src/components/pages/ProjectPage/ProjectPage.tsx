@@ -6,13 +6,13 @@ import { Helmet } from 'react-helmet'
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import Details from './Details/Details';
 
 // Import Axios
 import Axios from 'axios';
 
 // Import Styling
 import './ProjectPage.scss';
-import Details from './Details/Details';
 
 const ProjectPage = ({ match }: any) => {
 
@@ -32,7 +32,7 @@ const ProjectPage = ({ match }: any) => {
         <>
             <Helmet>
 
-                <title>Bug Tracker - {project ? project.name : 'Loading'}</title>
+                <title>{project ? `Bug Tracker - Project: ${project.name}` : 'Loading'}</title>
 
             </Helmet>
 
