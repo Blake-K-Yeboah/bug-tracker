@@ -5,6 +5,7 @@
     height:100%;
     width:100%;
     border-radius: 10px;
+    position:relative;
 
     .project-title {
         color: $darkGrey;
@@ -20,6 +21,30 @@
 
         &:first-of-type {
             margin: 0 2em 1em 2em;
+        }
+    }
+
+    .edit-btn {
+        position:absolute;
+        top: 2em;
+        right: 2em;
+        width: 50px;
+        height: 50px;
+        transition: .5s ease-in-out;
+
+        .icon {
+            right:50%;
+            top: 50%;
+            transform:translate(50%, -50%);
+            transition: .25s ease-in-out;
+        }
+
+        &:hover {
+            width: 100px;
+
+            .icon {
+                right: 30px;
+            }
         }
     }
 }
