@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import Details from './Details/Details';
+import Controls from './Comments/Comments';
 
 // Import Axios
 import Axios from 'axios';
@@ -47,7 +48,7 @@ const ProjectPage = ({ match }: any) => {
                 <div className="project-page-grid">
 
                     <Details project={project} />
-                    <div className="placeholder"></div>
+                    <Controls project={project} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
 
