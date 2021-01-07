@@ -36,15 +36,6 @@
             right:50%;
             top: 50%;
             transform:translate(50%, -50%);
-            transition: .25s ease-in-out;
-        }
-
-        &:hover {
-            width: 100px;
-
-            .icon {
-                right: 30px;
-            }
         }
     }
 }
