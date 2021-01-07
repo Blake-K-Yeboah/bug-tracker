@@ -14,6 +14,8 @@ const passport = require('passport');
 const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
 const projects = require('./routes/api/projects.routes');
+const comments = require('./routes/api/comments.routes');
+const { populate } = require('./models/user.model');
 
 // Bodyparser middleware
 app.use(
@@ -49,6 +51,7 @@ require("./config/passport")(passport);
 app.use('/api/users', users);
 app.use('/api/changes', changes);
 app.use('/api/projects', projects);
+app.use('/api/comments', comments);
 
 // Port Environment Variable or 5000
 const port = process.env.PORT || '5000';
