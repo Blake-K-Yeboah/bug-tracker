@@ -125,7 +125,7 @@ router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), 
 
             newChange.save().then(change => {  }).catch(err => console.log(err));
 
-            return res.json(project);
+            return res.json(doc);
         }
 
     });
