@@ -58,7 +58,22 @@ router.post('/create',  jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] })
     });
 
     newComment.save().then(comment => {
+
+        // Create Change
         
+        const properties = {
+            userId: comment.user,
+            type: JSON.parse(comment.for).type
+        };
+
+        const newChange = new Change({
+            message: "posted a comment on a ",
+            type: "COMMENT_ADDED",
+            properties: JSON.stringify(properties)
+        });
+        
+        newChange.save().then(change => {  }).catch(err => console.log(err));
+
         return res.json(comment);
 
     }).catch(err => {
