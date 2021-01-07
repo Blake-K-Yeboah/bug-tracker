@@ -85,4 +85,37 @@ router.post('/create',  jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] })
 
 });
 
+router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+
+    const commentId = req.params.id;
+
+    Comment.findByIdAndDelete(commentId, (err, doc) => {
+
+        if (err) { 
+
+            return res.send(500, err);
+            
+        } else {
+
+            const properties = {
+                userId: req.body.userId,
+                postedBy: doc.user
+            }
+
+            const newChange = new Change ({
+                message: "deleted a comment posted by ",
+                type: "COMMENT_DELETED",
+                properties: JSON.stringify(properties)
+            });
+
+            
+            newChange.save().then(change => {  }).catch(err => console.log(err));
+
+            return res.json(doc);
+        }
+
+    });
+
+});
+
 module.exports = router;
