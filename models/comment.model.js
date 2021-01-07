@@ -11,7 +11,7 @@ const CommentSchema = new Schema({
         type: String,
         required: true
     },
-    project: {
+    for: {
         type: String,
         required: true
     },
