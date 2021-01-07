@@ -11,10 +11,12 @@ const Comment = require("../../models/comment.model");
 
 router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
 
-    let id = req.params.id;
+    // Define Id
+    const id = req.params.id;
 
     if (id) {
 
+        // Return Comment with specified id
         Comment.findById(id).then(comment => {
             
             if (!comment) return res.status(400).json({ msg: 'Comment doesn\'t exist'});
@@ -25,6 +27,7 @@ router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (r
 
     } else {
 
+        // Return all comments
         Comment.find({}).then(comments => {
             return res.json(comments);
         });
