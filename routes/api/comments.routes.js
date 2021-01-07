@@ -9,6 +9,10 @@ const router = express.Router();
 // Import Comment Model
 const Comment = require("../../models/comment.model");
 
+// Import Change Model
+const Change = require('../../models/change.model');
+const validateCommentInput = require('../../validation/comment');
+
 router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
 
     // Define Id
@@ -33,6 +37,36 @@ router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (r
         });
 
     }
+
+});
+
+router.post('/create',  jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+
+    // Validation
+    const { errors, isValid } = validateCommentInput(req.body);
+
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const forProperty = { type: req.body.type, typeId: req.body.typeId }; // e,g type: project typeId: Project ID
+
+    const newComment = new Comment({
+        text: req.body.text,
+        user: req.body.userId,
+        for: JSON.stringify(forProperty)
+    });
+
+    newComment.save().then(comment => {
+        
+        return res.json(comment);
+
+    }).catch(err => {
+
+        console.throw(err);
+        return res.status(500).json({ msg: "There was an error" });
+
+    });
 
 });
 
