@@ -15,12 +15,6 @@ let Details = ({ project, usersStore }: any) => {
 
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
-    const [btnShowEdit, setBtnShowEdit] = useState(false);
-
-    const mouseEnterHandler = function() {
-        setTimeout(() => setBtnShowEdit(true), 250);
-    }
-
     return (
         <div className="project-details">
             {project ? <>
@@ -33,8 +27,7 @@ let Details = ({ project, usersStore }: any) => {
                 <span className="project-detail"><b>Ticket Count</b>: {project.ticketList.length}</span>
                 
                 <NavLink to={`/project/${project._id}/edit`}>
-                    <button className="btn primary has-icon edit-btn" onMouseEnter={mouseEnterHandler} onMouseLeave={() => setBtnShowEdit(false)}>
-                        {btnShowEdit ? 'Edit' : ''}
+                    <button className="btn primary has-icon edit-btn">
                         <FaPen className="icon" />
                     </button>
                 </NavLink>
