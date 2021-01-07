@@ -11,6 +11,8 @@ const Comment = require("../../models/comment.model");
 
 // Import Change Model
 const Change = require('../../models/change.model');
+
+// Import Validation Function
 const validateCommentInput = require('../../validation/comment');
 
 router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
