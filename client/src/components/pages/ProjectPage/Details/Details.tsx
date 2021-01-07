@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './Details.scss';
 import { inject, observer } from 'mobx-react';
 import { Iuser } from '../../../../types';
