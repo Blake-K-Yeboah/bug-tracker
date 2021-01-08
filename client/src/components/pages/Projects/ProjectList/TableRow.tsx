@@ -9,12 +9,17 @@ let TableRow = ({ project, projectStore }: IStoreProps ) => {
     const [owner, setOwner] = useState({ profileIcon: '', name: '', _id: '' });
 
     useEffect(() => {
+        let _isMounted = true;
 
-        Axios.get(`/api/users/${project.owner}`).then(res => {
-            setOwner(res.data);
-        }).catch(err => {
-            console.error(err);
-        });
+        if (_isMounted) {
+
+            Axios.get(`/api/users/${project.owner}`).then(res => {
+                setOwner(res.data);
+            }).catch(err => {
+                console.error(err);
+            });
+        
+        }
 
     }, [project.owner]);
 
