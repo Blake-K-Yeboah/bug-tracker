@@ -39,8 +39,8 @@ let Search = ({ usersStore, projectStore}: IStoreProps) => {
           {searchDisplay ? (<>
           <h3 className="result-heading">Results (Showing {userLengthCondition ? searchResults.users.slice(0,4).length : searchResults.projects.length === 0 && searchResults.users.length === 0 ? '0' : searchResults.projects.slice(0,4).length} of {userLengthCondition ? searchResults.users.length : searchResults.projects.length})</h3>
             {userLengthCondition ? 
-              searchResults.users.slice(0,4).map((user: Iuser) => <NavLink className="result" to={`/profile/${user._id}`}><img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-pic" /><span className="name">{user.name}</span></NavLink>)
-              : searchResults.projects.slice(0,4).map((project: Iproject) => <NavLink className="result" to={`/project/${project._id}`}><FaFolderOpen className="icon" /><span className="name">{project.name}</span></NavLink>)            
+              searchResults.users.slice(0,4).map((user: Iuser) => <NavLink key={user._id} className="result" to={`/profile/${user._id}`}><img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-pic" /><span className="name">{user.name}</span></NavLink>)
+              : searchResults.projects.slice(0,4).map((project: Iproject) => <NavLink key={project._id} className="result" to={`/project/${project._id}`}><FaFolderOpen className="icon" /><span className="name">{project.name}</span></NavLink>)            
             }
           </>) : ''}
         </div>
