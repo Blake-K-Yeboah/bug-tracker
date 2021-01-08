@@ -10,7 +10,7 @@ import { FaTimes } from 'react-icons/fa';
 
 import { NavLink } from 'react-router-dom';
 
-let Comment = ({ comment, authStore }: any) => {
+let Comment = ({ comment, authStore, commentStore }: any) => {
 
     const [user, setUser]: any = useState(null);
 
@@ -27,10 +27,10 @@ let Comment = ({ comment, authStore }: any) => {
         const body: any = { userId: authStore.user.id };
 
         axios.delete(`/api/comments/${comment._id}`, body).then(res => {
+            commentStore.fetchComments();
             alert('Comment Deleted');
-            window.location.reload();
         }).catch(err => {
-            if (err) alert(err.response.dat.msg);
+            if (err) alert(err.response.data.msg);
         });
 
     };
@@ -56,6 +56,6 @@ let Comment = ({ comment, authStore }: any) => {
     )
 }
 
-Comment = inject('authStore')(observer(Comment));
+Comment = inject('authStore', 'commentStore')(observer(Comment));
 
 export default Comment
