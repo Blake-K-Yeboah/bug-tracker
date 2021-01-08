@@ -11,19 +11,24 @@ const ListItem = ({change}: any) => {
     
     const [user, setUser]: any = useState({});
     const [changedUser, setChangedUser]: any = useState({});
-    
+    let _isMounted = false;
+
     useEffect(() => {
-        Axios.get(`/api/users/${change.properties.userId}`).then(res => {
-            setUser(res.data);
-        }).catch(err => {
-            alert(err.msg);
-        });
-        if (change.properties.hasOwnProperty("changedUserId")) {
-            Axios.get(`/api/users/${change.properties.changedUserId}`).then(res => {
-                setChangedUser(res.data);
+        _isMounted = true;
+
+        if (_isMounted) {
+            Axios.get(`/api/users/${change.properties.userId}`).then(res => {
+                setUser(res.data);
             }).catch(err => {
                 alert(err.msg);
             });
+            if (change.properties.hasOwnProperty("changedUserId")) {
+                Axios.get(`/api/users/${change.properties.changedUserId}`).then(res => {
+                    setChangedUser(res.data);
+                }).catch(err => {
+                    alert(err.msg);
+                });
+            }
         }
 
     }, [change.properties]);
@@ -85,6 +90,19 @@ const ListItem = ({change}: any) => {
             );
             break;
         case 'COMMENT_ADDED':
+            returnedJSX = (
+                <li className="list-item">
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                     : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ? <p className="message">
+                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message}<b>{change.properties.type}</b>
+                    </p> : ''}
+                </li>
+            )
+            break;
+        case 'COMMENT_DELETED':
             returnedJSX = (
                 <li className="list-item">
                     {!checkUser ? 
