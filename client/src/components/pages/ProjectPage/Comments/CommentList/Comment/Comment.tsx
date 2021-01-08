@@ -4,7 +4,11 @@ import './Comment.scss';
 
 import axios from 'axios';
 
-const Comment = ({ comment }: any) => {
+import { inject, observer } from 'mobx-react';
+
+import { FaTimes } from 'react-icons/fa';
+
+let Comment = ({ comment, authStore }: any) => {
 
     const [user, setUser]: any = useState(null);
 
@@ -21,15 +25,19 @@ const Comment = ({ comment }: any) => {
             {user ? (
                 <>
                     <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />
-                    
+
                     <div className="text-container">
                         <h4 className="name">{user.name}</h4>
                         <p className="text">{comment.text}</p>
                     </div>
+
+                    {authStore.user.id === user._id || authStore.user.role === "admin" ? <FaTimes className="del-icon" /> : ''}
                 </>
             ) : ''}
         </li>
     )
 }
+
+Comment = inject('authStore')(observer(Comment));
 
 export default Comment
