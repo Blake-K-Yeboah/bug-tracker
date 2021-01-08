@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // Import Styling
 import './Comments.scss';
 
-const Comments = ({ project }: any) => {
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+// Import Types
+import { IStoreProps } from '../../../../types';
+
+let Comments = ({ project, commentStore }: IStoreProps) => {
+
+    useEffect(() => {
+        commentStore.fetchComments();
+    }, [commentStore]);
 
     return (
         <div className="comment-section">
@@ -13,5 +23,7 @@ const Comments = ({ project }: any) => {
         </div>
     )
 }
+
+Comments = inject('commentStore')(observer(Comments));
 
 export default Comments
