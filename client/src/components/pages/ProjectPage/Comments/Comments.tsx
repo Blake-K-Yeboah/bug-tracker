@@ -25,7 +25,7 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
     return (
         <div className="comment-section">
 
-            <h2 className="title">Comments</h2>
+            <h2 className="title">Comments ({activeComments ? activeComments.length : 0})</h2>
             
             <CommentList comments={activeComments} />
 
