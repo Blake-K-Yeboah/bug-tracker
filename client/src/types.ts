@@ -71,3 +71,14 @@ export interface IProjectStore {
     fetchProjects: () => void,
     projectCount: number
 }
+
+// Comment Interface
+export interface Icomment {
+    _id: string,
+    text: string,
+    user: string,
+    for: { type: string, typeId: string },
+    createdOn: Date
+}
+
+// Comment Store Interface
