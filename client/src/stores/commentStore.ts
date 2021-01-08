@@ -20,8 +20,6 @@ export class commentstore {
                     }
                 });
 
-                console.log(this.comments);
-
             }
 
         })
