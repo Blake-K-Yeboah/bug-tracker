@@ -82,3 +82,7 @@ export interface Icomment {
 }
 
 // Comment Store Interface
+export interface ICommentStore {
+    comments: Icomment[],
+    fetchComments: () => void
+}
