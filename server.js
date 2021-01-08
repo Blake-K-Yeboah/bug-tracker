@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 // Require Body Parser
 const bodyParser = require('body-parser');
 
+// Require Cors
+const cors = require('cors');
+
 // Require passport
 const passport = require('passport');
 
@@ -15,7 +18,6 @@ const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
 const projects = require('./routes/api/projects.routes');
 const comments = require('./routes/api/comments.routes');
-const { populate } = require('./models/user.model');
 
 // Bodyparser middleware
 app.use(
@@ -25,6 +27,9 @@ app.use(
 );
 
 app.use(bodyParser.json());
+
+// CORS
+app.use(cors());
 
 // DB Config
 const db = process.env.MONGOURI || require("./config/keys").mongoURI;
