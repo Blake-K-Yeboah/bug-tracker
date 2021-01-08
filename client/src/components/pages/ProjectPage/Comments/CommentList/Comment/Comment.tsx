@@ -8,6 +8,8 @@ import { inject, observer } from 'mobx-react';
 
 import { FaTimes } from 'react-icons/fa';
 
+import { NavLink } from 'react-router-dom';
+
 let Comment = ({ comment, authStore }: any) => {
 
     const [user, setUser]: any = useState(null);
@@ -20,6 +22,19 @@ let Comment = ({ comment, authStore }: any) => {
 
     });
 
+    const deleteHandler = () => {
+
+        const body: any = { userId: authStore.user.id };
+
+        axios.delete(`/api/comments/${comment._id}`, body).then(res => {
+            alert('Comment Deleted');
+            window.location.reload();
+        }).catch(err => {
+            if (err) alert(err.response.dat.msg);
+        });
+
+    };
+
     return (
         <li className="comment">
 
@@ -28,15 +43,15 @@ let Comment = ({ comment, authStore }: any) => {
                     <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />
 
                     <div className="text-container">
-                        <h4 className="name">{user.name}</h4>
+                        <NavLink to={`/profile/${user._id}`} className="name">{user.name}</NavLink>
                         <p className="text">{comment.text}</p>
                     </div>
 
-                    {authStore.user.id === user._id || authStore.user.role === "admin" ? <FaTimes className="del-icon" /> : ''}
+                    {authStore.user.id === user._id || authStore.user.role === "admin" ? <FaTimes className="del-icon" onClick={deleteHandler} /> : ''}
 
                 </>
             ) : ''}
-            
+
         </li>
     )
 }
