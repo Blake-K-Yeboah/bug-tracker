@@ -11,10 +11,9 @@ const ListItem = ({change}: any) => {
     
     const [user, setUser]: any = useState({});
     const [changedUser, setChangedUser]: any = useState({});
-    let _isMounted = false;
 
     useEffect(() => {
-        _isMounted = true;
+        let _isMounted = true;
 
         if (_isMounted) {
             Axios.get(`/api/users/${change.properties.userId}`).then(res => {
