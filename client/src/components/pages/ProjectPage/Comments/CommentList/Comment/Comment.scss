@@ -2,6 +2,15 @@
     display: flex;
     width: 80%;
     position:relative;
+    margin: .5em 0;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    };
 
     .profile-icon {
         width:40px;
@@ -13,6 +22,11 @@
         color: #555;
         font-weight: 500;
         font-size: .85rem;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     .text {
