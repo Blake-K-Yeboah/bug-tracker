@@ -1,5 +1,7 @@
 .comment {
     display: flex;
+    width: 80%;
+    position:relative;
 
     .profile-icon {
         width:40px;
@@ -15,5 +17,19 @@
 
     .text {
         color: #7A7A7A;
+    }
+
+    .del-icon {
+        color: #bbb;
+        position:absolute;
+        right:10px;
+        top:50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: #e00;
+        }
     }
 }
