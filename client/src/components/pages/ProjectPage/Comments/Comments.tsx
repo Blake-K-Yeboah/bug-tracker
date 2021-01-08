@@ -7,7 +7,7 @@ import './Comments.scss';
 import { inject, observer } from 'mobx-react';
 
 // Import Types
-import { IStoreProps } from '../../../../types';
+import { Icomment, IStoreProps } from '../../../../types';
 
 let Comments = ({ project, commentStore }: IStoreProps) => {
 
@@ -15,10 +15,16 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
         commentStore.fetchComments();
     }, [commentStore]);
 
+    const activeComments: Icomment[] | null = commentStore.comments && project ? 
+        commentStore.comments.filter((comment: Icomment) => comment.for.type === 'project' && comment.for.typeId === project._id)
+    : null;
+
     return (
         <div className="comment-section">
 
             <h2 className="title">Comments</h2>
+            
+            
 
         </div>
     )
