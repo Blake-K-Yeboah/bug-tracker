@@ -9,7 +9,7 @@ const CommentList = ({ comments }: any) => {
     return (
         <>
             {comments ? (
-                <ul className="comment-list">
+                <ul className={`comment-list ${comments.length > 3 ? 'more-than-three' : ''}`}>
                     {comments.map((comment: Icomment) => <Comment comment={comment} />)}
                 </ul>
             ) : 'Loading'}
