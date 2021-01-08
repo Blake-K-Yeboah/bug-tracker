@@ -99,13 +99,15 @@ router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), 
             
         } else {
 
+            console.log(doc);
+
             const properties = {
                 userId: req.body.userId,
-                postedBy: doc.user
+                type: JSON.parse(doc.for).type
             }
 
             const newChange = new Change ({
-                message: "deleted a comment posted by ",
+                message: "deleted a comment on a ",
                 type: "COMMENT_DELETED",
                 properties: JSON.stringify(properties)
             });
