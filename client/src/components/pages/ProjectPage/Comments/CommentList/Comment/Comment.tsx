@@ -22,6 +22,7 @@ let Comment = ({ comment, authStore }: any) => {
 
     return (
         <li className="comment">
+
             {user ? (
                 <>
                     <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />
@@ -32,8 +33,10 @@ let Comment = ({ comment, authStore }: any) => {
                     </div>
 
                     {authStore.user.id === user._id || authStore.user.role === "admin" ? <FaTimes className="del-icon" /> : ''}
+
                 </>
             ) : ''}
+            
         </li>
     )
 }
