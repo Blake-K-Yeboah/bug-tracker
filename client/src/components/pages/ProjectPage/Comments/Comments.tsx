@@ -9,6 +9,9 @@ import { inject, observer } from 'mobx-react';
 // Import Types
 import { Icomment, IStoreProps } from '../../../../types';
 
+// Import Components
+import CommentList from './CommentList/CommentList';
+
 let Comments = ({ project, commentStore }: IStoreProps) => {
 
     useEffect(() => {
@@ -24,7 +27,7 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
 
             <h2 className="title">Comments</h2>
             
-            
+            <CommentList comments={activeComments} />
 
         </div>
     )
