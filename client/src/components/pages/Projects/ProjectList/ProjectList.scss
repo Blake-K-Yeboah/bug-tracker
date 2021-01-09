@@ -1,4 +1,5 @@
 @import '../../../../style/variables';
+@import '../../../../style/animations';
 
 .project-list-container {
     margin-top: 1.25em;
@@ -91,6 +92,13 @@
                         &:hover {
                             text-decoration: underline;
                         }
+                    }
+
+                    .loader {
+                        animation: loader infinite 2s;
+                        width: 50%;
+                        height: 30px;
+                        margin: 0 auto;
                     }
                 }
             }
