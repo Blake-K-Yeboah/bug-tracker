@@ -1,0 +1,28 @@
+@import '../../../../../style/variables';
+
+.new-comment {
+    width:85%;
+    padding: 1.25em 0 0 1.75em;
+
+    .small-heading {
+        color: $darkGrey;
+        font-weight:500;
+    }
+
+    .comment-input {
+        height: 35px;
+        margin-top: 10px;
+        border:none;
+        background-color: #ECECEC;
+        border-radius: 5px 0 0 5px;
+        width:80%;
+        padding: 0 12px;
+    }
+
+    .btn {
+        height: 35px;
+        border-radius: 0 5px 5px 0;
+        width: 15%;
+        padding: 0;
+    }
+}
