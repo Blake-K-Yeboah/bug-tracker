@@ -11,6 +11,7 @@ import { Icomment, IStoreProps } from '../../../../types';
 
 // Import Components
 import CommentList from './CommentList/CommentList';
+import NewComment from './NewComment/NewComment';
 
 let Comments = ({ project, commentStore }: IStoreProps) => {
 
@@ -30,6 +31,8 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
                 <h2 className="title">Comments ({activeComments.length})</h2>
             
                 <CommentList comments={activeComments} />
+
+                <NewComment />
             
             </> : <>
             
