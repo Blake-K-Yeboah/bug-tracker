@@ -11,7 +11,7 @@ let Details = ({ project, usersStore }: any) => {
         usersStore.fetchUsers();
     }, [usersStore]);
 
-    const ownerName = project && usersStore.users ? usersStore.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
+    const ownerName = project && usersStore.users.length > 0 ? usersStore.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
 
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
