@@ -32,7 +32,7 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
             
                 <CommentList comments={activeComments} />
 
-                <NewComment />
+                <NewComment project={project} />
             
             </> : <>
             
