@@ -37,6 +37,7 @@ let Comments = ({ project, commentStore }: IStoreProps) => {
                 <div className="loader comment"></div>
                 <div className="loader comment"></div>
                 <div className="loader comment"></div>
+                <div className="loader write-a-comment"></div>
             
             </>}
             
