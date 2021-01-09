@@ -18,8 +18,8 @@ const validateProjectInput = data => {
         errors.name = "Title exceeds 24 character limit";
     }
     
-    if (data.description && data.description.length > 100) {
-        errors.description = "Description exceeds 100 character limit";
+    if (data.description && data.description.length > 75) {
+        errors.description = "Description exceeds 75 character limit";
     }
 
     if (!data.owner) {
