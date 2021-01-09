@@ -2,7 +2,7 @@
     display: flex;
     width: 80%;
     position:relative;
-    margin: .5em 0;
+    margin: .35em 0;
 
     &:first-of-type {
         margin-top: 0;
@@ -31,6 +31,7 @@
 
     .text {
         color: #7A7A7A;
+        font-size: .8rem;
     }
 
     .del-icon {
