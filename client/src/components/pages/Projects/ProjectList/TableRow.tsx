@@ -6,7 +6,7 @@ import { IStoreProps } from '../../../../types';
 
 let TableRow = ({ project, projectStore }: IStoreProps ) => {
 
-    const [owner, setOwner] = useState({ profileIcon: '', name: '', _id: '' });
+    const [owner, setOwner]: any = useState(null);
 
     useEffect(() => {
         let _isMounted = true;
@@ -41,10 +41,10 @@ let TableRow = ({ project, projectStore }: IStoreProps ) => {
                 {project.description}
             </td>
             <td className="table-data owner-td">
-                {owner !== { profileIcon: '', name: '', _id: '' } ? <>
+                {owner ? <>
                     <img src={`${process.env.PUBLIC_URL}/uploads/profile/${owner.profileIcon}`} className="profileIcon" alt="Profile Icon" />
                     <NavLink className="name" to={`/profile/${owner._id}`}>{owner.name}</NavLink> </> 
-                : ''}
+                : <div className="loader"></div>}
             </td>
             <td className="table-data">
                 <NavLink className="btn-link-container" to={`/project/${project._id}`}>
