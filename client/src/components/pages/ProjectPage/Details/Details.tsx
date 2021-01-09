@@ -16,7 +16,7 @@ let Details = ({ project, usersStore }: any) => {
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
     return (
-        <div className="project-details">
+        <div className="project-details loader">
             {project ? <>
 
                 <h2 className="project-title">&#39;{project.name}&#39; Details</h2>
@@ -32,7 +32,15 @@ let Details = ({ project, usersStore }: any) => {
                     </button>
                 </NavLink>
 
-            </> : ''}
+            </> : <>
+            
+                <div className="loader title"></div>
+                <div className="loader edit"></div>
+                <div className="loader detail"></div>
+                <div className="loader detail"></div>
+                <div className="loader detail"></div>
+
+            </>}
         </div>
     )
 }
