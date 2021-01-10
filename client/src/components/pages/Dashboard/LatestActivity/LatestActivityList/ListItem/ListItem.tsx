@@ -113,6 +113,19 @@ const ListItem = ({change}: any) => {
                     </p> : ''}
                 </li>
             )
+            break;
+        case 'NEW_USER_TO_PROJECT':
+                returnedJSX = (
+                    <li className="list-item">
+                        {!checkUser ? 
+                            <div className="profile-icon-loader"></div>
+                         : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                        }
+                        {userName ? <p className="message">
+                            <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message}<NavLink to={`/profile/${checkChangedUser ? changedUser._id : ''}`} className="link">{changedUserName}</NavLink> to project <b>{change.properties.projectName}</b>
+                        </p> : ''}
+                    </li>
+                )
     }
 
     return returnedJSX;
