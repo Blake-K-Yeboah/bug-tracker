@@ -16,7 +16,7 @@ let Details = ({ project, usersStore }: any) => {
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
     return (
-        <div className="project-details loader">
+        <div className="project-details">
             {project ? <>
 
                 <h2 className="project-title">&#39;{project.name}&#39; Details</h2>
