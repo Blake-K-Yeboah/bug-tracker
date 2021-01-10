@@ -201,7 +201,7 @@ router.put('/:id/removeuser', jwt({ secret: keys.secretOrKey, algorithms: ['HS25
          const properties = {
             userId: userMakingRequest,
             projectName: doc.name,
-            changedUserId: addedUserId
+            changedUserId: removedUserId
         }
 
         const newChange = new Change({
