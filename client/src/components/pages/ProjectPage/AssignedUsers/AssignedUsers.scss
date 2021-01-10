@@ -6,11 +6,28 @@
     height:100%;
     width:100%;
     border-radius: 10px;
+    position: relative;
 
     .title {
         color: $darkGrey;
         font-size: 1.5rem;
         font-weight: normal;
         padding: 1em;
+    }
+
+    .add-btn {
+        position:absolute;
+        top: 2em;
+        right: 2em;
+        width: 40px;
+        height: 40px;
+        transition: .5s ease-in-out;
+        padding: 0;
+
+        .icon {
+            right:50%;
+            top: 50%;
+            transform:translate(50%, -50%);
+        }
     }
 }
