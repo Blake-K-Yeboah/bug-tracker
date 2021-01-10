@@ -153,6 +153,22 @@ router.put('/:id/adduser', jwt({ secret: keys.secretOrKey, algorithms: ['HS256']
     Project.findByIdAndUpdate(projectId, { $push: { usersList: addedUserId }}, (err, doc) => {
 
         if (err) return res.send(500, err);
+
+        // Save Change
+        const properties = {
+            userId: userMakingRequest,
+            projectName: doc.name,
+            changedUserId: addedUserId
+        }
+
+        const newChange = new Change({
+            message: "added ",
+            type: "NEW_USER_TO_PROJECT",
+            properties: JSON.stringify(properties)
+        });
+
+        newChange.save().then(change => {  }).catch(err => console.log(err));
+
         res.json(doc);
 
     });
