@@ -132,4 +132,31 @@ router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), 
 
 });
 
+router.put('/:id/adduser', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+
+    const projectId = req.params.id;
+    const addedUserId = req.body.addedUserId;
+    const userMakingRequest = req.body.userId;
+
+    // Check if user is admin or project manager
+    User.findById(userMakingRequest).then(user => {
+
+        if (!user) {
+            return res.status(400).json({ owner: "No user with that ID." });
+        } else if (user.role != "admin" && user.role != 'project-manager') {
+            return res.status(401).json({ owner: "You dont have permission." });
+        }
+
+    });
+
+    // Add User to Project
+    Project.findByIdAndUpdate(projectId, { $push: { usersList: addedUserId }}, (err, doc) => {
+
+        if (err) return res.send(500, err);
+        res.json(doc);
+
+    });
+
+});
+
 module.exports = router;
