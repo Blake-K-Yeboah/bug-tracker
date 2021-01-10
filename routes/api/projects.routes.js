@@ -196,6 +196,22 @@ router.put('/:id/removeuser', jwt({ secret: keys.secretOrKey, algorithms: ['HS25
     Project.findByIdAndUpdate(projectId, { $pull: { usersList: removedUserId }}, (err, doc) => {
         
         if (err) return res.send(500, err);
+        
+         // Save Change
+         const properties = {
+            userId: userMakingRequest,
+            projectName: doc.name,
+            changedUserId: addedUserId
+        }
+
+        const newChange = new Change({
+            message: "removed ",
+            type: "REMOVE_USER_FROM_PROJECT",
+            properties: JSON.stringify(properties)
+        });
+
+        newChange.save().then(change => {  }).catch(err => console.log(err));
+
         res.json(doc);
 
     });
