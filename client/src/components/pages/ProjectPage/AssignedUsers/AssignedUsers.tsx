@@ -20,7 +20,21 @@ const AssignedUsers = ({ project }: any) => {
                 <p className="sub-text">A list of users assigned to this project</p>
                 <UsersList users={[project.owner, ...project.usersList]} project={project} />
 
-            </> : ''}
+            </> : <>
+                
+                <div className="loader title"></div>
+                <div className="loader add"></div>
+
+                <div className="loader-grid">
+                    <div className="loader user-w-remove"></div>
+                    <div className="loader user-w-remove"></div>
+                    <div className="loader user-w-remove"></div>
+                    <div className="loader user-w-remove"></div>
+                    <div className="loader user-w-remove"></div>
+                    <div className="loader user-w-remove"></div>
+                </div>
+
+            </>}
 
         </div>
     )
