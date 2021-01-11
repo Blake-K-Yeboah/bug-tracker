@@ -12,7 +12,7 @@
         color: $darkGrey;
         font-size: 1.5rem;
         font-weight: normal;
-        padding: 1em;
+        padding: 1em 0 0 1em;
     }
 
     .add-btn {
@@ -29,5 +29,10 @@
             top: 50%;
             transform:translate(50%, -50%);
         }
+    }
+
+    .sub-text {
+        color: $grey;
+        margin: .5em 0em 1em 1.5em;
     }
 }
