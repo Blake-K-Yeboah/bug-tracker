@@ -9,6 +9,7 @@ import Navbar from '../../layout/Navbar/Navbar';
 import Details from './Details/Details';
 import Controls from './Comments/Comments';
 import AssignedUsers from './AssignedUsers/AssignedUsers';
+import Tickets from './Tickets/Tickets';
 
 // Import Axios
 import Axios from 'axios';
@@ -51,7 +52,7 @@ const ProjectPage = ({ match }: any) => {
                     <Details project={project} />
                     <Controls project={project} />
                     <AssignedUsers project={project} />
-                    <div className="placeholder"></div>
+                    <Tickets project={project} />
 
                 </div>
                 
