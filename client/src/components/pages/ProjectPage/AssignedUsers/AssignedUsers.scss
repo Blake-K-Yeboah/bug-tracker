@@ -35,4 +35,33 @@
         color: $grey;
         margin: .5em 0em 1em 1.5em;
     }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1.5em;
+            width:250px;
+            height:40px;
+        }
+
+        &.add {
+            position:absolute;
+            right:2em;
+            top:2em;
+            width:50px;
+            height:50px;
+        }
+
+    }
+
+    .loader-grid {
+        width: 100%;
+        padding: 0 2em;
+        height: 175px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 2em;
+    }
 }
