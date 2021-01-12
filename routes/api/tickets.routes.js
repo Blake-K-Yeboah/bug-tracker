@@ -12,6 +12,9 @@ const Ticket = require("../../models/ticket.model");
 // Import Project Model
 const Project = require("../../models/project.model");
 
+// Import User Model
+const User = require("../../models/user.model");
+
 // Import Change Model
 const Change = require('../../models/change.model');
 
@@ -61,6 +64,7 @@ router.post('/create', (req, res) => {
 
     Project.findById(req.body.projectId).then((project) => {
         
+        // Validate If ticket owner is assigned to project
         if (!project) {
 
             return res.status(400).json({ project: "No project with that ID." });
@@ -71,32 +75,41 @@ router.post('/create', (req, res) => {
 
         } else {
             
-            // TODO Check if dev is an actual developer
-            // TODO Check if ticket with same text exists
+            // Check if dev is an actual developer
+            User.findById(req.body.dev).then(user => {
 
-            const newTicket = new Ticket(req.body);
+                if (user.role !== 'developer') {
 
-            newTicket.save().then(ticket => {
+                    return res.status(400).json({ dev: "Developer is not an actual developer"});
 
-                const properties = {
-                    userId: req.body.owner,
-                    ticketText: ticket.text
+                } else {
+                    
+                    const newTicket = new Ticket(req.body);
+
+                    newTicket.save().then(ticket => {
+
+                        const properties = {
+                            userId: req.body.owner,
+                            ticketText: ticket.text
+                        }
+            
+                        const newChange = new Change({
+                            message: "created a ticket ",
+                            type: "TICKET_CREATED",
+                            properties: JSON.stringify(properties)
+                        });
+            
+                        newChange.save().then(change => { }).catch(err => console.log(err));
+                        
+                        return res.json(ticket);
+            
+                    }).catch(err => {
+            
+                        return res.status(500).json(err);
+            
+                    });
+
                 }
-    
-                const newChange = new Change({
-                    message: "created a ticket ",
-                    type: "TICKET_CREATED",
-                    properties: JSON.stringify(properties)
-                });
-    
-                newChange.save().then(change => { }).catch(err => console.log(err));
-                
-                return res.json(ticket);
-    
-            }).catch(err => {
-    
-                return res.status(500).json(err);
-    
             });
 
         }
