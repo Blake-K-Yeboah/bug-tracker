@@ -10,7 +10,7 @@ const router = express.Router();
 const Ticket = require("../../models/ticket.model");
 
 // Import Project Model
-//const Project = require("../../models/Project.model");
+const Project = require("../../models/project.model");
 
 // Import Change Model
 const Change = require('../../models/change.model');
@@ -56,6 +56,14 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
     }
 
     // TODO Check if User in assigned to project
+    Project.findById(req.body.projectId).then(project => {
+        
+        if (!project) return res.status(400).json({ msg: "No project with that id" });
+
+        if (!project.usersList.includes(req.body.owner)) return res.status(400).json({ msg: "You are not assigned to that project" });
+        
+    });
+
     // TODO Check if dev is an actual developer
     // TODO Check if ticket with same text exists
 
