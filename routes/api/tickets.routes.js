@@ -9,6 +9,9 @@ const router = express.Router();
 // Import Ticket Model
 const Ticket = require("../../models/ticket.model");
 
+// Import Project Model
+//const Project = require("../../models/Project.model");
+
 // Import Change Model
 const Change = require('../../models/change.model');
 
@@ -52,6 +55,10 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
         return res.status(400).json(errors);
     }
 
+    // TODO Check if User in assigned to project
+    // TODO Check if dev is an actual developer
+    // TODO Check if ticket with same text exists
+
     const newTicket = new Ticket(req.body);
 
     newTicket.save().then(ticket => {
@@ -67,7 +74,7 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
             properties: JSON.stringify(properties)
         });
 
-        newChange.save().then(Change => { }).catch(err => console.log(err));
+        newChange.save().then(change => { }).catch(err => console.log(err));
 
         return res.json(ticket);
 
