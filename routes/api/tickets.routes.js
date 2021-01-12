@@ -12,6 +12,9 @@ const Ticket = require("../../models/ticket.model");
 // Import Change Model
 const Change = require('../../models/change.model');
 
+// Import Validation Function
+const validateTicketInput = require('../../validation/ticket');
+
 router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
 
     // Define ID
@@ -38,6 +41,42 @@ router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (r
         });
 
     }   
+});
+
+router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+
+    // Validation
+    const { errors, isValid } = validateTicketInput(req.body);
+
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const newTicket = new Ticket(req.body);
+
+    newTicket.save().then(ticket => {
+
+        const properties = {
+            userId: req.body.owner,
+            ticketText: ticket.text
+        }
+
+        const newChange = new Change({
+            message: "created a ticket ",
+            type: "TICKET_CREATED",
+            properties: JSON.stringify(properties)
+        });
+
+        newChange.save().then(Change => { }).catch(err => console.log(err));
+
+        return res.json(ticket);
+
+    }).catch(err => {
+
+        return res.status(500).json(err);
+
+    });
+
 });
 
 module.exports = router;
