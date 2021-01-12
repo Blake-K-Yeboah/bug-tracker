@@ -18,6 +18,7 @@ const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
 const projects = require('./routes/api/projects.routes');
 const comments = require('./routes/api/comments.routes');
+const tickets = require('./routes/api/tickets.routes');
 
 // Bodyparser middleware
 app.use(
@@ -57,6 +58,7 @@ app.use('/api/users', users);
 app.use('/api/changes', changes);
 app.use('/api/projects', projects);
 app.use('/api/comments', comments);
+app.use('/api/tickets', tickets);
 
 // Port Environment Variable or 5000
 const port = process.env.PORT || '5000';
