@@ -29,6 +29,9 @@ const TableRow = ({ ticket }: any) => {
                     <span>{ticket.status === "in-progress" ? 'In Progress' : ticket.status === "not-started" ? 'Not Started' : ticket.status === "completed" ? 'Completed' : ''}</span>
                 </div>
             </td>
+            <td className="t-data view">
+                <button className="btn view-btn primary">View</button>
+            </td>
         </tr>
     )
 }
