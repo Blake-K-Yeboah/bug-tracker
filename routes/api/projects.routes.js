@@ -122,7 +122,7 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
         const newChange = new Change({
             message: "project called ",
             type: "PROJECT_DELETED",
-            properties: JSON.stringify({ userId: doc.owner, projectName: doc.name })
+            properties: JSON.stringify({ userId: deletedProject.owner, projectName: deletedProject.name })
         });
 
         const change = await newChange.save();
@@ -139,89 +139,57 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
 
 });
 
-router.put('/:id/adduser', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
-
-    const projectId = req.params.id;
-    const addedUserId = req.body.addedUserId;
-    const userMakingRequest = req.body.userId;
+// @route PUT api/projects/:id/adduser
+// @desc Add user to project's user list
+// @access Private
+router.put('/:id/adduser', checkObjectId('id'), async (req, res) => {
 
     // Check if user is admin or project manager
-    User.findById(userMakingRequest).then(user => {
+    const user = await User.findById(req.body.userId);
 
-        if (!user) {
-            return res.status(400).json({ owner: "No user with that ID." });
-        } else if (user.role != "admin" && user.role != 'project-manager') {
-            return res.status(401).json({ owner: "You dont have permission." });
-        }
+    if (!user) return res.status(404).json({ user: "No user with that ID." });
 
-    });
+    if (user.role != "admin" && user.role != "project-manager") return res.status(401).json({ user: "You dont have permission." });
 
     // Add User to Project
-    Project.findByIdAndUpdate(projectId, { $push: { usersList: addedUserId }}, (err, doc) => {
+    const updatedProject = await Project.findByIdAndUpdate(req.params.id, { $push: { usersList: req.body.addedUserId }});
 
-        if (err) return res.send(500, err);
-
-        // Save Change
-        const properties = {
-            userId: userMakingRequest,
-            projectName: doc.name,
-            changedUserId: addedUserId
-        }
-
-        const newChange = new Change({
-            message: "added ",
-            type: "NEW_USER_TO_PROJECT",
-            properties: JSON.stringify(properties)
-        });
-
-        newChange.save().then(change => {  }).catch(err => console.log(err));
-
-        res.json(doc);
-
+    const newChange = new Change({
+        message: "added ",
+        type: "NEW_USER_TO_PROJECT",
+        properties: JSON.stringify({ userId: req.body.userId, projectName: updatedProject.name, changedUserId: req.body.addedUserId })
     });
+
+    const change = await newChange.save();
+
+    res.json(updatedProject);
 
 });
 
-router.put('/:id/removeuser', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
-
-    const projectId = req.params.id;
-    const removedUserId = req.body.removedUserId;
-    const userMakingRequest = req.body.userId;
+// @route PUT api/projects/:id/removeuser
+// @desc Remove user from project's user list
+// @access Private
+router.put('/:id/removeuser', checkObjectId('id'), async (req, res) => {
 
     // Check if user is admin or project manager
-    User.findById(userMakingRequest).then(user => {
+    const user = await User.findById(req.body.userId);
 
-        if (!user) {
-            return res.status(400).json({ owner: "No user with that ID." });
-        } else if (user.role != "admin" && user.role != 'project-manager') {
-            return res.status(401).json({ owner: "You dont have permission." });
-        }
+    if (!user) return res.status(404).json({ user: "No user with that ID." });
 
-    });
+    if (user.role != "admin" && user.role != "project-manager") return res.status(401).json({ user: "You dont have permission." });
 
     // Remove User from Project
-    Project.findByIdAndUpdate(projectId, { $pull: { usersList: removedUserId }}, (err, doc) => {
-        
-        if (err) return res.send(500, err);
-        
-         // Save Change
-         const properties = {
-            userId: userMakingRequest,
-            projectName: doc.name,
-            changedUserId: removedUserId
-        }
+    const updatedProject = await Project.findByIdAndUpdate(req.params.id, { $pull: { usersList: req.body.removedUserId }});
 
-        const newChange = new Change({
-            message: "removed ",
-            type: "REMOVE_USER_FROM_PROJECT",
-            properties: JSON.stringify(properties)
-        });
-
-        newChange.save().then(change => {  }).catch(err => console.log(err));
-
-        res.json(doc);
-
+    const newChange = new Change({
+        message: "added ",
+        type: "REMOVE_USER_FROM_PROJECT",
+        properties: JSON.stringify({ userId: req.body.userId, projectName: updatedProject.name, changedUserId: req.body.removedUserId })
     });
+
+    const change = await newChange.save();
+
+    res.json(updatedProject);
 
 });
 
