@@ -17,9 +17,9 @@ import Axios from 'axios';
 // Import Styling
 import './ProjectPage.scss';
 
-const ProjectPage = ({ match }: any) => {
+const ProjectPage = ({ match: { params: { id }} }: any) => {
 
-    const projectId = match.params.id;
+    const projectId = id;
 
     const [project, setProject]: any = useState(null);
 
