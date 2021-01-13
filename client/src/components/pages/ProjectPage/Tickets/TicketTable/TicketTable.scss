@@ -15,6 +15,10 @@
             font-weight: 500;
             font-size: 1rem;
             padding-bottom: 1em;
+
+            &:last-of-type {
+                text-align:center;
+            }
         }
     }
 
@@ -26,6 +30,18 @@
             .t-data {
                 padding-bottom: .6em;
                 color: #6f6f6f;
+
+                .view-btn {
+                    height: 25px;
+                    margin-top: 10px;
+                    padding-top: 7.5px;
+                    font-size: .725rem;
+                }
+
+                &.view {
+                    display:flex;
+                    justify-content: center;
+                }
 
                 &.owner {
 
