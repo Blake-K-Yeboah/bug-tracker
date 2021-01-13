@@ -7,11 +7,24 @@ const router = express.Router();
 // Import Change Model
 const Change = require('../../models/change.model');
 
-// Return all changes
-router.get('/', (req, res) => {
-    Change.find({}).then(changes => {
-        return res.json(changes);
-    });
+// @route GET api/changes
+// @desc Get all changes
+// @access Public
+router.get('/', async (req, res) => {
+    
+    try {
+
+        const changes = await Change.find();
+
+        res.json(changes);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        return res.status(500).json({ msg: "Server Error" });
+
+    }
 });
 
 module.exports = router;
