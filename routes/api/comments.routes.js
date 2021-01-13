@@ -76,7 +76,7 @@ router.post('/create',  async (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    
+
     try {
 
         const newComment = new Comment({
@@ -110,39 +110,29 @@ router.post('/create',  async (req, res) => {
 // @route DELETE api/comments/:id
 // @desc Delete a comment
 // @access Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkObjectId('id'), async (req, res) => {
 
+    try {
 
-    const commentId = req.params.id;
+        const deletedComment = await Comment.findByIdAndDelete(req.params.id);
+        
+        const newChange = new Change ({
+            message: "deleted a comment on a ",
+            type: "COMMENT_DELETED",
+            properties: JSON.stringify({ userId: req.body.userId, type: JSON.parse(doc.for).type })
+        });
 
-    Comment.findByIdAndDelete(commentId, (err, doc) => {
+        const change = await newChange.save();
 
-        if (err) { 
+        res.json(deletedComment);
 
-            return res.send(500, err);
-            
-        } else {
+    } catch(err) {
 
-            console.log(doc);
+        console.error(err.message);
 
-            const properties = {
-                userId: req.body.userId,
-                type: JSON.parse(doc.for).type
-            }
+        res.status(500).json({ msg: "Server error" });
 
-            const newChange = new Change ({
-                message: "deleted a comment on a ",
-                type: "COMMENT_DELETED",
-                properties: JSON.stringify(properties)
-            });
-
-            
-            newChange.save().then(change => {  }).catch(err => console.log(err));
-
-            return res.json(doc);
-        }
-
-    });
+    }
 
 });
 
