@@ -18,28 +18,51 @@ const Change = require('../../models/change.model');
 // Import User Model
 const User = require('../../models/user.model');
 
-router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+// Import checkObJectId middleware
+const checkObjectId = require('../../middleware/checkObjectId');
+
+// JWT Authentication Middleware
+router.use(jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }));
+
+// @route GET api/projects
+// @desc Get all projects
+// @access Private
+router.get('/', async (req, res) => {
+
+    try {
+
+        const projects = await Project.find();
+
+        res.json(projects);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        res.status(500).json({ msg: "Server error" });
+
+    }
+
+});
+
+// @route GET api/projects/:id
+// @desc Get project by id
+// @access Private
+router.get('/:id', checkObjectId('id'), async (req, res) => {
     
-    let id = req.params.id;
+    try {
 
-    if (id) {
+        const project = await Project.findById(req.params.id);
 
-        // Return Individual project if there is an id
-        Project.findById(id).then(project => {
+        if (!project) return res.status(404).json({ msg: "Project not found" });
 
-            // If there is no project return error
-            if (!project) return res.status(400).json({ error: "Project Does Not Exist" });
+        res.json(project);
 
-            return res.json(project);
+    } catch (err) {
 
-        });
+        console.error(err.message);
 
-    } else {
-
-        // Return all projects
-        Project.find({}).then(projects => {
-            return res.json(projects);
-        });
+        res.status(500).json({ msg: "Server error" });
 
     }
 
