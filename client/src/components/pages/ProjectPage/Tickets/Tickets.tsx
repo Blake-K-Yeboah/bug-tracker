@@ -24,9 +24,13 @@ let Tickets = ({ project, ticketStore }: IStoreProps) => {
 
         <div className="ticket-section">
 
-            <h2 className="title">Tickets ({tickets.length})</h2>
+            {tickets ? <>
             
-            <TicketTable tickets={tickets}/>
+                <h2 className="title">Tickets ({tickets.length})</h2>
+                
+                <TicketTable tickets={tickets}/>
+
+            </> : ''}
 
         </div>
 
