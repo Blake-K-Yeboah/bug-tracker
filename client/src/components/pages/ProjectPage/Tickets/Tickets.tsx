@@ -9,6 +9,9 @@ import { inject, observer } from 'mobx-react';
 // Import Types
 import { IStoreProps, Iticket } from '../../../../types';
 
+// Import Components
+import TicketTable from './TicketTable/TicketTable';
+
 let Tickets = ({ project, ticketStore }: IStoreProps) => {
 
     useEffect(() => {
@@ -23,6 +26,8 @@ let Tickets = ({ project, ticketStore }: IStoreProps) => {
 
             <h2 className="title">Tickets ({tickets.length})</h2>
             
+            <TicketTable tickets={tickets}/>
+
         </div>
 
     )
