@@ -25,7 +25,7 @@ const TableRow = ({ ticket }: any) => {
                 {user ? <>
                     <img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-pic" />
                     <span className="name">{user.name}</span>
-                </> : ''}
+                </> : <div className="spacer">aaaaaaaaaaaaaaaa.</div>}
             </td>
             <td className="t-data status">
                 <div className={`container ${ticket.status}`}>
