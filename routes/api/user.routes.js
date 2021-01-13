@@ -17,35 +17,54 @@ const User = require('../../models/user.model');
 // Import Change Model
 const Change = require('../../models/change.model');
 
-// Default User Route
-router.get('/:id?', (req, res) => {
+// Import checkObjectId middleware
+const checkObjectId = require('../../middleware/checkObjectId');
 
-    let id = req.params.id;
+// @route GET api/users
+// @desc Get all users
+// @access Public
+router.get('/', async (req, res) => {
 
-    if (id) {
+    try {
 
-        // Return Individual user if there is an id
-        User.findById(id).then(user => {
+        const users = await User.find({});
 
-            // If there is no user return error
-            if (!user) return res.status(400).json({ error: "User Does Not Exist" });
+        res.json(users);
 
-            return res.json(user);
+    } catch(err) {
 
-        });
+        console.error(error.message);
 
-    } else {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
 
-        // Return all users
-        User.find({}).then(users => {
-            return res.json(users);
-        });
+// @route GET api/users/:id
+// @desc Get user by id
+// @access Public
+router.get('/:id', checkObjectId('id'), async (req, res) => {
+
+    try {
+
+        const user = await User.findById(res.params.id);
+
+        if (!user) return res.status(404).json({ msg: "User not found" });
+
+        res.json(user);
+
+    } catch (err) {
+
+        console.error(error.message);
+
+        res.status(500).json({ msg: "Server error" });
 
     }
 
 });
 
-// Register Route
+// @route POST api/users/register
+// @desc Register a new user
+// @access Public
 router.post('/register', (req, res) => {
 
     // Validation
@@ -101,7 +120,9 @@ router.post('/register', (req, res) => {
     })
 });
 
-// Login Route
+// @route POST api/users/login
+// @desc Log User In
+// @access Public
 router.post('/login', (req, res) => {
 
     // Form validation
@@ -163,46 +184,37 @@ router.post('/login', (req, res) => {
     });
 });
 
-// Update Role Route
-router.put('/:id/update/role', (req, res) => {
+// @route PUT api/users/:id/update/role
+// @desc Update users role
+// @access Private
+router.put('/:id/update/role', async (req, res) => {
 
     // Check user who submitted request is an admin or poject manager
     const reqUserId = req.body.userId;
 
-    User.findById(reqUserId).then(user => {
+    const user = await User.findById(reqUserId);
 
-        // If there is no user return error
-        if (!user || (user.role != 'admin' && user.role != 'project-manager')) return res.status(401).json({ msg: "You dont have permission" });
+    if (user.role != 'admin' && user.role != 'project-manager') {
+        return res.status(401).json({ msg: "You don't have permission. "});
+    }
 
-    });
+    // Update user
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, { role: req.body.role });
 
-    User.findByIdAndUpdate(req.params.id, { role: req.body.role }).then((user) => {
-        const properties = {
+    const newChange = new Change({
+        message: "changed role of ",
+        type: "ROLE_CHANGED",
+        properties: JSON.stringify({
             userId: reqUserId,
             changedUserId: user._id,
             newRole: req.body.role
-        }
-
-        const newChange = new Change({
-            message: "changed role of ",
-            type: "ROLE_CHANGED",
-            properties: JSON.stringify(properties)
-        });
-
-        newChange.save().then(change => { console.log(change) }).catch(err => console.log(err));
-
-        return res.json(user);
-
-    }).catch(err => {
-
-        if (err) {
-            console.log(err);
-            res.status(500).json({ msg: "A server errror occured."})
-        }
-        
+        })
     });
 
+    const change = await newChange.save();
 
-})
+    res.json(updatedUser);
+
+});
 
 module.exports = router;
