@@ -10,9 +10,7 @@ export class usersstore {
     @action fetchUsers() {
         axios.get('/api/users').then(res => {
 
-            if (res.data.length > 0) {
-                this.users = res.data;
-            }
+            this.users = res.data;
 
         });
     }
