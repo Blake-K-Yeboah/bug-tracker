@@ -24,11 +24,11 @@ router.use(jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }));
 // @route GET api/comments
 // @desc Get all comments
 // @access Private
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
     try {
 
-        const comments = Comment.find();
+        const comments = await Comment.find();
 
         res.json(comments);
 
@@ -45,11 +45,11 @@ router.get('/', (req, res) => {
 // @route GET api/comments/:id
 // @desc Get comment by id
 // @access Private
-router.get('/:id', checkObjectId('id'), (req, res) => {
+router.get('/:id', checkObjectId('id'), async (req, res) => {
 
     try {
 
-        const comment = Comment.findById(req.params.id);
+        const comment = await Comment.findById(req.params.id);
 
         if (!comment) return res.status(404).json({ msg: "Comment not found" });
 
@@ -60,12 +60,15 @@ router.get('/:id', checkObjectId('id'), (req, res) => {
         console.error(err.message);
 
         res.status(500).json({ msg: "Server error" });
-        
+
     }
 
 });
 
-router.post('/create',  jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+// @route POST api/comments/create
+// @desc Post a new comment
+// @access Private
+router.post('/create',  async (req, res) => {
 
     // Validation
     const { errors, isValid } = validateCommentInput(req.body);
@@ -74,40 +77,24 @@ router.post('/create',  jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] })
         return res.status(400).json(errors);
     }
 
-    const forProperty = { type: req.body.type, typeId: req.body.typeId }; // e,g type: project typeId: Project ID
-
     const newComment = new Comment({
         text: req.body.text,
         user: req.body.userId,
-        for: JSON.stringify(forProperty)
+        for: JSON.stringify({ type: req.body.type, typeId: req.body.typeId })
     });
 
-    newComment.save().then(comment => {
+    const comment = await newComment.save();
 
-        // Create Change
-        
-        const properties = {
-            userId: comment.user,
-            type: JSON.parse(comment.for).type
-        };
-
-        const newChange = new Change({
-            message: "posted a comment on a ",
-            type: "COMMENT_ADDED",
-            properties: JSON.stringify(properties)
-        });
-        
-        newChange.save().then(change => {  }).catch(err => console.log(err));
-
-        return res.json(comment);
-
-    }).catch(err => {
-
-        console.throw(err);
-        return res.status(500).json({ msg: "There was an error" });
-
+    const newChange = new Change({
+        message: "posted a comment on a ",
+        type: "COMMENT_ADDED",
+        properties: JSON.stringify({ userId: comment.user, type: JSON.parse(comment.for).type })
     });
 
+    const change = await newChange.save();
+
+    res.json(comment);
+    
 });
 
 router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
