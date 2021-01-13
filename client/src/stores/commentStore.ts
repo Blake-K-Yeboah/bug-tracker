@@ -18,7 +18,7 @@ export class commentstore {
                         ...comment,
                         for: JSON.parse(comment.for)
                     }
-                }).reverse();
+                });
 
             }
 
