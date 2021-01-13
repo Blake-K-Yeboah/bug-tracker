@@ -68,7 +68,10 @@ router.get('/:id', checkObjectId('id'), async (req, res) => {
 
 });
 
-router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+// @route POST api/projects/create
+// @desc Create a project
+// @access Private
+router.post('/create', async (req, res) => {
 
     // Validation
     const { errors, isValid } = validateProjectInput(req.body);
@@ -78,80 +81,61 @@ router.post('/create', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }),
         return res.status(400).json(errors);
     }
 
-    Project.findOne({ name: req.body.name }).then(project => {
+    // Check if project exists with same name
+    const sameNameProject = await Project.findOne({ name: req.body.name });
 
-        // Check if project exists with same name
-        if (project) {
-            res.status(400).json({ name: 'Project with same name exists.'});
-        } else {
+    if (sameNameProject) return res.status(400).json({ name: 'Project with same name exists. ' });
 
-            // Check owner is admin or project
-            User.findById(req.body.owner).then(user => {
-                if (!user) {
-                    return res.status(400).json({ owner: "No user with that ID." });
-                } else if (user.role != "admin" && user.role != 'project-manager') {
-                    return res.status(401).json({ owner: "You dont have permission." });
-                }
-            });
+    // Check owner is an admin or a project manager
+    const owner = await User.findById(req.body.owner);
 
-            // Create New Project Model
-            const newProject = new Project({
-                name: req.body.name,
-                description: req.body.description,
-                owner: req.body.owner
-            });
+    if (!owner) return res.status(404).json({ owner: "No user with that ID." });
 
-            newProject.save().then(project => {
-                const properties = {
-                    userId: project.owner,
-                    projectName: project.name
-                }
+    if (owner.role != "admin" && owner.role != "project-manager") return res.status(401).json({ owner: "You dont have permission." });
 
-                const newChange = new Change({
-                    message: "created a project called ",
-                    type: "PROJECT_CREATED",
-                    properties: JSON.stringify(properties)
-                });
+    // Create new project
+    const newProject = new Project(req.body);
 
-                newChange.save().then(change => {  }).catch(err => console.log(err));
+    const project = await newProject.save();
 
-                return res.json(project);
-
-            })
-        }
+    const newChange = new Change({
+        message: "created a project called ",
+        type: "PROJECT_CREATED",
+        properties: JSON.stringify({ userId: project.owner, projectName: project.name })
     });
+
+    const change = await newChange.save();
+
+    res.json(project);
 
 });
 
-router.delete('/:id', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+// @route DELETE api/projects/:id
+// @desc Delete a project
+// @access Private
+router.delete('/:id', checkObjectId('id'), async (req, res) => {
 
-    const projectId = req.params.id;
+    try {
 
-    Project.findByIdAndDelete(projectId, (err, doc) => {
+        const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
-        if (err) { 
+        const newChange = new Change({
+            message: "project called ",
+            type: "PROJECT_DELETED",
+            properties: JSON.stringify({ userId: doc.owner, projectName: doc.name })
+        });
 
-            return res.send(500, err);
-            
-        } else {
+        const change = await newChange.save();
 
-            const properties = {
-                userId: doc.owner,
-                projectName: doc.name
-            }
+        res.json(deletedProject);
 
-            const newChange = new Change({
-                message: "project called ",
-                type: "PROJECT_DELETED",
-                properties: JSON.stringify(properties)
-            });
+    } catch (err) {
 
-            newChange.save().then(change => {  }).catch(err => console.log(err));
+        console.error(err.message);
 
-            return res.json(doc);
-        }
+        res.status(500).json({ msg: "Server error" });
 
-    });
+    }
 
 });
 
