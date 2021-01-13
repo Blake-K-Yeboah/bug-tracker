@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
         const comments = await Comment.find();
 
-        res.json(comments);
+        res.json(comments.reverse());
 
     } catch (err) {
 
