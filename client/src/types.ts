@@ -86,3 +86,17 @@ export interface ICommentStore {
     comments: Icomment[],
     fetchComments: () => void
 }
+
+// Ticket Interface
+export interface Iticket {
+    _id: string,
+    createdOn: Date,
+    owner: string,
+    text: string,
+    status: string,
+    dev: string,
+    priority: number,
+    projectId: string
+}
+
+// Ticket Store Interface
