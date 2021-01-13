@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react'
 // Import Axios
 import Axios from 'axios';
 
+// Import NavLink
+import { NavLink } from 'react-router-dom';
+
 const TableRow = ({ ticket }: any) => {
 
     const [user, setUser]: any = useState(null);
@@ -22,7 +25,7 @@ const TableRow = ({ ticket }: any) => {
                 {user ? <>
                     <img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-pic" />
                     <span className="name">{user.name}</span>
-                </> : 'Loading'}
+                </> : ''}
             </td>
             <td className="t-data status">
                 <div className={`container ${ticket.status}`}>
@@ -30,7 +33,11 @@ const TableRow = ({ ticket }: any) => {
                 </div>
             </td>
             <td className="t-data view">
-                <button className="btn view-btn primary">View</button>
+                
+                <NavLink to={`/ticket/${ticket._id}`}>
+                    <button className="btn view-btn primary">View</button>
+                </NavLink>
+                
             </td>
         </tr>
     )
