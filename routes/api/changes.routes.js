@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
         const changes = await Change.find();
 
-        res.json(changes);
+        res.json(changes.reverse());
 
     } catch (err) {
 
