@@ -100,3 +100,7 @@ export interface Iticket {
 }
 
 // Ticket Store Interface
+export interface ITicketStore {
+    tickets: Iticket[],
+    fetchTickets: () => void
+}
