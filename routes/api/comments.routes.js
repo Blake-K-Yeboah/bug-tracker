@@ -119,7 +119,7 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
         const newChange = new Change ({
             message: "deleted a comment on a ",
             type: "COMMENT_DELETED",
-            properties: JSON.stringify({ userId: req.body.userId, type: JSON.parse(doc.for).type })
+            properties: JSON.stringify({ userId: req.body.userId, type: JSON.parse(deletedComment.for).type })
         });
 
         const change = await newChange.save();
