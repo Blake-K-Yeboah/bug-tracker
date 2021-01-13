@@ -12,32 +12,55 @@ const Comment = require("../../models/comment.model");
 // Import Change Model
 const Change = require('../../models/change.model');
 
+// checkObjectId middleware
+const checkObjectId = require('../../middleware/checkObjectId');
+
 // Import Validation Function
 const validateCommentInput = require('../../validation/comment');
 
-router.get('/:id?', jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }), (req, res) => {
+// JWT authentication middleware
+router.use(jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }));
 
-    // Define Id
-    const id = req.params.id;
+// @route GET api/comments
+// @desc Get all comments
+// @access Private
+router.get('/', (req, res) => {
 
-    if (id) {
+    try {
 
-        // Return Comment with specified id
-        Comment.findById(id).then(comment => {
-            
-            if (!comment) return res.status(400).json({ msg: 'Comment doesn\'t exist'});
+        const comments = Comment.find();
 
-            return res.json(comment);
+        res.json(comments);
 
-        });
+    } catch (err) {
 
-    } else {
+        console.error(err.message);
 
-        // Return all comments
-        Comment.find({}).then(comments => {
-            return res.json(comments);
-        });
+        res.status(500).json({ msg: "Server error" });
 
+    }
+
+});
+
+// @route GET api/comments/:id
+// @desc Get comment by id
+// @access Private
+router.get('/:id', checkObjectId('id'), (req, res) => {
+
+    try {
+
+        const comment = Comment.findById(req.params.id);
+
+        if (!comment) return res.status(404).json({ msg: "Comment not found" });
+
+        res.json(comment);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        res.status(500).json({ msg: "Server error" });
+        
     }
 
 });
