@@ -21,101 +21,132 @@ const Change = require('../../models/change.model');
 // Import Validation Function
 const validateTicketInput = require('../../validation/ticket');
 
+// Import CheckObjectID middleware
+const checkObjectId = require('../../middleware/checkObjectId');
+
+// Use JWT Authentication Middleware
 router.use(jwt({ secret: keys.secretOrKey, algorithms: ['HS256'] }));
 
-router.get('/:id?', (req, res) => {
-
-    // Define ID
-    const id = req.params.id;
-
-    console.log("Hello Tickets");
-    
-    if (id) {
+// @route GET api/tickets
+// @desc Get all tickets
+// @access Private
+router.get('/', async (req, res) => {
         
-        // Return ticket with specified id
-        Ticket.findById(id).then(ticket => {
+    try {
 
-            if (!ticket) return res.status(400).json({ msg: "Ticket doesn't exist"})
+        const tickets = await Ticket.find().sort({ createdOn: -1 });
 
-            return res.json(ticket);
+        res.json(tickets);
 
-        });
+    } catch (err) {
 
-    } else {
+        console.error(err.message);
         
-        // Return all tickets
-        Ticket.find({}).then(tickets => {
-           
-            return res.json(tickets);
+        res.status(500).json({ msg: "Server Error" });
 
-        });
+    }
 
-    }   
 });
 
-router.post('/create', (req, res) => {
+// @route GET api/tickets/:id
+// @desc Get ticket by ID
+// @access Private
+router.get('/:id', checkObjectId('id'), async (req, res) => {
+    
+    try {
 
+        const ticket = await Ticket.findById(req.params.id);
+
+        if (!ticket) {
+            return res.status(404).json({ msg: "Ticket not found" })
+        }
+
+        res.json(ticket);
+
+    } catch(err) {
+
+        console.error(err.message);
+        
+        res.status(500).json({ msg: "Server Error" });
+
+    }
+
+});
+
+// @route POST api/tickets/create
+// @desc Create a ticket
+// @access Private
+router.post('/create', async (req, res) => {
+    
     // Validation
     const { errors, isValid } = validateTicketInput(req.body);
 
     if (!isValid) {
         return res.status(400).json(errors);
     }
+    
+    // Check if owner is assigned to Project
+    const project = await Project.findById(req.body.projectId, 'usersList owner');
+    
+    if (!project) {
 
-    Project.findById(req.body.projectId).then((project) => {
+        return res.status(404).json({ msg: "No project with that ID" });
+
+    }
+
+    if (!project.usersList.includes(req.body.owner) && project.owner !== req.body.owner) {
+
+        return res.status(400).json({ msg: "User is not assigned to that project" });
+
+    }
+ 
+    // Check if developer is actual developer
+    const user = await User.findById(req.body.dev, 'role');
+
+    if (!user) {
         
-        // Validate If ticket owner is assigned to project
-        if (!project) {
+        return res.status(404).json({ msg: "No developer with that ID" });
 
-            return res.status(400).json({ project: "No project with that ID." });
+    }
 
-        } else if (!project.usersList.includes(req.body.owner) && project.owner !== req.body.owner) {
-            
-            return res.status(400).json({ owner: "You are not assigned to that project" });
+    if (user.role !== 'developer') {
 
-        } else {
-            
-            // Check if dev is an actual developer
-            User.findById(req.body.dev).then(user => {
+        return res.status(400).json({ msg: "Developer requested doesn't have role of dev" });
 
-                if (user.role !== 'developer') {
+    }
 
-                    return res.status(400).json({ dev: "Developer is not an actual developer"});
+    // Check if ticket with same text already exists
+    const ticket = await Ticket.findOne({ text: req.body.text });
 
-                } else {
-                    
-                    const newTicket = new Ticket(req.body);
+    if (ticket) {
 
-                    newTicket.save().then(ticket => {
+        return res.status(400).json({ msg: "Ticket with same text already exists" });
 
-                        const properties = {
-                            userId: req.body.owner,
-                            ticketText: ticket.text
-                        }
-            
-                        const newChange = new Change({
-                            message: "created a ticket ",
-                            type: "TICKET_CREATED",
-                            properties: JSON.stringify(properties)
-                        });
-            
-                        newChange.save().then(change => { }).catch(err => console.log(err));
-                        
-                        return res.json(ticket);
-            
-                    }).catch(err => {
-            
-                        return res.status(500).json(err);
-            
-                    });
+    }
 
-                }
-            });
+    try {
 
-        }
+        const newTicket = new Ticket(req.body);
 
-    });
+        const savedTicket = await newTicket.save();
 
+        const newChange = new Change({
+            message: 'created a ticket ',
+            type: 'TICKET_CREATED',
+            properties: JSON.stringify({ userId: savedTicket.owner, ticketText: savedTicket.text })    
+        });
+
+        const change = await newChange.save();
+
+        res.json(savedTicket);
+
+    } catch (err) {
+
+        console.error(err.message);
+        
+        res.status(500).json({ msg: "Server Error" });
+
+    }
 
 });
 
