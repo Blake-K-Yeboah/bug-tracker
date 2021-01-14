@@ -23,7 +23,7 @@ let Statistics = ({ usersStore, changeStore, projectStore, ticketStore }: IStore
         usersStore.fetchUsers();
         projectStore.fetchProjects();
         ticketStore.fetchTickets();
-    }, [usersStore, projectStore]);
+    }, [usersStore, projectStore, ticketStore]);
 
     const stats: IStat[] = [
         {
