@@ -2,28 +2,45 @@
 
 .ticket-table {
     margin: -.5em auto 0 auto;
-    width: calc(100% - 3em);
-    max-height: 190px;
+    width: calc(100% - 3.25em);
     text-align:left;
-    vertical-align: middle;
+    overflow-y: scroll;
+    height: 190px;
+    display: block;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #ccc;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary;
+    }
 
     thead {
         height: 40px;
+        width:100%;
 
         .t-head {
             color: $grey;
             font-weight: 500;
             font-size: 1rem;
             padding-bottom: 1em;
+            text-align:center;
 
-            &:last-of-type {
-                text-align:center;
+            &:first-of-type {
+                text-align:left;
             }
         }
     }
 
     tbody {
         padding-top: 1em;
+        width:100%;
+        text-align:center;
 
         .table-row {
 
@@ -49,12 +66,20 @@
                         width: 30px;
                         position:relative;
                         top: 5px;
+                        left: 10px;
                     }
 
                     .name {
                         padding-left: 10px;
                         position:relative;
                         top: -5px;
+                        left: 10px;
+                        color: #6f6f6f;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
 
                     .spacer {
@@ -64,16 +89,16 @@
                 }
 
                 &.status {
-
+                    
                     .container {
                         height: 25px;
                         padding: 0;
                         color: #fff;
-                        width:85%;
+                        width:100px;
                         display:flex;
                         justify-content: center;
-                        margin-top: 10px;
                         border-radius: 5px;
+                        margin: 10px 50px;
 
                         span {
                             line-height: 25px;
@@ -94,6 +119,11 @@
                         }
                     }
 
+                }
+
+                &.text {
+                    padding-right: 50px;
+                    text-align: left;
                 }
             }
         }
