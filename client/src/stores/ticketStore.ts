@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import axios from 'axios';
 import { Iticket, ITicketStore } from '../types';
 
@@ -14,6 +14,10 @@ export class ticketstore {
             this.tickets = res.data;
 
         });
+    }
+    
+    @computed get ticketCount() {
+        return this.tickets.length
     }
 
 }
