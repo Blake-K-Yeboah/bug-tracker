@@ -20,11 +20,11 @@ const TableRow = ({ ticket }: any) => {
 
     return (
         <tr className="table-row">
-            <td className="t-data">{ticket.text}</td>
+            <td className="t-data text">{ticket.text}</td>
             <td className="t-data owner">
                 {user ? <>
                     <img src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" className="profile-pic" />
-                    <span className="name">{user.name}</span>
+                    <NavLink to={`/profile/${user._id}`} className="name">{user.name}</NavLink>
                 </> : <div className="spacer">aaaaaaaaaaaaaaaa.</div>}
             </td>
             <td className="t-data status">
