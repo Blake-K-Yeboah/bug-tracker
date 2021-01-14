@@ -14,4 +14,20 @@
         font-weight: normal;
         padding: 1em;
     }
+
+    .add-btn {
+        position:absolute;
+        top: 1.25em;
+        right: 2em;
+        width: 40px;
+        height: 40px;
+        transition: .5s ease-in-out;
+        padding: 0;
+
+        .icon {
+            right:50%;
+            top: 50%;
+            transform:translate(50%, -50%);
+        }
+    }
 }
