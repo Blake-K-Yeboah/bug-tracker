@@ -31,7 +31,7 @@ let Tickets = ({ project, ticketStore }: IStoreProps) => {
             
                 <h2 className="title">Tickets ({tickets.length})</h2>
                 
-                <TicketTable tickets={[...tickets, ...tickets, ...tickets]}/>
+                <TicketTable tickets={tickets}/>
                 
                 <button className="btn primary add-btn"><FaPlus className="icon" /></button>
 
