@@ -29,23 +29,26 @@ let Dropdown = ({ display, authStore }: IStoreProps) => {
     }
 
     return (
-        <div className={`dropdown ${!display ? 'hidden' : ''}`}>
+        <>
+            <div className={`dropdown ${!display ? 'hidden' : ''}`}>
 
-            <div className="heading-container">
+                <div className="heading-container">
 
-                {authStore.user ? <img src={`${process.env.PUBLIC_URL}/uploads/profile/${authStore.user.profileIcon}`} alt="Profile Icon" className="heading-img" /> : ''}
+                    {authStore.user ? <img src={`${process.env.PUBLIC_URL}/uploads/profile/${authStore.user.profileIcon}`} alt="Profile Icon" className="heading-img" /> : ''}
 
-                <h3 className="heading-text">{authStore.user ? authStore.user.name : 'Loading'}</h3>
+                    <h3 className="heading-text">{authStore.user ? authStore.user.name : 'Loading'}</h3>
+
+                </div>
+
+                <NavLink to={`/profile/${authStore.user.id}`} className="link" >View Profile</NavLink>
+
+                <NavLink to={`/profile/${authStore.user.id}/edit`} className="link" >Edit Profile</NavLink>
+
+                <button className="btn danger has-icon" onClick={logOutHandler}>Log Out <FiLogOut className="icon" /></button>
 
             </div>
-
-            <NavLink to={`/profile/${authStore.user.id}`} className="link" >View Profile</NavLink>
-
-            <NavLink to={`/profile/${authStore.user.id}/edit`} className="link" >Edit Profile</NavLink>
-
-            <button className="btn danger has-icon" onClick={logOutHandler}>Log Out <FiLogOut className="icon" /></button>
-
-        </div>
+            <div className={`dropdown-overlay ${!display ? 'hidden' : ''}`}></div>
+        </>
     )
 }
 
