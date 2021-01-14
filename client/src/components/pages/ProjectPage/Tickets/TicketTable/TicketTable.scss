@@ -7,6 +7,7 @@
     overflow-y: scroll;
     height: 190px;
     display: block;
+    white-space: nowrap;
 
     &::-webkit-scrollbar {
         width: 5px;
@@ -66,14 +67,14 @@
                         width: 30px;
                         position:relative;
                         top: 5px;
-                        left: 10px;
+                        left: .5vw;
                     }
 
                     .name {
                         padding-left: 10px;
                         position:relative;
                         top: -5px;
-                        left: 10px;
+                        left: .5vw;
                         color: #6f6f6f;
                         text-decoration: none;
 
