@@ -12,6 +12,9 @@ import { IStoreProps, Iticket } from '../../../../types';
 // Import Components
 import TicketTable from './TicketTable/TicketTable';
 
+// Import Icons
+import { FaPlus } from 'react-icons/fa';
+
 let Tickets = ({ project, ticketStore }: IStoreProps) => {
 
     useEffect(() => {
@@ -28,7 +31,9 @@ let Tickets = ({ project, ticketStore }: IStoreProps) => {
             
                 <h2 className="title">Tickets ({tickets.length})</h2>
                 
-                <TicketTable tickets={tickets}/>
+                <TicketTable tickets={[...tickets, ...tickets, ...tickets]}/>
+                
+                <button className="btn primary add-btn"><FaPlus className="icon" /></button>
 
             </> : ''}
 
