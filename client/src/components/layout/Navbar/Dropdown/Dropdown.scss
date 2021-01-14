@@ -1,4 +1,5 @@
 @import '../../../../style/variables';
+@import '../../../../style/animations';
 
 .dropdown {
     position:absolute;
@@ -89,15 +90,5 @@
 
     &.hidden {
         display:none;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0
-    }
-
-    to {
-        opacity: 1
     }
 }
