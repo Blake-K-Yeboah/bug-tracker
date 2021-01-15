@@ -9,9 +9,13 @@ import './EditProject.scss';
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import AssignedUsers from '../ProjectPage/AssignedUsers/AssignedUsers';
 
 // Import Axios
 import Axios from 'axios';
+
+// Import NavLink
+import { NavLink } from 'react-router-dom';
 
 const EditProject = ({ match: { params: { id }} }: any) => {
 
@@ -46,9 +50,11 @@ const EditProject = ({ match: { params: { id }} }: any) => {
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
-                    <div className="placeholder"></div>
+                    <AssignedUsers project={project} />
 
                 </div>
+
+                <NavLink to={`/project/${id}`} className="page-link">&lt; Back to project</NavLink>
                 
             </div>
 
