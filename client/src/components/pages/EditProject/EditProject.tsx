@@ -10,6 +10,7 @@ import './EditProject.scss';
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import AssignedUsers from '../ProjectPage/AssignedUsers/AssignedUsers';
+import EditDetails from './EditDetails/EditDetails';
 
 // Import Axios
 import Axios from 'axios';
@@ -47,7 +48,7 @@ const EditProject = ({ match: { params: { id }} }: any) => {
                 
                 <div className="edit-project-page-grid">
 
-                    <div className="placeholder"></div>
+                    <EditDetails project={project} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <AssignedUsers project={project} />
