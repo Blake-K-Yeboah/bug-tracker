@@ -1,0 +1,32 @@
+@import '../../../../style/variables';
+
+.danger-zone {
+    background: #fff;
+    height:100%;
+    width:100%;
+    border-radius: 10px;
+    position: relative;
+    
+    .title {
+        color: $darkGrey;
+        font-size: 1.5rem;
+        font-weight: normal;
+        padding: 1em 0 0 1em;
+    }
+
+    .delete-group {
+        margin: 1em 1.5em;
+
+        .heading {
+            font-size: 1.1rem;
+            color: $darkGrey;
+            font-weight: 500;
+        }
+
+        .desc {
+            color: $grey;
+            font-size: .85rem;
+            padding: 10px 0;
+        }
+    }
+}
