@@ -13,7 +13,7 @@ import Axios from 'axios';
 
 import { FiLogOut } from 'react-icons/fi';
 
-let Dropdown = ({ display, authStore }: IStoreProps) => {
+let Dropdown = ({ display, authStore, setShow }: IStoreProps) => {
 
     let history = useHistory();
 
@@ -47,7 +47,7 @@ let Dropdown = ({ display, authStore }: IStoreProps) => {
                 <button className="btn danger has-icon" onClick={logOutHandler}>Log Out <FiLogOut className="icon" /></button>
 
             </div>
-            <div className={`dropdown-overlay ${!display ? 'hidden' : ''}`}></div>
+            <div className={`dropdown-overlay ${!display ? 'hidden' : ''}`} onClick={() => setShow(false)}></div>
         </>
     )
 }
