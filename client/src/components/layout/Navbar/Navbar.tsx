@@ -29,7 +29,7 @@ const Navbar = () => {
                 
                 <BsGrid3X3Gap className="menu-icon" onClick={() => setShow(!show)} />
 
-                <Dropdown display={show} />
+                <Dropdown display={show} setShow={setShow} />
 
             </div>
 
