@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Import Helmet to access document head
 import { Helmet } from 'react-helmet'
@@ -10,7 +10,21 @@ import './EditProject.scss';
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 
+// Import Axios
+import Axios from 'axios';
+
 const EditProject = ({ match: { params: { id }} }: any) => {
+
+    const [project, setProject]: any = useState(null);
+
+    useEffect(() => {
+
+        Axios.get(`/api/projects/${id}`).then(res => {
+            setProject(res.data);
+        });
+
+    }, [id]);
+
     return (
         <>
             <Helmet>
@@ -25,7 +39,7 @@ const EditProject = ({ match: { params: { id }} }: any) => {
 
                 <Sidebar />
 
-                <h1 className="page-title">Edit Project</h1>
+                <h1 className="page-title">Editing Project - {project ? project.name : ''}</h1>
                 
                 <div className="edit-project-page-grid">
 
