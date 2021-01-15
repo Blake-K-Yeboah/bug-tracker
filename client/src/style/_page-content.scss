@@ -13,4 +13,17 @@
         font-size: 2rem;
         margin-bottom: 1em;
     }
+
+    .page-link {
+        color: $darkGrey;
+        transition: color .3s ease-in-out;
+        font-size: 1rem;
+        position:relative;
+        top: 2em;
+        text-decoration: none;
+
+        &:hover {
+            color: $primary;
+        }
+    }
 }
