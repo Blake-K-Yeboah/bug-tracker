@@ -13,7 +13,7 @@
     display:block;
     border-radius: 5px;
     z-index: 3;
-    animation: fadeIn .5s;
+    animation: fadeIn 1s;
 
     &:after {
         content: '';
@@ -86,7 +86,7 @@
     z-index: 2;
     display:block;
     opacity: 1;
-    animation: fadeIn .5s;
+    animation: fadeIn 1s;
 
     &.hidden {
         display:none;
