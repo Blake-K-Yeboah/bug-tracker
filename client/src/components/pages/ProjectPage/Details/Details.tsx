@@ -10,7 +10,7 @@ let Details = ({ project, usersStore, ticketStore }: any) => {
     useEffect(() => {
         usersStore.fetchUsers();
         ticketStore.fetchTickets();
-    }, [usersStore]);
+    }, [usersStore, ticketStore]);
 
     const ownerName = project && usersStore.users.length > 0 ? usersStore.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
 
