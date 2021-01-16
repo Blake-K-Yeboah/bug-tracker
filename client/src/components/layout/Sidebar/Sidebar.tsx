@@ -55,11 +55,11 @@ let Sidebar = ({ authStore }: IStoreProps) => {
                 {userRole === "admin" ? manageUserRolesLink : ''}
                 {userRole === "admin" || userRole === "project-manager" ? manageProjectUsersLink : ''}
 
-                <Link route="/projects" text="Projects">
+                <Link route="/projects" text="My Projects">
                     <FaFolderOpen className="icon" />
                 </Link>
 
-                <Link route="/tickets" text="Tickets">
+                <Link route="/tickets" text="My Tickets">
                     <FaTags className="icon" />
                 </Link>
 
