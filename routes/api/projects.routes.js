@@ -193,4 +193,25 @@ router.put('/:id/removeuser', checkObjectId('id'), async (req, res) => {
 
 });
 
+// @route PUT api/projects/:id/
+// @desc Update Project Details
+// @access Private
+router.put('/:id', checkObjectId('id'), async (req, res) => {
+
+    // Check if user is admin or project manager
+    const user = await User.findById(req.body.userId);
+
+    if (!user) return res.status(404).json({ user: "No user with that ID." });
+
+    if (user.role != "admin" && user.role != "project-manager") return res.status(401).json({ user: "You dont have permission." });
+
+    // Update Project
+    const updatedProperties = { [req.body.field]: req.body.value };
+    
+    const updatedProject = await Project.findByIdAndUpdate(req.params.id, updatedProperties);
+
+    res.json(updatedProject);
+
+});
+
 module.exports = router;
