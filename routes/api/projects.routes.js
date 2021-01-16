@@ -18,6 +18,12 @@ const Change = require('../../models/change.model');
 // Import User Model
 const User = require('../../models/user.model');
 
+// Import Ticket Model
+const Ticket = require('../../models/ticket.model');
+
+// Import Comment Model
+const Comment = require('../../models/comment.model');
+
 // Import checkObJectId middleware
 const checkObjectId = require('../../middleware/checkObjectId');
 
@@ -117,6 +123,7 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
 
     try {
 
+        // Delete Project
         const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
         const newChange = new Change({
@@ -126,6 +133,12 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
         });
 
         const change = await newChange.save();
+
+        // Delete Comments
+        const deletedComments = await Comment.deleteMany({ for: JSON.stringify({ type:"project", typeId: req.params.id }) });
+
+        // Delete Tickets
+        const deletedTickets = await Ticket.deleteMany({ projectId: req.params.id });
 
         res.json(deletedProject);
 
