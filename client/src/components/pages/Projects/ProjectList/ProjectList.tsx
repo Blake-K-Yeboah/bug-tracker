@@ -4,7 +4,6 @@ import { Iproject, IStoreProps } from '../../../../types';
 
 import './ProjectList.scss';
 
-import Spinner from '../../../Spinner/Spinner';
 import TableRow from './TableRow';
 
 let ProjectList = ({ projectStore, authStore }: IStoreProps) => {
