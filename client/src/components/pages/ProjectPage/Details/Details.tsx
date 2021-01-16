@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import './Details.scss';
 import { inject, observer } from 'mobx-react';
-import { Iuser } from '../../../../types';
+import { Iticket, Iuser } from '../../../../types';
 import { FaPen } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
-let Details = ({ project, usersStore }: any) => {
+let Details = ({ project, usersStore, ticketStore }: any) => {
 
     useEffect(() => {
         usersStore.fetchUsers();
+        ticketStore.fetchTickets();
     }, [usersStore]);
 
     const ownerName = project && usersStore.users.length > 0 ? usersStore.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
@@ -24,7 +25,7 @@ let Details = ({ project, usersStore }: any) => {
                 <span className="project-detail"><b>Owner</b>: {ownerName}</span>
                 <span className="project-detail"><b>Created On</b>: { date ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` : ''}</span>
                 <span className="project-detail"><b>User Count</b>: {project.usersList.length + 1}</span>
-                <span className="project-detail"><b>Ticket Count</b>: {project.ticketList.length}</span>
+                <span className="project-detail"><b>Ticket Count</b>: {ticketStore.tickets.filter((ticket: Iticket) => ticket.projectId === project._id).length}</span>
                 
                 <NavLink to={`/project/${project._id}/edit`}>
                     <button className="btn primary has-icon edit-btn">
@@ -45,6 +46,6 @@ let Details = ({ project, usersStore }: any) => {
     )
 }
 
-Details = inject('usersStore')(observer(Details));
+Details = inject('usersStore', 'ticketStore')(observer(Details));
 
 export default Details
