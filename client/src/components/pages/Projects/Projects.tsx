@@ -25,7 +25,7 @@ const Projects = () => {
 
                 <Sidebar />
 
-                <h1 className="page-title">Projects</h1>
+                <h1 className="page-title">My Projects</h1>
 
                 <ProjectActionsBar />
                 
