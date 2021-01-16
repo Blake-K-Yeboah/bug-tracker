@@ -1,9 +1,15 @@
-import { inject, observer } from 'mobx-react';
 import React, { useEffect } from 'react'
+
+// Import Types
 import { Iproject, IStoreProps } from '../../../../types';
 
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+// Import Styling
 import './ProjectList.scss';
 
+// Import Components
 import TableRow from './TableRow';
 
 let ProjectList = ({ projectStore, authStore }: IStoreProps) => {
