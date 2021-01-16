@@ -115,15 +115,6 @@ router.post('/create', async (req, res) => {
 
     }
 
-    // Check if ticket with same text already exists
-    const ticket = await Ticket.findOne({ text: req.body.text });
-
-    if (ticket) {
-
-        return res.status(400).json({ msg: "Ticket with same text already exists" });
-
-    }
-
     try {
 
         const newTicket = new Ticket(req.body);
