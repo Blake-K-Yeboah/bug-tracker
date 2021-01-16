@@ -20,11 +20,6 @@ const ProjectSchema = new Schema({
         type: String,
         required: true
     },
-    ticketList: {
-        type: Array,
-        required: false,
-        default: []
-    },
     createdOn: {
         type: Date,
         default: Date.now()
