@@ -39,7 +39,23 @@ let EditDetails = ({ project, authStore }: any) => {
             alert("An error occured");
         })
     }
+
     // TODO Update Description Handler
+    const updateDescHandler = () => {
+        const body = {
+            userId: authStore.user.id,
+            field: 'description',
+            value: description
+        }
+
+        Axios.put(`/api/projects/${project ? project._id : ''}`, body).then(res => {
+            alert("Project Updated");
+            window.location.reload();
+        }).catch(err => {
+            console.error(err);
+            alert("An error occured");
+        })
+    }
 
     return (
 
@@ -70,7 +86,7 @@ let EditDetails = ({ project, authStore }: any) => {
 
                         <input type="text" placeholder="Description:" id="description" defaultValue={project.description} onChange={e => setDescription(e.target.value)} />
 
-                        <button className="btn primary input-group-btn" onClick={() => {console.log('Description', description)}}>Update</button>
+                        <button className="btn primary input-group-btn" onClick={updateDescHandler}>Update</button>
 
                     </div>
                     
