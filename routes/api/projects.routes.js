@@ -235,4 +235,29 @@ router.put('/:id', checkObjectId('id'), async (req, res) => {
 
 });
 
+
+// @route PUT api/projects/:id/transferowner
+// @desc Change Owner Of Project
+// @access Private
+router.put('/:id/transferowner', checkObjectId('id'), async (req, res) => {
+
+    // Check if user is owner of project
+    const project = await Project.findById(req.params.id);
+
+    if (project.owner != req.body.userId) return res.status(401).json({ user: "You dont have permission." });
+
+    const updatedProject = await Project.findByIdAndUpdate(req.params.id, { owner: req.body.newUserId, $pull: { usersList: req.body.newUserId } });
+
+    const newChange = new Change({
+        message: "transfered owner of ",
+        type: "TRANSFER_OWNERSHIP_PROJECT",
+        properties: JSON.stringify({ userId: req.body.userId, projectName: updatedProject.name, changedUserId: req.body.newUserId })
+    });
+
+    const change = await newChange.save();
+
+    res.json(updatedProject);
+
+});
+
 module.exports = router;
