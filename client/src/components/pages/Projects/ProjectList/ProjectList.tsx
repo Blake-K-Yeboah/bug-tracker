@@ -13,12 +13,24 @@ let ProjectList = ({ projectStore, authStore }: IStoreProps) => {
         projectStore.fetchProjects();
     }, [projectStore]);
 
+    const filteredProjects = projectStore.projects.filter((project: Iproject) => { 
+
+        if (project.usersList.includes(authStore.user.id) || project.owner === authStore.user.id) {
+            return true
+        } else {
+            return false
+        }
+        
+    });
+
+    const projectCount = filteredProjects.length;
+
     return (
         <div className="project-list-container">
             
-            <h2 className="heading">Table of Projects ({projectStore.projectCount} project{projectStore.projectCount === 1 ? '' : 's'})</h2>
+            <h2 className="heading">Table of Projects ({projectCount} project{projectCount === 1 ? '' : 's'})</h2>
             
-            {projectStore.projectCount === 0 ? <Spinner /> 
+            {projectCount === 0 ? <p style={{marginLeft: '1.75em'}}>No Projects</p>
             :  <table className="projects-table">
                     <thead>
                         <tr className="head-row">
@@ -37,14 +49,7 @@ let ProjectList = ({ projectStore, authStore }: IStoreProps) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projectStore.projects.filter((project: Iproject) => { 
-                            if (project.usersList.includes(authStore.user.id) || project.owner === authStore.user.id) {
-                                return true
-                            } else {
-                                return false
-                            }
-                            
-                        }).map((project: Iproject) => {
+                        {filteredProjects.map((project: Iproject) => {
                             return <TableRow project={project} key={project._id} />
                         })}
                     </tbody>
