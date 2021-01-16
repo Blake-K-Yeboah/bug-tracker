@@ -209,6 +209,14 @@ router.put('/:id', checkObjectId('id'), async (req, res) => {
     const updatedProperties = { [req.body.field]: req.body.value };
     
     const updatedProject = await Project.findByIdAndUpdate(req.params.id, updatedProperties);
+    
+    const newChange = new Change({
+        message: "updated project ",
+        type: "UPDATED_PROJECT",
+        properties: JSON.stringify({ userId: req.body.userId, projectName: updatedProject.name })
+    });
+
+    const change = await newChange.save();
 
     res.json(updatedProject);
 
