@@ -31,27 +31,43 @@ let History = ({ project, changeStore }: any) => {
     return (
         <div className="history-section">
 
-            <h2 className="title">Project History</h2>
+            {project ? <>
+
+                <h2 className="title">Project History</h2>
             
-            <div className="info-group">
+                <div className="info-group">
 
-                <h3 className="heading">Project Changes</h3>
+                    <h3 className="heading">Project Changes</h3>
 
-                <p className="desc">There were a total of {projectChanges.length} changes to this project.</p>
+                    <p className="desc">There were a total of {projectChanges.length} changes to this project.</p>
 
-                <NavLink to="/history"><button className="btn primary">View Project Changes</button></NavLink>
+                    <NavLink to="/history"><button className="btn primary">View Project Changes</button></NavLink>
 
-            </div>
+                </div>
 
-            <div className="info-group">
+                <div className="info-group">
 
-                <h3 className="heading">Other Changes</h3>
+                    <h3 className="heading">Other Changes</h3>
 
-                <p className="desc">There were a total of {changeStore.changes.length - projectChanges.length} changes to other entities.</p>
+                    <p className="desc">There were a total of {changeStore.changes.length - projectChanges.length} changes to other entities.</p>
 
-                <NavLink to="/history"><button className="btn primary">View Other Changes</button></NavLink>
+                    <NavLink to="/history"><button className="btn primary">View Other Changes</button></NavLink>
 
-            </div>
+                </div>
+
+            </> : <>
+            
+                <div className="loader title"></div>
+
+                <div className="loader info-group-title"></div>
+                <div className="loader info-group-desc"></div>
+                <div className="loader info-group-btn"></div>
+
+                <div className="loader info-group-title second-one"></div>
+                <div className="loader info-group-desc"></div>
+                <div className="loader info-group-btn"></div>
+
+            </>}
 
         </div>
     )
