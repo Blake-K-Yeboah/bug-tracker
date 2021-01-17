@@ -29,4 +29,38 @@
             padding: 10px 0;
         }
     }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1.5em;
+            width:250px;
+            height:40px;
+        }
+
+        &.delete-group-title {
+            width: 150px;
+            height: 25px;
+            margin: -1em 0 0 2.25em;
+
+            &.second-one {
+                margin-top: 1em;
+            }
+        }
+
+        &.delete-group-desc {
+            width: 300px;
+            height: 17.5px;
+            margin: .5em 2.25em;
+        }
+
+        &.delete-group-btn {
+            width: 150px;
+            height: 32.5px;
+            margin: .5em 2.25em;
+        }
+    
+    }
+
 }
