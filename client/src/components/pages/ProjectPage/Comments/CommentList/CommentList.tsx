@@ -10,7 +10,7 @@ const CommentList = ({ comments }: any) => {
         <>
             {comments ? (
                 <ul className={`comment-list ${comments.length > 3 ? 'more-than-three' : ''}`}>
-                    {comments.map((comment: Icomment) => <Comment comment={comment} key={comment._id} />)}
+                    { comments.length > 0 ? comments.map((comment: Icomment) => <Comment comment={comment} key={comment._id} />) : <li>No Comments</li>}
                 </ul>
             ) : ''}
         </>
