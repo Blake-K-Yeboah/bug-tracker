@@ -179,6 +179,19 @@ const ListItem = ({change}: any) => {
                 </li>
             )
             break;
+        case 'PROJECT_DELETED':
+            returnedJSX = (
+                <li className="list-item">
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                        : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ? <p className="message">
+                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> deleted a {change.message} <b>{change.properties.projectName}</b>
+                    </p> : ''}
+                </li>
+            )
+            break;
     }
 
     return returnedJSX;
