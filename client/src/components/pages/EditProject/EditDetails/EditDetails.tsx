@@ -92,7 +92,17 @@ let EditDetails = ({ project, authStore }: any) => {
                     
                 </div>
             
-            </> : ''}
+            </> : <>
+            
+                <div className="loader title"></div>
+
+                <div className="loader edit-input-label"></div>
+                <div className="loader edit-input"></div>
+
+                <div className="loader edit-input-label"></div>
+                <div className="loader edit-input"></div>
+
+            </>}
 
         </div>
 
