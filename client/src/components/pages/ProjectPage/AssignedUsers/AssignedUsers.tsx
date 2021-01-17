@@ -9,6 +9,9 @@ import { FaEdit } from 'react-icons/fa';
 // Import Components
 import UsersList from './UsersList/UsersList';
 
+// Import NavLink
+import { NavLink } from 'react-router-dom';
+
 const AssignedUsers = ({ project }: any) => {
     return (
         <div className="assigned-users">
@@ -16,7 +19,7 @@ const AssignedUsers = ({ project }: any) => {
             {project ? <>
             
                 <h2 className="title">Assigned Users ({project.usersList.length + 1})</h2>
-                <button className="btn primary edit-btn"><FaEdit className="icon" /></button>
+                <NavLink to={`/manage-projects-user/${project._id}`}><button className="btn primary edit-btn"><FaEdit className="icon" /></button></NavLink>
                 <p className="sub-text">A list of users assigned to this project</p>
                 <UsersList users={[project.owner, ...project.usersList]} project={project} />
 
