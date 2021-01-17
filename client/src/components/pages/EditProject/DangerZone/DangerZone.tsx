@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react'
 
 // Import Styling
 import './DangerZone.scss'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 let DangerZone = ({ project, authStore }: any) => {
 
@@ -20,8 +20,7 @@ let DangerZone = ({ project, authStore }: any) => {
         });
     }
 
-    // TODO Transfer Ownership Handler
-    
+
     return (
 
         <div className="danger-zone">
@@ -46,7 +45,7 @@ let DangerZone = ({ project, authStore }: any) => {
 
                     <p className="desc">Change owner of project; you cannot revert this</p>
 
-                    {project.owner === authStore.user.id ? <button className="btn danger">Transfer Ownership</button> : <button className="btn" disabled>Transfer Ownership</button>}
+                    {project.owner === authStore.user.id ? <NavLink to={`/project/${project._id}/transfer-owner`}><button className="btn danger">Transfer Ownership</button></NavLink> : <button className="btn" disabled>Transfer Ownership</button>}
                     
                 </div>
 
