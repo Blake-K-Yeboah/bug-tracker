@@ -29,6 +29,7 @@ import TransferOwner from './components/pages/TransferOwner/TransferOwner';
 
 // Import Styling
 import './style/App.scss';
+import ManageProjectsUsers from './components/pages/ManageProjectsUsers/ManageProjectsUsers';
 
 
 const App = () => {
@@ -91,6 +92,11 @@ const App = () => {
           <Route exact path="/project/:id/transfer-owner" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <TransferOwner {...props} />
+          }} />
+
+          <Route exact path="/manage-projects-users" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <ManageProjectsUsers {...props} />
           }} />
 
         </Switch>
