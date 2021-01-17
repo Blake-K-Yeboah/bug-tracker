@@ -12,38 +12,42 @@ import TableRow from './TableRow'
 const TicketTable = ({ tickets }: any) => {
 
     return (
-        <table className="ticket-table">
-            
-            <thead>
+        <>
+            {tickets.length !== 0 ? 
+            <table className="ticket-table">
+                
+                <thead>
 
-                <tr className="head-row">
-                    <th className="t-head">
-                        Text
-                    </th>
-                    <th className="t-head">
-                        Owner
-                    </th>
-                    <th className="t-head">
-                        Status
-                    </th>
-                    <th className="t-head">
-                        View
-                    </th>
-                </tr>
+                    <tr className="head-row">
+                        <th className="t-head">
+                            Text
+                        </th>
+                        <th className="t-head">
+                            Owner
+                        </th>
+                        <th className="t-head">
+                            Status
+                        </th>
+                        <th className="t-head">
+                            View
+                        </th>
+                    </tr>
 
-            </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                {tickets.map((ticket: Iticket) => {
+                    {tickets.map((ticket: Iticket) => {
 
-                    return <TableRow ticket={ticket} key={ticket._id} />
+                        return <TableRow ticket={ticket} key={ticket._id} />
 
-                })}
+                    })}
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
+            : <p style={{marginLeft: '1.75em'}}>No Tickets</p> }
+        </>
     )
 }
 
