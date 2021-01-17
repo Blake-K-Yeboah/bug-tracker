@@ -153,6 +153,32 @@ const ListItem = ({change}: any) => {
                 </li>
             )
             break;    
+        case 'TRANSFER_OWNERSHIP_PROJECT':
+            returnedJSX = (
+                <li className="list-item">
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                     : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ? <p className="message">
+                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message.replace('owner', 'ownership')} <b>{change.properties.projectName}</b> to <NavLink to={`/profile/${checkChangedUser ? changedUser._id : ''}`} className="link">{changedUserName}</NavLink>
+                    </p> : ''}
+                </li>
+            )
+            break;
+        case 'UPDATED_PROJECT':
+            returnedJSX = (
+                <li className="list-item">
+                    {!checkUser ? 
+                        <div className="profile-icon-loader"></div>
+                     : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
+                    }
+                    {userName ? <p className="message">
+                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message} <b>{change.properties.projectName}</b>
+                    </p> : ''}
+                </li>
+            )
+            break;
     }
 
     return returnedJSX;
