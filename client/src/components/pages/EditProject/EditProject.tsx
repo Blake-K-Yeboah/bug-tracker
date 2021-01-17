@@ -18,6 +18,7 @@ import Axios from 'axios';
 
 // Import NavLink
 import { NavLink } from 'react-router-dom';
+import History from './History/History';
 
 const EditProject = ({ match: { params: { id }} }: any) => {
 
@@ -51,7 +52,7 @@ const EditProject = ({ match: { params: { id }} }: any) => {
 
                     <EditDetails project={project} />
                     <DangerZone project={project} />
-                    <div className="placeholder"></div>
+                    <History project={project} />
                     <AssignedUsers project={project} />
 
                 </div>
