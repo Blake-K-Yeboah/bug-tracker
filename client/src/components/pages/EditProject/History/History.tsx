@@ -29,9 +29,27 @@ let History = ({ project, changeStore }: any) => {
         <div className="history-section">
 
             <h2 className="title">Project History</h2>
+            
+            <div className="info-group">
 
-            <p className="sub-text">There were a total of {projectChanges.length} changes to this project.</p>
-                
+                <h3 className="heading">Project Changes</h3>
+
+                <p className="desc">There were a total of {projectChanges.length} changes to this project.</p>
+
+                <button className="btn primary">View Project Changes</button>
+
+            </div>
+
+            <div className="info-group">
+
+                <h3 className="heading">Other Changes</h3>
+
+                <p className="desc">There were a total of {changeStore.changes.length - projectChanges.length} changes to other entities.</p>
+
+                <button className="btn primary">View Other Changes</button>
+
+            </div>
+
         </div>
     )
 }
