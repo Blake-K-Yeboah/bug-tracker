@@ -16,7 +16,22 @@
 
     .sub-text {
         color: $grey;
-        margin: .5em 0em 1em 1.5em;
+        margin: 1em 1.5em;
     }
+    
+    .info-group {
+        margin: 1em 1.5em;
 
+        .heading {
+            font-size: 1.1rem;
+            color: $darkGrey;
+            font-weight: 500;
+        }
+
+        .desc {
+            color: $grey;
+            font-size: .85rem;
+            padding: 10px 0;
+        }
+    }
 }
