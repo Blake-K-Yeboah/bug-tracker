@@ -49,7 +49,19 @@ let DangerZone = ({ project, authStore }: any) => {
                     
                 </div>
 
-            </> : ''}
+            </> : <>
+            
+                <div className="loader title"></div>
+
+                <div className="loader delete-group-title"></div>
+                <div className="loader delete-group-desc"></div>
+                <div className="loader delete-group-btn"></div>
+
+                <div className="loader delete-group-title second-one"></div>
+                <div className="loader delete-group-desc"></div>
+                <div className="loader delete-group-btn"></div>
+
+            </>}
 
         </div>
     )
