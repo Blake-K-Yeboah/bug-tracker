@@ -9,6 +9,9 @@ import { inject, observer } from 'mobx-react';
 // Import types
 import { IChange } from '../../../../types';
 
+// Import NavLink
+import { NavLink } from 'react-router-dom';
+
 let History = ({ project, changeStore }: any) => {
 
     useEffect(() => {
@@ -36,7 +39,7 @@ let History = ({ project, changeStore }: any) => {
 
                 <p className="desc">There were a total of {projectChanges.length} changes to this project.</p>
 
-                <button className="btn primary">View Project Changes</button>
+                <NavLink to="/history"><button className="btn primary">View Project Changes</button></NavLink>
 
             </div>
 
@@ -46,7 +49,7 @@ let History = ({ project, changeStore }: any) => {
 
                 <p className="desc">There were a total of {changeStore.changes.length - projectChanges.length} changes to other entities.</p>
 
-                <button className="btn primary">View Other Changes</button>
+                <NavLink to="/history"><button className="btn primary">View Other Changes</button></NavLink>
 
             </div>
 
