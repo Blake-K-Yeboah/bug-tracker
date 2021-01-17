@@ -1,12 +1,25 @@
-import { inject, observer } from 'mobx-react'
 import React from 'react'
+import Axios from 'axios'
+import { inject, observer } from 'mobx-react'
 
 // Import Styling
 import './DangerZone.scss'
+import { useHistory } from 'react-router-dom'
 
 let DangerZone = ({ project, authStore }: any) => {
 
+    let history = useHistory();
+
     // TODO Delete Project Handler
+    const deleteProject = () => {
+        Axios.delete(`/api/projects/${project._id}`).then(res => {
+            alert('Project Deleted');
+            history.push('/projects');
+        }).catch(err => {
+            alert('An Error Occured');
+        });
+    }
+
     // TODO Transfer Ownership Handler
     
     return (
@@ -23,7 +36,7 @@ let DangerZone = ({ project, authStore }: any) => {
 
                     <p className="desc">Delete entire project including all comments and tickets</p>
 
-                    <button className="btn danger">Delete Project</button>
+                    <button className="btn danger" onClick={deleteProject} >Delete Project</button>
 
                 </div>
 
