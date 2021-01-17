@@ -37,9 +37,10 @@ export interface IChangeStore {
 // Change Interface
 export interface IChange {
     _id: string,
-    userId: string,
+    type: string,
     message: string,
-    date: Date
+    date: Date,
+    properties: any
 }
 
 // For Components with Stores as props
