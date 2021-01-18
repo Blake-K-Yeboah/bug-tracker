@@ -14,7 +14,7 @@ const ManageProjectsUsers: any = () => {
         <>
             <Helmet>
 
-                <title>Bug Tracker - Manage Project Users</title>
+                <title>Bug Tracker - Manage Projects Users</title>
 
             </Helmet>
 
@@ -25,7 +25,7 @@ const ManageProjectsUsers: any = () => {
                 <Sidebar />
 
                 <SelectProject />
-                
+
             </div>
         </>
     )
