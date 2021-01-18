@@ -26,10 +26,11 @@ import UserProfile from './components/pages/UserProfile/UserProfile';
 import ProjectPage from './components/pages/ProjectPage/ProjectPage';
 import EditProject from './components/pages/EditProject/EditProject';
 import TransferOwner from './components/pages/TransferOwner/TransferOwner';
+import ManageProjectsUsers from './components/pages/ManageProjectsUsers/ManageProjectsUsers';
+import ManageProjectUsers from './components/pages/ManageProjectUsers/ManageProjectUsers';
 
 // Import Styling
 import './style/App.scss';
-import ManageProjectsUsers from './components/pages/ManageProjectsUsers/ManageProjectsUsers';
 
 
 const App = () => {
@@ -97,6 +98,11 @@ const App = () => {
           <Route exact path="/manage-projects-users" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <ManageProjectsUsers {...props} />
+          }} />
+
+          <Route exact path="/manage-projects-users/:id" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <ManageProjectUsers {...props} />
           }} />
 
         </Switch>
