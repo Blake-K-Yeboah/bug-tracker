@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import Sidebar from '../../layout/Sidebar/Sidebar';
 import Navbar from '../../layout/Navbar/Navbar';
 import RemoveUsers from './RemoveUsers/RemoveUsers';
+import AddUsers from './AddUsers/AddUsers';
 
 // Import Axios
 import Axios from 'axios';
@@ -45,7 +46,7 @@ const ManageProjectUsers: any = ({ match: { params: { id }}}: any) => {
                 <div className="manage-project-users-grid">
 
                     <RemoveUsers project={project} />
-                    <div className="placeholder"></div>
+                    <AddUsers project={project} />
 
                 </div>
                 
