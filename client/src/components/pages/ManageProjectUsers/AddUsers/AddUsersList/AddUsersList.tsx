@@ -24,7 +24,7 @@ let AddUsersList = ({ project, usersStore }: IStoreProps) => {
         <ul className="add-users-list">
             
             {users.map((user: Iuser) => (
-                <ListItem userId={user._id} key={user._id} />
+                <ListItem userId={user._id} key={user._id} projectId={project._id} />
             ))}
 
             {users.length === 0 ? <p style={{marginLeft: '1.75em'}}>No Users</p> : ''}
