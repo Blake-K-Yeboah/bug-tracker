@@ -12,7 +12,7 @@ const RemoveUsersList = ({ project }: any) => {
         <ul className="remove-users-list">
             
             {project.usersList.map((userId: string) => (
-                <ListItem userId={userId} key={userId} />
+                <ListItem userId={userId} key={userId} projectId={project._id} />
             ))}
 
         </ul>
