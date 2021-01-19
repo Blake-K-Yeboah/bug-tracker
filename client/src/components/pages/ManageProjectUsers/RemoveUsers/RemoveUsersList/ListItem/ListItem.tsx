@@ -18,20 +18,24 @@ const ListItem = ({ userId }: any) => {
     }, [userId]);
 
     return (
-        <li className="list-item">
+        <>
             {user ? <>
-                
-                <NavLink to={`/profile/${user._id}`} className="content">
-
-                    <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />                
+                <li className="list-item">
                     
-                    <p className="name">{user.name}</p>
+                        
+                        <NavLink to={`/profile/${user._id}`} className="content">
 
-                </NavLink>
+                            <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />                
+                            
+                            <p className="name">{user.name}</p>
 
-                <button className="btn danger">Remove</button>
+                        </NavLink>
+
+                        <button className="btn danger">Remove</button>
+                    
+                </li>
             </> : ''}
-        </li>
+        </>
     )
 }
 
