@@ -1,0 +1,30 @@
+@import '../../../../../../style/variables';
+
+.add-users-list .list-item {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 1em 2em;
+
+    &:nth-child(2n) {
+        background-color: #f5f5f5;
+        border: 2px solid #fff;
+    }
+
+    .content {
+        display:flex;
+        align-items: center;
+
+        .profile-icon {
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .name {
+            margin-left: 20px;
+            font-weight: 500;
+            color: $darkGrey;
+        }
+    }
+}
