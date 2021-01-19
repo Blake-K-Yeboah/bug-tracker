@@ -9,7 +9,10 @@ import Axios from 'axios';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const ListItem = ({ userId }: any) => {
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+let ListItem = ({ userId, authStore, projectId }: any) => {
 
     const [user, setUser]: any = useState('');
 
@@ -18,6 +21,19 @@ const ListItem = ({ userId }: any) => {
             setUser(res.data);
         });
     }, [userId]);
+
+    const removeUserHandler = () => {
+        const body = {
+            userId: authStore.user.id,
+            removedUserId: user._id
+        }
+
+        Axios.put(`/api/projects/${projectId}/removeuser`, body).then(res => {
+            window.location.reload();
+        }).catch(err => {
+            alert("An error Occured")
+        })
+    }
 
     return (
         <>
@@ -33,12 +49,14 @@ const ListItem = ({ userId }: any) => {
 
                         </NavLink>
 
-                        <button className="btn danger">Remove</button>
+                        <button className="btn danger" onClick={removeUserHandler}>Remove</button>
                     
                 </li>
             </> : ''}
         </>
     )
 }
+
+ListItem = inject('authStore')(observer(ListItem));
 
 export default ListItem
