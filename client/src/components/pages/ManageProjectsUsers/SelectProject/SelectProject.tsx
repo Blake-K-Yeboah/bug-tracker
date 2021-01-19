@@ -24,7 +24,7 @@ let SelectProject = ({ projectStore }: any) => {
 
     const clickHandler = () => {
 
-        const route = `/manage-projects-users/${projectId}`;
+        const route = `/manage-projects-users/${projectId === '' ? projectStore.projects[0]._id : projectId}`;
 
         history.push(route);
         
