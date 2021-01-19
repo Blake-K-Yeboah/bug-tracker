@@ -16,18 +16,19 @@ const ListItem = ({change}: any) => {
         let _isMounted = true;
 
         if (_isMounted) {
-            Axios.get(`/api/users/${change.properties.userId}`).then(res => {
+
+            const fetchUsers = async () => {
+
+                const res = await Axios.get(`/api/users/${change.properties.userId}`);
                 setUser(res.data);
-            }).catch(err => {
-                alert(err.msg);
-            });
-            if (change.properties.hasOwnProperty("changedUserId")) {
-                Axios.get(`/api/users/${change.properties.changedUserId}`).then(res => {
-                    setChangedUser(res.data);
-                }).catch(err => {
-                    alert(err.msg);
-                });
+
+                if (change.properties.hasOwnProperty("changedUserId")) {
+                    const response = await Axios.get(`/api/users/${change.properties.changedUserId}`);
+                    setChangedUser(response.data);
+                }
             }
+
+            fetchUsers();
         }
 
     }, [change.properties]);
