@@ -1,0 +1,21 @@
+@import '../../../../../style/variables';
+
+.remove-users-list {
+    width:100%;
+    list-style: none;
+    margin-top: 1em;
+    height: 85%;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #ccc;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary;
+    }
+}
