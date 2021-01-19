@@ -19,7 +19,7 @@ const AssignedUsers = ({ project }: any) => {
             {project ? <>
             
                 <h2 className="title">Assigned Users ({project.usersList.length + 1})</h2>
-                <NavLink to={`/manage-projects-user/${project._id}`}><button className="btn primary edit-btn"><FaEdit className="icon" /></button></NavLink>
+                <NavLink to={`/manage-projects-users/${project._id}`}><button className="btn primary edit-btn"><FaEdit className="icon" /></button></NavLink>
                 <p className="sub-text">A list of users assigned to this project</p>
                 <UsersList users={[project.owner, ...project.usersList]} project={project} />
 
