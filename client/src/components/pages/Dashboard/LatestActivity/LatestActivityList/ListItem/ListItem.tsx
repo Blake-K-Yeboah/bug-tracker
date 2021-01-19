@@ -136,7 +136,7 @@ const ListItem = ({change}: any) => {
                      : <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${checkUser ? user.profileIcon : ''}`} alt="Profile Icon" />
                     }
                     {userName ? <p className="message">
-                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message}<NavLink to={`/profile/${checkChangedUser ? changedUser._id : ''}`} className="link">{changedUserName}</NavLink> from project <b>{change.properties.projectName}</b>
+                        <NavLink to={`/profile/${checkUser ? user._id : ''}`} className="link">{userName}</NavLink> {change.message.replace('added', 'removed')}<NavLink to={`/profile/${checkChangedUser ? changedUser._id : ''}`} className="link">{changedUserName}</NavLink> from project <b>{change.properties.projectName}</b>
                     </p> : ''}
                 </li>
             )
