@@ -1,5 +1,5 @@
 {
-  "name": "BugTracker",
+  "name": "bugtracker",
   "version": "1.0.0",
   "description": "A Bug Tracker built with the mern stack",
   "main": "server.js",
