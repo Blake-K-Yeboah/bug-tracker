@@ -28,7 +28,7 @@ let EditDetails = ({ project, authStore }: any) => {
         const body = {
             userId: authStore.user.id,
             field: 'name',
-            value: name
+            value: name || project.name
         }
 
         Axios.put(`/api/projects/${project ? project._id : ''}`, body).then(res => {
@@ -45,7 +45,7 @@ let EditDetails = ({ project, authStore }: any) => {
         const body = {
             userId: authStore.user.id,
             field: 'description',
-            value: description
+            value: description || project.description
         }
 
         Axios.put(`/api/projects/${project ? project._id : ''}`, body).then(res => {
