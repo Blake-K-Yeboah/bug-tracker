@@ -12,13 +12,13 @@ import Navbar from '../../layout/Navbar/Navbar';
 import AssignedUsers from '../ProjectPage/AssignedUsers/AssignedUsers';
 import EditDetails from './EditDetails/EditDetails';
 import DangerZone from './DangerZone/DangerZone';
+import History from './History/History';
 
 // Import Axios
 import Axios from 'axios';
 
 // Import NavLink
 import { NavLink } from 'react-router-dom';
-import History from './History/History';
 
 const EditProject = ({ match: { params: { id }} }: any) => {
 
