@@ -7,7 +7,11 @@ const EditDetails = ({ user }: any) => {
     return (
         <div className="edit-details">
             
-            <h2 className="title">Edit Details</h2>
+            {user ? <>
+            
+                <h2 className="title">Edit Details</h2>
+
+            </> : <></>}
 
         </div>
     )
