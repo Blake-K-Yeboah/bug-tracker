@@ -228,13 +228,13 @@ router.put('/:id', checkObjectId('id'), async (req, res) => {
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedProperties);
 
-        /*const newChange = new Change({
+        const newChange = new Change({
             message: "updated their profile",
             type: "UPDATED_PROFILE",
             properties: JSON.stringify({ userId: req.params.id})
         });
 
-        const change = await newChange.save();*/
+        const change = await newChange.save();
 
         res.json(updatedUser);
 
