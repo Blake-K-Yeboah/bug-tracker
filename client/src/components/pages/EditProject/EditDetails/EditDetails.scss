@@ -82,6 +82,10 @@
             margin: 1em 2.25em;
             width: 350px;
             height: 35px;
+
+            &.larger {
+                width: 500px;
+            }
         }
     }
 }
