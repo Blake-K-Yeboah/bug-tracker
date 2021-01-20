@@ -13,6 +13,9 @@ const cors = require('cors');
 // Require passport
 const passport = require('passport');
 
+// Require fileUplaod
+const fileUpload = require('express-fileupload');
+
 // Require Routers
 const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
@@ -52,6 +55,9 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
+
+// File Upload Middleware
+app.use(fileUpload());
 
 // Routes
 app.use('/api/users', users);
