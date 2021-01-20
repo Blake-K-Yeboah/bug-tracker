@@ -217,4 +217,36 @@ router.put('/:id/update/role', async (req, res) => {
 
 });
 
+// @route PUT api/users/:id/
+// @desc Update users details
+// @access Private
+router.put('/:id', checkObjectId('id'), async (req, res) => {
+
+    try {
+
+        const updatedProperties = { [req.body.field]: req.body.value };
+
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedProperties);
+
+        /*const newChange = new Change({
+            message: "updated their profile",
+            type: "UPDATED_PROFILE",
+            properties: JSON.stringify({ userId: req.params.id})
+        });
+
+        const change = await newChange.save();*/
+
+        res.json(updatedUser);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        res.status(500).json({ msg: "Server error" });
+
+    }
+
+});
+
+
 module.exports = router;
