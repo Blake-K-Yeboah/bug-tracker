@@ -66,7 +66,7 @@ let EditDetails = ({ project, authStore }: any) => {
 
                 <div className="edit-input-container">
 
-                    <label htmlFor="name" className="label">Name:</label>
+                    <label htmlFor="name" className="label">Name</label>
 
                     <div className="input-group">
 
@@ -80,7 +80,7 @@ let EditDetails = ({ project, authStore }: any) => {
 
                 <div className="edit-input-container">
 
-                    <label htmlFor="description" className="label">Description:</label>
+                    <label htmlFor="description" className="label">Description</label>
 
                     <div className="input-group">
 
