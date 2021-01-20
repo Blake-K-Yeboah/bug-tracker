@@ -25,6 +25,7 @@ import NewProject from './components/pages/NewProject/NewProject';
 import UserProfile from './components/pages/UserProfile/UserProfile';
 import ProjectPage from './components/pages/ProjectPage/ProjectPage';
 import EditProject from './components/pages/EditProject/EditProject';
+import EditProfile from './components/pages/EditProfile/EditProfile';
 import TransferOwner from './components/pages/TransferOwner/TransferOwner';
 import ManageProjectsUsers from './components/pages/ManageProjectsUsers/ManageProjectsUsers';
 import ManageProjectUsers from './components/pages/ManageProjectUsers/ManageProjectUsers';
@@ -78,6 +79,11 @@ const App = () => {
           <Route exact path="/profile/:id" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <UserProfile {...props} />
+          }} />
+
+          <Route exact path="/profile/:id/edit" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <EditProfile {...props} />
           }} />
 
           <Route exact path="/project/:id" render={(props) => {
