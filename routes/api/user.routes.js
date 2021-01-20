@@ -248,5 +248,40 @@ router.put('/:id', checkObjectId('id'), async (req, res) => {
 
 });
 
+// @route PUT api/users/:id/profilepic
+// @desc Upload Profile Pic
+// @access Private
+router.put('/:id/profilepic', checkObjectId('id'), async (req, res) => {
+
+    // Validate Image
+    if (!req.files) return res.status(400).json({ msg: "You must upload an image"});
+
+    const file = req.files.file;
+
+    const newFileName = `${req.params.id}.${file.name.split('.')[1]}`;
+
+    // Upload file
+    file.mv(`./client/public/uploads/profile/${newName}`, err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Server Error. Try Again Later' });
+        }
+    });
+
+    try {
+
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, { profileIcon: newFileName });
+
+        res.json(updatedUser);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        res.status(500).json({ msg: "Server error" });
+
+    }
+
+});
 
 module.exports = router;
