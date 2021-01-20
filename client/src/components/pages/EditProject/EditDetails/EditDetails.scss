@@ -44,6 +44,22 @@
                 border-radius: 0 10px 10px 0;
                 
             }
+
+        }
+
+        &.large {
+            width: 90%;
+
+            .input-group {
+
+                input {
+                    width: 85%;
+                }
+
+                .input-group-btn {
+                    width: 15%;
+                }
+            }
         }
     }
 
