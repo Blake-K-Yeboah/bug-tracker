@@ -9,6 +9,7 @@ import './EditProfile.scss';
 // Import Page Components
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
+import EditDetails from '../EditProfile/EditDetails/EditDetails';
 
 // Import Axios
 import Axios from 'axios';
@@ -45,9 +46,9 @@ const EditProfile = ({ match: { params: { id }}}: any) => {
 
                 <h1 className="page-title">Editing User Profile - {user ? user.name : ''}</h1>
                 
-                <div className="edit-project-page-grid">
+                <div className="edit-profile-page-grid">
 
-                    <div className="placeholder"></div>
+                    <EditDetails user={user} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
