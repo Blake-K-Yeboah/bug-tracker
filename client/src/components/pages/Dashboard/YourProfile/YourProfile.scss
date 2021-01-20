@@ -41,7 +41,8 @@
             .profile-bio {
                 color: $grey;
                 padding-top: 5px;
-                width: 75%;
+                max-width: 380px;
+                width: 100%;
                 line-height: 1.5;
             }
         }
