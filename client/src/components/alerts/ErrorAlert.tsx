@@ -1,10 +1,16 @@
 import React from 'react'
 
+// Import Icons
 import { FaTimes } from 'react-icons/fa';
 
-const ErrorAlert = ({ message, setShow }: any) => {
+interface PropsI {
+    message: string,
+    setShow: (show: boolean) => void
+}
 
+const ErrorAlert = ({ message, setShow }: PropsI) => {
 
+    // Handle Close Button Click
     const crossClickHandler = () => {
         setShow(false);
     }
