@@ -1,9 +1,16 @@
 import React from 'react'
+
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const Link = (props: any) => {
+// Props Interface
+interface PropsI {
+    route: string,
+    text: string,
+    children: JSX.Element
+}
 
-    const { route, text } = props;
+const Link = ({ route, text, children }: PropsI) => {
 
     const linkClass = `link ${window.location.pathname === route ? 'active' : ''}`;
 
@@ -12,7 +19,7 @@ const Link = (props: any) => {
 
             <NavLink to={route} className={linkClass}>
 
-                {props.children}
+                {children}
 
                 <span className="text">{text as string}</span>
 

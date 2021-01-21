@@ -4,7 +4,7 @@ import React from 'react'
 import './Sidebar.scss';
 
 // Import Store Props type
-import { IStoreProps } from '../../../types';
+import { IAuthStore } from '../../../types';
 
 // Import inject and observer for authStore access
 import { inject, observer } from 'mobx-react';
@@ -15,25 +15,30 @@ import Link from './Link';
 // Import Icons
 import { FaClipboardList, FaUsersCog, FaFolderPlus, FaTags, FaHistory, FaFolderOpen } from 'react-icons/fa';
 
-let Sidebar = ({ authStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    authStore?: IAuthStore
+}
 
-    const firstname: string = authStore.user ? authStore.user.name.split(' ')[0] : '';
+let Sidebar = ({ authStore }: PropsI) => {
 
-    const userRole: string = authStore.user ? authStore.user.role : '';
+    const firstname: string = authStore && authStore.user ? authStore.user.name.split(' ')[0] : '';
 
-    const manageUserRolesLink = (
+    const userRole: string = authStore && authStore.user ? authStore.user.role : '';
+
+    const manageUserRolesLink: JSX.Element = (
         <Link route="/manage-user-roles" text="Manage User Roles">
             <FaUsersCog className="icon" />
         </Link>
     )
 
-    const manageProjectUsersLink = (
+    const manageProjectUsersLink: JSX.Element = (
         <Link route="/manage-projects-users" text="Manage Projects Users">
             <FaFolderPlus className="icon" />
         </Link>
     )
 
-    const year = new Date().getFullYear();
+    const year: number = new Date().getFullYear();
 
     return (
         <div className="sidebar">
@@ -79,6 +84,7 @@ let Sidebar = ({ authStore }: IStoreProps) => {
     )
 }
 
+// Inject Store
 Sidebar = inject('authStore')(observer(Sidebar));
 
 export default Sidebar
