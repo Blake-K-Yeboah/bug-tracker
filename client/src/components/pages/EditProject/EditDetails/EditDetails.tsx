@@ -9,10 +9,19 @@ import { inject, observer } from 'mobx-react';
 // Import Styling
 import './EditDetails.scss'
 
-let EditDetails = ({ project, authStore }: any) => {
+// Import Types
+import { IAuthStore, Iproject } from '../../../../types'
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+// Props Interface
+interface PropsI {
+    project: Iproject | null,
+    authStore?: IAuthStore
+}
+
+let EditDetails = ({ project, authStore }: PropsI) => {
+
+    const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
 
     useEffect(() => {
 
@@ -26,9 +35,9 @@ let EditDetails = ({ project, authStore }: any) => {
     // Update Name Handler
     const updateNameHandler = () => {
         const body = {
-            userId: authStore.user.id,
+            userId: authStore!.user.id,
             field: 'name',
-            value: name || project.name
+            value: name || project!.name
         }
 
         Axios.put(`/api/projects/${project ? project._id : ''}`, body).then(res => {
@@ -40,12 +49,12 @@ let EditDetails = ({ project, authStore }: any) => {
         })
     }
 
-    // TODO Update Description Handler
+    // Update Description Handler
     const updateDescHandler = () => {
         const body = {
-            userId: authStore.user.id,
+            userId: authStore!.user.id,
             field: 'description',
-            value: description || project.description
+            value: description || project!.description
         }
 
         Axios.put(`/api/projects/${project ? project._id : ''}`, body).then(res => {
@@ -110,6 +119,7 @@ let EditDetails = ({ project, authStore }: any) => {
 
 }
 
+// Inject Store
 EditDetails = inject('authStore')(observer(EditDetails));
 
 export default EditDetails

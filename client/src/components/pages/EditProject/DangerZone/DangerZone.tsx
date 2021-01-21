@@ -1,18 +1,33 @@
 import React from 'react'
+
+// Import Axios
 import Axios from 'axios'
+
+// Import MobX Stuff
 import { inject, observer } from 'mobx-react'
 
 // Import Styling
 import './DangerZone.scss'
+
+// Import useHistory hook + NavLink componenet
 import { NavLink, useHistory } from 'react-router-dom'
 
-let DangerZone = ({ project, authStore }: any) => {
+// Import Types
+import { IAuthStore, Iproject } from '../../../../types'
 
+// Props Interface
+interface PropsI {
+    project: Iproject | null,
+    authStore?: IAuthStore
+}
+
+let DangerZone = ({ project, authStore }: PropsI) => {
+
+    // Define History
     let history = useHistory();
 
-    // TODO Delete Project Handler
     const deleteProject = () => {
-        Axios.delete(`/api/projects/${project._id}`).then(res => {
+        Axios.delete(`/api/projects/${project!._id}`).then(res => {
             alert('Project Deleted');
             history.push('/projects');
         }).catch(err => {
@@ -45,7 +60,7 @@ let DangerZone = ({ project, authStore }: any) => {
 
                     <p className="desc">Change owner of project; you cannot revert this</p>
 
-                    {project.owner === authStore.user.id ? <NavLink to={`/project/${project._id}/transfer-owner`}><button className="btn danger">Transfer Ownership</button></NavLink> : <button className="btn" disabled>Transfer Ownership</button>}
+                    {project.owner === authStore!.user.id ? <NavLink to={`/project/${project!._id}/transfer-owner`}><button className="btn danger">Transfer Ownership</button></NavLink> : <button className="btn" disabled>Transfer Ownership</button>}
                     
                 </div>
 
@@ -67,6 +82,7 @@ let DangerZone = ({ project, authStore }: any) => {
     )
 }
 
+// Inject Store
 DangerZone = inject('authStore')(observer(DangerZone));
 
 export default DangerZone

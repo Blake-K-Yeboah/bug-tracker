@@ -20,15 +20,31 @@ import Axios from 'axios';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const EditProject = ({ match: { params: { id }} }: any) => {
+// Import Types
+import { Iproject } from '../../../types';
 
-    const [project, setProject]: any = useState(null);
+// Props Interface
+interface PropsI {
+   match: {
+       params: {
+           id: string
+       }
+   }
+}
+
+const EditProject = ({ match: { params: { id }} }: PropsI) => {
+
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
 
-        Axios.get(`/api/projects/${id}`).then(res => {
+        // Fetch Project
+        const fetchProject = async () => {
+            const res = await Axios.get(`/api/projects/${id}`);
             setProject(res.data);
-        });
+        }
+
+        fetchProject();
 
     }, [id]);
 

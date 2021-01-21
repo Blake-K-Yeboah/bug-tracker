@@ -12,13 +12,23 @@ import { IChange } from '../../../../types';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-let History = ({ project, changeStore }: any) => {
+// Import types
+import { Iproject, IChangeStore } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    project: Iproject | null,
+    changeStore?: IChangeStore
+}
+
+let History = ({ project, changeStore }: PropsI) => {
 
     useEffect(() => {
-        changeStore.fetchChanges();
+        changeStore!.fetchChanges();
     }, [changeStore]);
 
-    const projectChanges: any = project ? changeStore.changes.filter((change: IChange) => {
+    // Array of Changes to the project
+    const projectChanges: IChange[] = project && changeStore ? changeStore.changes.filter((change: IChange) => {
 
         if (change.properties.hasOwnProperty('projectName') && change.properties.projectName === project.name) {
             return true
@@ -49,7 +59,7 @@ let History = ({ project, changeStore }: any) => {
 
                     <h3 className="heading">Other Changes</h3>
 
-                    <p className="desc">There were a total of {changeStore.changes.length - projectChanges.length} changes to other entities.</p>
+                    <p className="desc">There were a total of {changeStore!.changes.length - projectChanges.length} changes to other entities.</p>
 
                     <NavLink to="/history"><button className="btn primary">View Other Changes</button></NavLink>
 
@@ -73,6 +83,7 @@ let History = ({ project, changeStore }: any) => {
     )
 }
 
+// Inject Store
 History = inject('changeStore')(observer(History));
 
 export default History
