@@ -20,7 +20,7 @@ const Navbar = () => {
     Axios.defaults.headers.common["Authorization"] = localStorage.getItem('jwtToken');
 
     // Define show state
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState<boolean>(false);
 
     return (
         <nav className="navbar">

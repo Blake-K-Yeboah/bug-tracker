@@ -1,29 +1,43 @@
-import React from 'react'
+import React from 'react';
 
 // Import Styling
 import './Dropdown.scss';
-import { IStoreProps } from '../../../../types';
 
 // Import MobX stuff
 import { inject, observer } from 'mobx-react';
-import { NavLink } from 'react-router-dom';
 
-import { useHistory } from 'react-router-dom';
+// Import NavLink + useHistory hook
+import { NavLink, useHistory } from 'react-router-dom';
+
+// Import Axios
 import Axios from 'axios';
 
+// Import Icons
 import { FiLogOut } from 'react-icons/fi';
 
-let Dropdown = ({ display, authStore, setShow }: IStoreProps) => {
+// Import Types
+import { IAuthStore } from '../../../../types';
 
+// Props Interface 
+interface PropsI {
+    display: boolean,
+    authStore?: IAuthStore,
+    setShow: (show: boolean) => void
+}
+
+let Dropdown = ({ display, authStore, setShow }: PropsI) => {
+
+    // Define History
     let history = useHistory();
 
+    // Handle Log Out Button Click
     const logOutHandler = () => {
 
         localStorage.removeItem('jwtToken');
 
         delete Axios.defaults.headers.common["Authorization"];
 
-        authStore.setCurrentUser(null);
+        authStore!.setCurrentUser(null);
 
         history.push('/login');
     }
@@ -34,15 +48,15 @@ let Dropdown = ({ display, authStore, setShow }: IStoreProps) => {
 
                 <div className="heading-container">
 
-                    {authStore.user ? <img src={`${process.env.PUBLIC_URL}/uploads/profile/${authStore.user.profileIcon}`} alt="Profile Icon" className="heading-img" /> : ''}
+                    {authStore && authStore.user ? <img src={`${process.env.PUBLIC_URL}/uploads/profile/${authStore!.user.profileIcon}`} alt="Profile Icon" className="heading-img" /> : ''}
 
-                    <h3 className="heading-text">{authStore.user ? authStore.user.name : 'Loading'}</h3>
+                    <h3 className="heading-text">{authStore!.user ? authStore!.user.name : 'Loading'}</h3>
 
                 </div>
 
-                <NavLink to={`/profile/${authStore.user.id}`} className="link" >View Profile</NavLink>
+                <NavLink to={`/profile/${authStore!.user.id}`} className="link" >View Profile</NavLink>
 
-                <NavLink to={`/profile/${authStore.user.id}/edit`} className="link" >Edit Profile</NavLink>
+                <NavLink to={`/profile/${authStore!.user.id}/edit`} className="link" >Edit Profile</NavLink>
 
                 <button className="btn danger has-icon" onClick={logOutHandler}>Log Out <FiLogOut className="icon" /></button>
 
@@ -52,6 +66,7 @@ let Dropdown = ({ display, authStore, setShow }: IStoreProps) => {
     )
 }
 
+// Inject store into componenet
 Dropdown = inject("authStore")(observer(Dropdown));
 
 export default Dropdown

@@ -1,33 +1,64 @@
+import React, { useEffect, useState } from 'react';
+
+// Import MobX Stuff
 import { inject, observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react'
+
+// Import Icons
 import { FaFolderOpen } from 'react-icons/fa';
+
+// Import NavLink
 import { NavLink } from 'react-router-dom';
-import { Iproject, IStoreProps, Iuser } from '../../../../types';
+
+// Import Types
+import { Iproject, IProjectStore, Iuser, IUsersStore } from '../../../../types';
 
 // Import Styling
 import './Search.scss';
 
-let Search = ({ usersStore, projectStore}: IStoreProps) => {
+// Props Interface
+interface PropsI {
+  usersStore?: IUsersStore,
+  projectStore?: IProjectStore
+}
 
-  const [searchInput, setSearchInput] = useState('');
-  const [searchDisplay, setSearchDisplay] = useState(false);
-  const [searchResults, setSearchResults] = useState({ projects: [], users: [] });
+// Search Results Interface
+interface ISearchResults {
+  projects: Iproject[],
+  users: Iuser[]
+}
 
+let Search = ({ usersStore, projectStore}: PropsI) => {
+
+  // Define State
+  const [searchInput, setSearchInput] = useState<string>('');
+  const [searchDisplay, setSearchDisplay] = useState<boolean>(false);
+  const [searchResults, setSearchResults]  = useState<ISearchResults>({ projects: [], users: [] });
+
+  // Check whether there are more users than projects
   const userLengthCondition = searchResults.users.length > searchResults.projects.length;
 
   useEffect(() => {
-    usersStore.fetchUsers();
-    projectStore.fetchProjects();
+
+    // Fetch Users and Projects
+    usersStore!.fetchUsers();
+    projectStore!.fetchProjects();
     
+    // Check if there is any input
     if (searchInput !== '') {
+
       setSearchDisplay(true);
+
       setSearchResults({ 
-        users: usersStore.users.filter((user: Iuser) => user.name.toLowerCase().startsWith(searchInput.toLowerCase())), 
-        projects: projectStore.projects.filter((project: Iproject) => project.name.toLowerCase().startsWith(searchInput.toLowerCase()))
-      })
+        users: usersStore!.users.filter((user: Iuser) => user.name.toLowerCase().startsWith(searchInput.toLowerCase())), 
+        projects: projectStore!.projects.filter((project: Iproject) => project.name.toLowerCase().startsWith(searchInput.toLowerCase()))
+      });
+
     } else {
+
       setSearchDisplay(false);
+
       setSearchResults({ projects: [], users: [] });
+
     }
 
   }, [searchInput, usersStore, projectStore]);
