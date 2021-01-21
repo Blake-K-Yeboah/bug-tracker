@@ -5,18 +5,29 @@ import './ListItem.scss';
 
 // Import Axios
 import Axios from 'axios';
+
+// Import Nav Link
 import { NavLink } from 'react-router-dom';
 
-const ListItem = ({change}: any) => {
+// Imports Types
+import { IChange, Iuser } from '../../../../../../types';
+
+// Props Interface
+interface PropsI {
+    change: IChange
+}
+
+const ListItem = ({ change }: PropsI) => {
     
-    const [user, setUser]: any = useState({});
-    const [changedUser, setChangedUser]: any = useState({});
+    const [user, setUser]: any = useState<Iuser | {}>({});
+    const [changedUser, setChangedUser]: any = useState<Iuser | {}>({});
 
     useEffect(() => {
         let _isMounted = true;
 
         if (_isMounted) {
 
+            // Fetch Users
             const fetchUsers = async () => {
 
                 const res = await Axios.get(`/api/users/${change.properties.userId}`);
@@ -35,15 +46,15 @@ const ListItem = ({change}: any) => {
 
     let returnedJSX: null | JSX.Element = null;
 
-    let checkUser = Object.keys(user).length !== 0;
-    let userName = checkUser ? user.name.split(' ')[0] : null;
+    let checkUser: boolean = Object.keys(user).length !== 0;
+    let userName: null | string  = checkUser ? user.name.split(' ')[0] : null;
     
-    let checkChangedUser = Object.keys(changedUser).length !== 0;
-    let changedUserName = checkChangedUser ? changedUser.name.split(' ')[0] : 'Loading';
+    let checkChangedUser: boolean = Object.keys(changedUser).length !== 0;
+    let changedUserName: null | string = checkChangedUser ? changedUser.name.split(' ')[0] : null;
 
-    const role = change.properties.newRole;
+    const role: string | undefined = change.properties.newRole;
     
-    const roleDisplay = role === 'project-manager' ? 'Project Manager' : 
+    const roleDisplay: string = role === 'project-manager' ? 'Project Manager' : 
                         role ? `${role.charAt(0).toUpperCase()}${role.slice(1, role.length)}` : '';
 
     switch(change.type) {
@@ -208,7 +219,7 @@ const ListItem = ({change}: any) => {
             break;
     }
 
-    return returnedJSX;
+    return returnedJSX as JSX.Element;
 }
 
 export default ListItem

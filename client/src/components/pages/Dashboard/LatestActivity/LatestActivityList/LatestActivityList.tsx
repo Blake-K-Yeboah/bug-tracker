@@ -4,7 +4,7 @@ import React from 'react'
 import { inject, observer } from 'mobx-react';
 
 // Import types
-import { IStoreProps } from '../../../../../types';
+import { IChangeStore } from '../../../../../types';
 
 // Import Styling
 import './LatestActivityList.scss';
@@ -12,11 +12,16 @@ import './LatestActivityList.scss';
 // Import ListItem Component
 import ListItem from './ListItem/ListItem';
 
-let LatestActivityList = ({ changeStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    changeStore?: IChangeStore
+}
+
+let LatestActivityList = ({ changeStore }: PropsI) => {
     return (
         <ul className="latest-activity-list">
             {
-                changeStore.changes.slice(0,7).map((change: any) => {
+                changeStore!.changes.slice(0,7).map((change) => {
                     return (
                      <ListItem change={change} key={change._id}/>
                     )
@@ -26,6 +31,7 @@ let LatestActivityList = ({ changeStore }: IStoreProps) => {
     )
 }
 
+// Inject Store
 LatestActivityList = inject("changeStore")(observer(LatestActivityList));
 
 export default LatestActivityList;

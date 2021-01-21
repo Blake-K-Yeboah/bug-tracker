@@ -7,16 +7,23 @@ import './LatestActivity.scss';
 import { inject, observer } from 'mobx-react';
 
 // Import Types
-import { IStoreProps } from '../../../../types';
+import { IChangeStore } from '../../../../types';
 
 // Import Page Components
 import LatestActivityList from './LatestActivityList/LatestActivityList';
+
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
-let LatestActivity = ({ changeStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    changeStore?: IChangeStore
+}
+
+let LatestActivity = ({ changeStore }: PropsI) => {
 
     useEffect(() => {
-        changeStore.fetchChanges();
+        changeStore!.fetchChanges();
     }, [changeStore]);
 
     return (
@@ -27,13 +34,14 @@ let LatestActivity = ({ changeStore }: IStoreProps) => {
             <LatestActivityList />
 
             {
-                changeStore.changeCount > 7 ? <NavLink to="/history" className="view-all-link">View All</NavLink> : <span className="disabled-view-all-link">View All</span>
+                changeStore && changeStore.changeCount > 7 ? <NavLink to="/history" className="view-all-link">View All</NavLink> : <span className="disabled-view-all-link">View All</span>
             }
 
         </div>  
     )
 }
 
+// Inject Store
 LatestActivity = inject("changeStore")(observer(LatestActivity));
 
 export default LatestActivity
