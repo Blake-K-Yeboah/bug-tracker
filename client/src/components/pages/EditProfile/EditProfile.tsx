@@ -18,15 +18,31 @@ import Axios from 'axios';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const EditProfile = ({ match: { params: { id }}}: any) => {
+// Import Types
+import { Iuser } from '../../../types';
+
+// Props Interface
+interface PropsI {
+    match: {
+        params: {
+            id: string
+        }
+    }
+}
+
+const EditProfile = ({ match: { params: { id }}}: PropsI) => {
     
-    const [user, setUser]: any = useState(null);
+    const [user, setUser] = useState<Iuser | null>(null);
 
     useEffect(() => {
 
-        Axios.get(`/api/users/${id}`).then(res => {
-            setUser(res.data);
-        });
+        // Fetch User
+        const fetchUser = async () => {
+            const res = await Axios.get(`/api/users/${id}`);
+            setUser(res.data);   
+        }
+
+        fetchUser();
 
     }, [id]);
 

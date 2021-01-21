@@ -1,9 +1,17 @@
 import React from 'react'
 
+// Import types
+import { Iuser } from '../../../../types';
+
 // Import Stylesheet
 import './UploadProfilePic.scss';
 
-const UploadProfilePic = ({ user }: any) => {
+// Props Interface
+interface PropsI {
+    user: Iuser | null
+}
+
+const UploadProfilePic = ({ user }: PropsI) => {
 
     return (
         <div className="upload-profile-pic">

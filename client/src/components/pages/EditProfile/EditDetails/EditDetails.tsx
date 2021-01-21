@@ -12,27 +12,43 @@ import { inject, observer } from 'mobx-react';
 // Import useHistory hook
 import { useHistory } from 'react-router-dom';
 
-let EditDetails = ({ user, authStore }: any) => {
+// Import Types
+import { IAuthStore, Iuser } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    user: Iuser | null,
+    authStore?: IAuthStore
+}
+
+// Request Body Interface
+interface IRequestBody {
+    field: string,
+    value: string
+}
+
+let EditDetails = ({ user, authStore }: PropsI) => {
     
+    // Define History
     let history = useHistory();
 
     useEffect(() => {
 
         // Redirect if user isnt the same as logged in user
-        if (user && user._id !== authStore.user.id) {
+        if (user && user._id !== authStore!.user.id) {
             history.push(`/profile/${user._id}`);
         }
 
     });
 
-    const [name, setName] = useState('');
-    const [bio, setBio] = useState('');
+    const [name, setName] = useState<string>('');
+    const [bio, setBio] = useState<string>('');
 
     // Update Name Handler
     const updateNameHandler = () => {
-        const body = {
+        const body: IRequestBody = {
             field: 'name',
-            value: name || user.name
+            value: name || user!.name
         }
 
         Axios.put(`/api/users/${user ? user._id : ''}`, body).then(res => {
@@ -46,9 +62,9 @@ let EditDetails = ({ user, authStore }: any) => {
 
     // Update Bio Handler
     const updateBioHandler = () => {
-        const body = {
+        const body: IRequestBody = {
             field: 'bio',
-            value: bio || user.bio
+            value: bio || user!.bio
         }
 
         Axios.put(`/api/users/${user ? user._id : ''}`, body).then(res => {
@@ -111,6 +127,7 @@ let EditDetails = ({ user, authStore }: any) => {
     )
 }
 
+// Inject Store
 EditDetails = inject('authStore')(observer(EditDetails));
 
 export default EditDetails
