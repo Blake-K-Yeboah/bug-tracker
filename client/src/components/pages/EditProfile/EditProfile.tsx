@@ -10,6 +10,7 @@ import './EditProfile.scss';
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import EditDetails from '../EditProfile/EditDetails/EditDetails';
+import UploadProfilePic from './UploadProfilePic/UploadProfilePic';
 
 // Import Axios
 import Axios from 'axios';
@@ -49,7 +50,7 @@ const EditProfile = ({ match: { params: { id }}}: any) => {
                 <div className="edit-profile-page-grid">
 
                     <EditDetails user={user} />
-                    <div className="placeholder"></div>
+                    <UploadProfilePic user={user} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
 
