@@ -10,9 +10,9 @@ import { NavLink } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 
 // Import Store Type
-import { IStoreProps } from '../../../types';
+import { IAuthStore, Iuser } from '../../../types';
 
-// Import Error Alert Component
+// Import Alert Components
 import ErrorAlert from '../../alerts/ErrorAlert';
 import SuccessAlert from '../../alerts/SuccessAlert';
 
@@ -25,9 +25,20 @@ import axios from 'axios';
 // Import jwt-decode
 import jwt_decode from 'jwt-decode';
 
-let LoginForm = ({ authStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    authStore?: IAuthStore
+}
 
-    const [userInput, setUserInput] = useState({
+// User Input Interface
+interface IUserInput {
+    email: string,
+    password: string
+}
+
+let LoginForm = ({ authStore }: PropsI) => {
+
+    const [userInput, setUserInput] = useState<IUserInput>({
         email: '',
         password: ''
     });
@@ -38,13 +49,13 @@ let LoginForm = ({ authStore }: IStoreProps) => {
 
     }
 
-    const [passwordType, setPasswordType] = useState('password');
+    const [passwordType, setPasswordType] = useState<string>('password');
 
     let history = useHistory();
 
     // Set Error Function to not have to repeat both lines of code
     const setError = (bool: boolean) => {
-        authStore.setError(bool);
+        authStore!.setError(bool);
         setErrorAlertShow(bool);
     }
 
@@ -62,18 +73,18 @@ let LoginForm = ({ authStore }: IStoreProps) => {
             }
         });
 
-        if (!authStore.error) {
+        if (!authStore!.error) {
 
             axios
                 .post("/api/users/login", userInput)
                 .then(res => {
 
                     // Set token to localStorage
-                    const { token } = res.data;
+                    const { token }: { token: string } = res.data;
 
                     localStorage.setItem('jwtToken', token);
 
-                    authStore.setToken(token);
+                    authStore!.setToken(token);
 
                     // Set token to Auth header
                     if (token) {
@@ -85,10 +96,10 @@ let LoginForm = ({ authStore }: IStoreProps) => {
                     }
 
                     // Decode token to get user data
-                    const decoded = jwt_decode(token);
+                    const decoded: Iuser = jwt_decode(token);
 
                     // Set current user
-                    authStore.setCurrentUser(decoded);
+                    authStore!.setCurrentUser(decoded);
 
                     history.push('/dashboard');
 
@@ -103,7 +114,7 @@ let LoginForm = ({ authStore }: IStoreProps) => {
     const urlParams = new URLSearchParams(window.location.search);
     const success: boolean = urlParams.get('success') === "1" ? true : false;
 
-    const [errorAlertShow, setErrorAlertShow] = useState(authStore.error);
+    const [errorAlertShow, setErrorAlertShow] = useState(authStore!.error);
     const [successAlertShow, setSuccessAlertShow] = useState(success);
 
     return (
