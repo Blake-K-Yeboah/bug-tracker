@@ -7,24 +7,29 @@ import './SelectProject.scss';
 import { inject, observer } from 'mobx-react';
 
 // Import Types
-import { Iproject } from '../../../../types';
+import { Iproject, IProjectStore } from '../../../../types';
 
 // Import useHistory Hook
 import { useHistory } from 'react-router-dom';
 
-let SelectProject = ({ projectStore }: any) => {
+// Props Interface
+interface PropsI {
+    projectStore?: IProjectStore
+}
 
-    const [projectId, setProjectId] = useState('');
+let SelectProject = ({ projectStore }: PropsI) => {
+
+    const [projectId, setProjectId] = useState<string>('');
 
     useEffect(() => {
-        projectStore.fetchProjects()
+        projectStore!.fetchProjects()
     }, [projectStore]);
 
     let history = useHistory();
 
     const clickHandler = () => {
 
-        const route = `/manage-projects-users/${projectId === '' ? projectStore.projects[0]._id : projectId}`;
+        const route: string = `/manage-projects-users/${projectId === '' ? projectStore!.projects[0]._id : projectId}`;
 
         history.push(route);
         
@@ -45,7 +50,7 @@ let SelectProject = ({ projectStore }: any) => {
 
                         <select className="select" id="project" value={projectId} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setProjectId(e.target.value)}>
 
-                            {projectStore.projects.map((project: Iproject) => (
+                            {projectStore!.projects.map((project: Iproject) => (
                                 <option value={project._id} key={project._id}>{project.name}</option>
                             ))}
 
@@ -67,6 +72,7 @@ let SelectProject = ({ projectStore }: any) => {
     )
 }
 
+// Inject Store
 SelectProject = inject('projectStore')(observer(SelectProject));
 
 export default SelectProject

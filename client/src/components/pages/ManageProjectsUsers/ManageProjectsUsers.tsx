@@ -8,7 +8,10 @@ import Sidebar from '../../layout/Sidebar/Sidebar';
 import Navbar from '../../layout/Navbar/Navbar';
 import SelectProject from './SelectProject/SelectProject';
 
-const ManageProjectsUsers: any = () => {
+// Import Type
+import { RouteComponentProps } from 'react-router-dom';
+
+const ManageProjectsUsers = (props: RouteComponentProps) => {
 
     return (
         <>
