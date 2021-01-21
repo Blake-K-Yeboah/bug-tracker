@@ -1,8 +1,15 @@
 import React from 'react'
 
+// Import Icons
 import { FaTimes } from 'react-icons/fa';
 
-const SuccessAlert = ({ message, setShow }: any) => {
+// Props Interface
+interface PropsI {
+    message: string,
+    setShow: (show: boolean) => void
+}
+
+const SuccessAlert = ({ message, setShow }: PropsI) => {
 
 
     const crossClickHandler = () => {
