@@ -8,8 +8,8 @@ import { AiOutlineStar } from "react-icons/ai";
 
 const TipSection = () => {
 
-    // TODO: Finish Array of tips
-    const tipArray = [
+    // TODO: FINISH TIP ARRAY
+    const tipArray: string[] = [
         "Useful profile actions can be found by pressing the menu icon in navbar",
         "You can browse every change ever made on the history page",
         "The side bar has useful navigation links to every page",
