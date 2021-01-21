@@ -11,7 +11,7 @@ interface PropsI {
 
 const SuccessAlert = ({ message, setShow }: PropsI) => {
 
-
+    // Created Close Handler
     const crossClickHandler = () => {
         setShow(false);
     }
