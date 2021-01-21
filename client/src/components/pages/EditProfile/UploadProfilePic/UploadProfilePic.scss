@@ -1,0 +1,15 @@
+@import '../../../../style/variables';
+
+.upload-profile-pic {
+    background: #fff;
+    height:100%;
+    width:100%;
+    border-radius: 10px;
+    
+    .title {
+        color: $darkGrey;
+        font-size: 1.5rem;
+        font-weight: normal;
+        padding: 1em 0 0 1em;
+    }
+}
