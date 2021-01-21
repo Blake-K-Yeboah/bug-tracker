@@ -10,48 +10,53 @@ import { FaUsers, FaTags, FaHistory, FaFolderOpen } from 'react-icons/fa';
 import StatBox from './StatBox';
 
 // Import types
-import { IStat, IStoreProps } from '../../../../types';
+import { IChangeStore, IProjectStore, IStat, ITicketStore, IUsersStore } from '../../../../types';
 
 // Import Mobx stuff
 import { inject, observer } from 'mobx-react';
 
-let Statistics = ({ usersStore, changeStore, projectStore, ticketStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    usersStore?: IUsersStore,
+    changeStore?: IChangeStore,
+    projectStore?: IProjectStore,
+    ticketStore?: ITicketStore
+}
+let Statistics = ({ usersStore, changeStore, projectStore, ticketStore }: PropsI) => {
 
-
-    // TODO - Update values from database when features are added
     useEffect(() => {
-        usersStore.fetchUsers();
-        projectStore.fetchProjects();
-        ticketStore.fetchTickets();
+        usersStore!.fetchUsers();
+        projectStore!.fetchProjects();
+        ticketStore!.fetchTickets();
     }, [usersStore, projectStore, ticketStore]);
 
     const stats: IStat[] = [
         {
             title: 'Projects',
             icon: FaFolderOpen,
-            value: projectStore.projectCount
+            value: projectStore && projectStore.projectCount
         },
         {
             title: 'Users',
             icon: FaUsers,
-            value: usersStore.userCount
+            value: usersStore && usersStore.userCount
         },
         {
             title: 'Tickets',
             icon: FaTags,
-            value: ticketStore.ticketCount
+            value: ticketStore && ticketStore.ticketCount
         },
         {
             title: 'Changes',
             icon: FaHistory,
-            value: changeStore.changeCount
+            value: changeStore && changeStore.changeCount
         }
     ]
 
     return (
         <div className="statistics">
 
-            {stats.map((stat: any) => (
+            {stats.map((stat) => (
                 <StatBox title={stat.title} value={stat.value} key={stat.title}>
 
                     {stat.icon()}
@@ -63,6 +68,7 @@ let Statistics = ({ usersStore, changeStore, projectStore, ticketStore }: IStore
     )
 }
 
+// Inject Stores
 Statistics = inject('usersStore', 'changeStore', 'projectStore', 'ticketStore')(observer(Statistics));
 
 export default Statistics;
