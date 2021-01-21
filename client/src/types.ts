@@ -51,7 +51,7 @@ export interface IStoreProps {
 // For Statistics component
 export interface IStat {
     title: string,
-    value: number,
+    value: number | undefined,
     icon: any // Icon has weird type
 }
 
@@ -103,5 +103,6 @@ export interface Iticket {
 // Ticket Store Interface
 export interface ITicketStore {
     tickets: Iticket[],
-    fetchTickets: () => void
+    fetchTickets: () => void,
+    ticketCount: number
 }
