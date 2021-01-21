@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 // Import Styling
 import './Navbar.scss';
 
+// Import Icons
 import { BsGrid3X3Gap } from 'react-icons/bs';
 import { AiOutlineBug } from 'react-icons/ai'
 
+// Import Components
 import Dropdown from './Dropdown/Dropdown';
 import Search from './Search/Search';
 
+// Import Axios
 import Axios from 'axios';
 
 const Navbar = () => {
@@ -16,6 +19,7 @@ const Navbar = () => {
     // Apply authorization token to every request if logged in
     Axios.defaults.headers.common["Authorization"] = localStorage.getItem('jwtToken');
 
+    // Define show state
     const [show, setShow] = useState(false);
 
     return (
