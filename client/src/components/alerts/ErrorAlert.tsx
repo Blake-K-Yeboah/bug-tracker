@@ -3,6 +3,7 @@ import React from 'react'
 // Import Icons
 import { FaTimes } from 'react-icons/fa';
 
+// Props Interface
 interface PropsI {
     message: string,
     setShow: (show: boolean) => void
