@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 import { observable, action, computed } from 'mobx';
 import { IChange, IChangeStore } from '../types';
 
@@ -6,9 +6,11 @@ export class changestore {
 
     @observable changes: IChange[] = [];
 
-    @action fetchChanges() {
-        Axios.get('/api/changes').then(res => {
+    @action async fetchChanges() {
 
+        try {
+
+            const res = await axios.get('/api/changes');
             this.changes = res.data.map((change: any) => {
                 return {
                     ...change,
@@ -16,8 +18,12 @@ export class changestore {
                 }
             });
 
-                      
-        });
+        } catch (err) {
+
+            console.log(err);
+            
+        }
+
     }
 
     @computed get changeCount() {
