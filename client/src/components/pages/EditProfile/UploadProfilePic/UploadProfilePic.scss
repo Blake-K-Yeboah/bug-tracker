@@ -10,6 +10,26 @@
         color: $darkGrey;
         font-size: 1.5rem;
         font-weight: normal;
-        padding: 1em 0 0 1em;
+        padding: 1em 0 .75em 1em;
+    }
+
+    .file-name-label {
+        color: $darkGrey;
+        font-weight: 500;
+        margin-left:1.5em;
+    }
+
+    .file-name-input {
+        width: 50%;
+        margin: 1em 2em;
+        height: 37.5px;
+        padding-left: 10px;
+        border: none;
+        background: #f5f5f5;
+        border-radius: 2px;
+    }
+
+    .btn {
+        margin: 1em 0 0 2em;
     }
 }
