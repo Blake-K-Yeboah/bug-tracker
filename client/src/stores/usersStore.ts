@@ -7,12 +7,18 @@ export class usersstore {
     // Store users 
     @observable users: Iuser[] = [];
 
-    @action fetchUsers() {
-        axios.get('/api/users').then(res => {
+    @action async fetchUsers() {
 
+        try {
+
+            const res = await axios.get('/api/users');
             this.users = res.data;
 
-        });
+        } catch (err) {
+
+            console.log(err);
+            
+        }
     }
 
     @computed get userCount() {
