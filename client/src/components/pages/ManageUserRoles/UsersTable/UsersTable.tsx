@@ -7,24 +7,29 @@ import './UsersTable.scss';
 import { inject, observer } from 'mobx-react';
 
 // Import types
-import { IStoreProps, Iuser } from '../../../../types';
+import { IUsersStore, Iuser } from '../../../../types';
 
 // Import Spinner for loading
 import Spinner from '../../../Spinner/Spinner';
 import TableRow from './TableRow';
 
-let UsersTable = ({ usersStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    usersStore?: IUsersStore
+}
+
+let UsersTable = ({ usersStore }: PropsI) => {
 
     useEffect(() => {
-        usersStore.fetchUsers();
+        usersStore!.fetchUsers();
     }, [usersStore]);
 
     return (
         <div className="users-table-container">
 
-            <h2 className="table-title">Table of Users ({usersStore.userCount} users)</h2>
+            <h2 className="table-title">Table of Users ({usersStore!.userCount} users)</h2>
 
-            {!usersStore.users ? <Spinner /> :
+            {usersStore && !usersStore.users ? <Spinner /> :
                 <table className="users-table">
                     <thead>
                         <tr className="head-row">
@@ -43,19 +48,20 @@ let UsersTable = ({ usersStore }: IStoreProps) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usersStore.users.map((user: Iuser) => {
+                        {usersStore!.users.map((user: Iuser) => {
                             return <TableRow user={user} key={user._id} />
                         })}
                     </tbody>
                 </table>
             }
 
-            {usersStore.userCount > 9 ? <div className="blocker"></div> : ''}
+            {usersStore!.userCount > 9 ? <div className="blocker"></div> : ''}
 
         </div>
     )
 }
 
+// Inject Store
 UsersTable = inject('usersStore')(observer(UsersTable));
 
 export default UsersTable
