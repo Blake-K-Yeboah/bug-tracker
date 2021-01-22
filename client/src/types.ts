@@ -70,7 +70,9 @@ export interface Iproject {
 export interface IProjectStore {
     projects: Iproject[],
     fetchProjects: () => void,
-    projectCount: number
+    projectCount: number,
+    setProjectSort: (newSort: string) => void,
+    projectSort: string
 }
 
 // Comment Interface
