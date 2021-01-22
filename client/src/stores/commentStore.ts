@@ -8,21 +8,25 @@ export class commentstore {
     @observable comments: Icomment[] = [];
 
     // Fetch Comments
-    @action fetchComments() {
-        axios.get('/api/comments').then(res => {
+    @action async fetchComments() {
+
+        try {
+
+            const res = await axios.get('/api/comments');
+
+            this.comments = res.data.map((comment: any) => {
+                return {
+                    ...comment,
+                    for: JSON.parse(comment.for)
+                }
+            });
+
+        } catch (err) {
+
+            console.log(err);
             
-            if (res.data.length > 0) {
-
-                this.comments = res.data.map((comment: any) => {
-                    return {
-                        ...comment,
-                        for: JSON.parse(comment.for)
-                    }
-                });
-
-            }
-
-        })
+        }
+        
     }
 
 }
