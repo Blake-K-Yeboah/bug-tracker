@@ -11,10 +11,10 @@ export class authstore {
     @observable token: string | null = localStorage.getItem('jwtToken');
 
     // Store authenticated boolean
-    @observable isAuthenticated = this.token ? true : false;
+    @observable isAuthenticated: boolean = this.token ? true : false;
 
     // Store Logged in User
-    @observable user = this.token ? jwt_decode(this.token) : null;
+    @observable user: Iuser | null = this.token ? jwt_decode(this.token) : null;
 
     // Store Error
     @observable error: boolean = false;
