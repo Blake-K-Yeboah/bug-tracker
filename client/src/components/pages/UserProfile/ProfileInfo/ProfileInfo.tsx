@@ -15,17 +15,26 @@ import { inject, observer } from 'mobx-react';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-let ProfileInfo: any = ({ user, authStore }: any) => {
+// Import Types
+import { Iuser, IAuthStore } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    user: Iuser | null,
+    authStore?: IAuthStore
+}
+
+let ProfileInfo = ({ user, authStore }: PropsI) => {
 
     const role: string = user && user.role === 'project-manager' ? 'Project Manager' : user ? `${user.role.charAt(0).toUpperCase()}${user.role.slice(1,user.role.length)}` : '';
 
     const date: null | Date = user ? new Date(user.createdOn) : null;
 
-    const displayDate = date ? `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` : '';
+    const displayDate: string = date ? `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` : '';
 
-    const loggedInUserId = authStore.user.id;
+    const loggedInUserId: string = authStore!.user.id;
 
-    const editProfileBtn = <NavLink to={`/profile/${user ? user._id : ''}/edit`}><button className="btn has-icon light">Edit Profile <FaPen className="icon" /></button></NavLink>
+    const editProfileBtn: JSX.Element = <NavLink to={`/profile/${user ? user._id : ''}/edit`}><button className="btn has-icon light">Edit Profile <FaPen className="icon" /></button></NavLink>
 
     return (
 
@@ -90,6 +99,7 @@ let ProfileInfo: any = ({ user, authStore }: any) => {
     )
 }
 
+// Inject Store
 ProfileInfo = inject("authStore")(observer(ProfileInfo));
 
 export default ProfileInfo

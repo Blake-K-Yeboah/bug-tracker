@@ -14,17 +14,29 @@ import Axios from 'axios';
 // Import Styling
 import './UserProfile.scss';
 
-const UserProfile: any = ({ match }: any) => {
+// Import Types
+import { Iuser } from '../../../types';
 
-    const userId = match.params.id;
+// Props Interface
+interface PropsI {
+    match: { params: { id: string }}
+}
 
-    const [user, setUser]: any = useState(null);
+const UserProfile = ({ match: { params: { id }}}: PropsI) => {
+
+    const userId = id;
+
+    const [user, setUser] = useState<Iuser | null>(null);
 
     useEffect(() => {
 
-        Axios.get(`/api/users/${userId}`).then(res => {
+        // Fetch User
+        const fetchUser = async () => {
+            const res = await Axios.get(`/api/users/${userId}`);
             setUser(res.data);
-        }).catch(err => console.error(err));
+        }
+
+        fetchUser();
 
     }, [userId]);
 
