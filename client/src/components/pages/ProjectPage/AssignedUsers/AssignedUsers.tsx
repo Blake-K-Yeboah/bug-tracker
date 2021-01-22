@@ -12,7 +12,15 @@ import UsersList from './UsersList/UsersList';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const AssignedUsers = ({ project }: any) => {
+// Import Types
+import { Iproject } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    project: Iproject | null
+}
+
+const AssignedUsers = ({ project }: PropsI) => {
     return (
         <div className="assigned-users">
 
