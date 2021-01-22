@@ -79,24 +79,28 @@ export class projectstore {
 
     }
 
-    @action fetchProjects() {
-        axios.get('/api/projects').then(res => {
+    @action async fetchProjects() {
+        
+        try {
 
-            if (res.data.length > 0) {
+            const res = await axios.get('/api/projects');
 
-                // Sorted Alphabetically by default.
-                this.projects = res.data.sort((a: Iproject, b: Iproject) => {
-                    if ( a.name < b.name ){
-                        return -1;
-                      }
-                      if ( a.name > b.name ){
-                        return 1;
-                      }
-                      return 0;
-                });
-            }
+            // Sort Alphabetically by default
+            this.projects = res.data.sort((a: Iproject, b: Iproject) => {
+                if ( a.name < b.name ){
+                    return -1;
+                  }
+                  if ( a.name > b.name ){
+                    return 1;
+                  }
+                  return 0;
+            });
 
-        });
+        } catch (err) {
+
+            console.log(err);
+            
+        }
     }
 
     @computed get projectCount() {
