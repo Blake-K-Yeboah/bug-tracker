@@ -11,14 +11,27 @@ import TransferOwnerContainer from './TransferOwnerContainer/TransferOwnerContai
 // Import Axios
 import Axios from 'axios';
 
-const TransferOwner: any = ({ match: { params: { id }} }: any) => {
+// Import Types
+import { Iproject } from '../../../types';
 
-    const [project, setProject] = useState(null);
+// Props Interface
+interface PropsI {
+    match: { params: { id: string }}
+}
+
+const TransferOwner = ({ match: { params: { id }} }: PropsI) => {
+
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
-        Axios.get(`/api/projects/${id}`).then(res => {
+
+        // Fetch Project
+        const fetchProject = async () => {
+            const res = await Axios.get(`/api/projects/${id}`);
             setProject(res.data);
-        });
+        }
+
+        fetchProject()
     }, [id]);
 
     return (
