@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 
 // Import Store Type
-import { IStoreProps } from '../../../types';
+import { IAuthStore } from '../../../types';
 
 // Import Error Alert Component
 import ErrorAlert from '../../alerts/ErrorAlert';
@@ -21,9 +21,22 @@ import { useHistory } from 'react-router-dom';
 // Import Axios
 import axios from 'axios';
 
-let SignUpForm = ({ authStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    authStore?: IAuthStore
+}
 
-    const [userInput, setUserInput] = useState({
+// User Input Interface
+interface IUserInput {
+    name: string,
+    email: string,
+    password: string,
+    repeatedPassword: string
+}
+
+let SignUpForm = ({ authStore }: PropsI) => {
+
+    const [userInput, setUserInput] = useState<IUserInput>({
         name: '',
         email: '',
         password: '',
@@ -36,13 +49,13 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
 
     }
 
-    const [passwordType, setPasswordType] = useState('password');
+    const [passwordType, setPasswordType] = useState<'password' | 'text'>('password');
 
     let history = useHistory();
 
     // Set Error Function to not have to repeat both lines of code
     const setError = (bool: boolean) => {
-        authStore.setError(bool);
+        authStore!.setError(bool);
         setAlertShow(bool);
     }
 
@@ -54,13 +67,13 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
         setError(false);
 
         // Validate Field Values
-        Object.values(userInput).forEach((value: string) => {
+        Object.values(userInput).forEach((value) => {
             if (value.trim() === '') {
                 setError(true);
             }
         });
 
-        if (!authStore.error) {
+        if (!authStore!.error) {
 
             axios.post('/api/users/register', userInput).then(res => {
                 setError(false);
@@ -73,7 +86,7 @@ let SignUpForm = ({ authStore }: IStoreProps) => {
         }
     }
 
-    const [alertShow, setAlertShow] = useState(authStore.error);
+    const [alertShow, setAlertShow] = useState<boolean>(authStore!.error);
 
     return (
         <div className="form-container">
