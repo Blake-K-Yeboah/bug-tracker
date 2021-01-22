@@ -15,15 +15,30 @@ import Axios from 'axios';
 // Import Styling
 import './ManageProjectUsers.scss';
 
-const ManageProjectUsers: any = ({ match: { params: { id }}}: any) => {
+// Import types 
+import { Iproject } from '../../../types';
 
-    const [project, setProject]: any = useState('');
+// Props Interface
+interface PropsI {
+    match : { params: { id: string }}
+}
+
+const ManageProjectUsers = ({ match: { params: { id }}}: PropsI) => {
+
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
 
-        Axios.get(`/api/projects/${id}`).then(res => {
+        // Fetch Project
+        const fetchProject = async () => {
+
+            const res = await Axios.get(`/api/projects/${id}`);
+
             setProject(res.data);
-        });
+
+        }
+
+        fetchProject();
 
     }, [id]);
 

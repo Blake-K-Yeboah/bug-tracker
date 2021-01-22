@@ -11,7 +11,7 @@ import SelectProject from './SelectProject/SelectProject';
 // Import Type
 import { RouteComponentProps } from 'react-router-dom';
 
-const ManageProjectsUsers = (props: RouteComponentProps) => {
+const ManageProjectsUsers: React.FC<RouteComponentProps> = () => {
 
     return (
         <>

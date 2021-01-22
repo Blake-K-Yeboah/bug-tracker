@@ -6,7 +6,15 @@ import './AddUsers.scss';
 // Import Components
 import AddUsersList from './AddUsersList/AddUsersList';
 
-const AddUsers = ({ project }: any) => {
+// Import Types
+import { Iproject } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    project: Iproject | null
+}
+
+const AddUsers = ({ project }: PropsI) => {
 
     return (
 

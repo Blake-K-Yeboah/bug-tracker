@@ -12,19 +12,41 @@ import { NavLink } from 'react-router-dom';
 // Import MobX Stuff
 import { inject, observer } from 'mobx-react';
 
-let ListItem = ({ userId, authStore, projectId }: any) => {
+// Import types
+import { IAuthStore, Iuser } from '../../../../../../types';
 
-    const [user, setUser]: any = useState('');
+// Props Interface
+interface PropsI {
+    userId: string,
+    authStore?: IAuthStore,
+    projectId: string
+}
+
+// Request Body Interface
+interface IRequestBody {
+    userId: string,
+    addedUserId: string
+}
+
+let ListItem = ({ userId, authStore, projectId }: PropsI) => {
+
+    const [user, setUser]: any = useState<Iuser | string>('');
 
     useEffect(() => {
-        Axios.get(`/api/users/${userId}`).then(res => {
-            setUser(res.data);
-        });
+
+        // Fetch User
+        const fetchUser = async () => {
+            const res = await Axios.get(`/api/users/${userId}`);
+            setUser(res.data)
+        }
+        
+        fetchUser();
+
     }, [userId]);
 
     const addUserHandler = () => {
-        const body = {
-            userId: authStore.user.id,
+        const body: IRequestBody = {
+            userId: authStore!.user.id,
             addedUserId: user._id
         }
 
@@ -57,6 +79,7 @@ let ListItem = ({ userId, authStore, projectId }: any) => {
     )
 }
 
+// Inject Store
 ListItem = inject('authStore')(observer(ListItem));
 
 export default ListItem

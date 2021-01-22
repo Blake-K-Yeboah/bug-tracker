@@ -10,20 +10,26 @@ import ListItem from './ListItem/ListItem';
 import { inject, observer } from 'mobx-react';
 
 // Import types
-import { IStoreProps, Iuser } from '../../../../../types';
+import { Iproject, IUsersStore } from '../../../../../types';
 
-let AddUsersList = ({ project, usersStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    project: Iproject,
+    usersStore?: IUsersStore
+}
+
+let AddUsersList = ({ project, usersStore }: PropsI) => {
 
     useEffect(() => {
-        usersStore.fetchUsers();
+        usersStore!.fetchUsers();
     }, [usersStore]); 
 
-    const users = usersStore.users.filter((user: Iuser) => !project.usersList.includes(user._id) && user._id !== project.owner);
+    const users = usersStore!.users.filter((user) => !project.usersList.includes(user._id) && user._id !== project.owner);
 
     return (
         <ul className="add-users-list">
             
-            {users.map((user: Iuser) => (
+            {users.map((user) => (
                 <ListItem userId={user._id} key={user._id} projectId={project._id} />
             ))}
 
@@ -33,6 +39,7 @@ let AddUsersList = ({ project, usersStore }: IStoreProps) => {
     )
 }
 
+// Inject Store
 AddUsersList = inject('usersStore')(observer(AddUsersList));
 
 export default AddUsersList;
