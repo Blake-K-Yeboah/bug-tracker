@@ -261,7 +261,7 @@ router.put('/:id/profilepic', checkObjectId('id'), async (req, res) => {
     const newFileName = `${req.params.id}.${file.name.split('.')[1]}`;
 
     // Upload file
-    file.mv(`./client/public/uploads/profile/${newName}`, err => {
+    file.mv(`./client/public/uploads/profile/${newFileName}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Server Error. Try Again Later' });
