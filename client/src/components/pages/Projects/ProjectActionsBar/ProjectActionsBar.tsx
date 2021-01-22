@@ -1,20 +1,34 @@
-import { inject, observer } from 'mobx-react';
 import React, { useEffect } from 'react'
+
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+// Import Icon
 import { FaPlus } from 'react-icons/fa';
+
+// Import NavLink
 import { NavLink } from 'react-router-dom';
-import { IStoreProps, Iuser } from '../../../../types';
+
+// Import Types
+import { IProjectStore, Iuser, IUsersStore } from '../../../../types';
 
 // Import Styling
 import './ProjectActionsBar.scss';
 
-let ProjectActionsBar = ({ usersStore, projectStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    usersStore?: IUsersStore,
+    projectStore?: IProjectStore
+}
+
+let ProjectActionsBar = ({ usersStore, projectStore }: PropsI) => {
     
     useEffect(() => {
-        usersStore.fetchUsers();
+        usersStore!.fetchUsers();
     }, [usersStore]);
 
     const sortByOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        projectStore.setProjectSort(e.target.value);
+        projectStore!.setProjectSort(e.target.value);
     }
 
     return (
@@ -38,7 +52,7 @@ let ProjectActionsBar = ({ usersStore, projectStore }: IStoreProps) => {
 
                 <option value="all">All</option>
                         
-                {usersStore.userCount === 0 ? '' : usersStore.users.map((user: Iuser) => {
+                {usersStore!.userCount === 0 ? '' : usersStore!.users.map((user: Iuser) => {
                         
                     if (user.role === "project-manager" || user.role === "admin") {
                         return (
@@ -66,6 +80,7 @@ let ProjectActionsBar = ({ usersStore, projectStore }: IStoreProps) => {
     )
 }
 
+// Inject Store
 ProjectActionsBar = inject("usersStore", "projectStore")(observer(ProjectActionsBar));
 
 export default ProjectActionsBar;

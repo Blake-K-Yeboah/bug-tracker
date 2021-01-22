@@ -1,23 +1,39 @@
-import Axios from 'axios';
-import { inject, observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
-import { IStoreProps } from '../../../../types';
+import React, { useEffect, useState } from 'react';
 
-let TableRow = ({ project, projectStore }: IStoreProps ) => {
+// Import Axios
+import Axios from 'axios';
+
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+// Import NavLink
+import { NavLink } from 'react-router-dom';
+
+// Import Types
+import { Iproject, IProjectStore } from '../../../../types';
+
+// Props Interface
+interface PropsI {
+    project: Iproject,
+    projectStore?: IProjectStore
+}
+
+let TableRow = ({ project, projectStore }: PropsI ) => {
 
     const [owner, setOwner]: any = useState(null);
 
     useEffect(() => {
         let _isMounted = true;
 
+        // Fetch User
+        const fetchUser = async () => {
+            const res = await Axios.get(`/api/users/${project.owner}`);
+            setOwner(res.data);
+        }
+
         if (_isMounted) {
 
-            Axios.get(`/api/users/${project.owner}`).then(res => {
-                setOwner(res.data);
-            }).catch(err => {
-                console.error(err);
-            });
+            fetchUser()
         
         }
 
@@ -25,7 +41,7 @@ let TableRow = ({ project, projectStore }: IStoreProps ) => {
 
     const deleteHandler = () => {
         Axios.delete(`/api/projects/${project._id}`).then(res => {
-            projectStore.fetchProjects();
+            projectStore!.fetchProjects();
             window.location.reload();
         }).catch(err => {
             alert('An Error Occured');
@@ -57,6 +73,7 @@ let TableRow = ({ project, projectStore }: IStoreProps ) => {
 
 }
 
+// Inject Store
 TableRow = inject('projectStore')(observer(TableRow));
 
 export default TableRow
