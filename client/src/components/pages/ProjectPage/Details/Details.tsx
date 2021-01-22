@@ -1,18 +1,35 @@
 import React, { useEffect } from 'react'
+
+// Import Styling
 import './Details.scss';
+
+// Import MobX Stuff
 import { inject, observer } from 'mobx-react';
-import { Iticket, Iuser } from '../../../../types';
+
+// Import Types
+import { Iproject, Iticket, ITicketStore, Iuser, IUsersStore } from '../../../../types';
+
+// Import Icon
 import { FaPen } from 'react-icons/fa';
+
+// Import NavLink Component
 import { NavLink } from 'react-router-dom';
 
-let Details = ({ project, usersStore, ticketStore }: any) => {
+// Props Interface
+interface PropsI {
+    project: Iproject | null,
+    usersStore?: IUsersStore,
+    ticketStore?: ITicketStore
+}
+
+let Details = ({ project, usersStore, ticketStore }: PropsI) => {
 
     useEffect(() => {
-        usersStore.fetchUsers();
-        ticketStore.fetchTickets();
+        usersStore!.fetchUsers();
+        ticketStore!.fetchTickets();
     }, [usersStore, ticketStore]);
 
-    const ownerName = project && usersStore.users.length > 0 ? usersStore.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
+    const ownerName = project && usersStore!.users.length > 0 ? usersStore!.users.filter((user: Iuser) => user._id === project.owner)[0].name : '';
 
     const date: Date | null = project ? new Date(project.createdOn) : null;
 
@@ -25,7 +42,7 @@ let Details = ({ project, usersStore, ticketStore }: any) => {
                 <span className="project-detail"><b>Owner</b>: {ownerName}</span>
                 <span className="project-detail"><b>Created On</b>: { date ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` : ''}</span>
                 <span className="project-detail"><b>User Count</b>: {project.usersList.length + 1}</span>
-                <span className="project-detail"><b>Ticket Count</b>: {ticketStore.tickets.filter((ticket: Iticket) => ticket.projectId === project._id).length}</span>
+                <span className="project-detail"><b>Ticket Count</b>: {ticketStore!.tickets.filter((ticket: Iticket) => ticket.projectId === project._id).length}</span>
                 
                 <NavLink to={`/project/${project._id}/edit`}>
                     <button className="btn primary has-icon edit-btn">
@@ -46,6 +63,7 @@ let Details = ({ project, usersStore, ticketStore }: any) => {
     )
 }
 
+// Inject Store
 Details = inject('usersStore', 'ticketStore')(observer(Details));
 
 export default Details

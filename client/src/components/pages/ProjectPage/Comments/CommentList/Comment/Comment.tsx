@@ -1,33 +1,52 @@
 import React, { useEffect, useState } from 'react'
 
+// Import Styling
 import './Comment.scss';
 
+// Import Axios
 import axios from 'axios';
 
+// Import MobX Stuff
 import { inject, observer } from 'mobx-react';
 
+// Import Icon
 import { FaTimes } from 'react-icons/fa';
 
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
-let Comment = ({ comment, authStore, commentStore }: any) => {
+// Import Types
+import { Icomment, IAuthStore, ICommentStore, Iuser } from '../../../../../../types';
 
-    const [user, setUser]: any = useState(null);
+// Props Interface
+interface PropsI {
+    comment: Icomment,
+    authStore?: IAuthStore,
+    commentStore?: ICommentStore
+}
+
+let Comment = ({ comment, authStore, commentStore }: PropsI) => {
+
+    const [user, setUser] = useState<Iuser | null>(null);
 
     useEffect(() => {
 
-        axios.get(`/api/users/${comment.user}`).then(res => {
+        // Fetch Comment user
+        const fetchUser = async () => {
+            const res = await axios.get(`/api/users/${comment.user}`);
             setUser(res.data);
-        });
+        }
+
+        fetchUser()
 
     });
 
     const deleteHandler = () => {
 
-        const body: any = { userId: authStore.user.id };
+        const body: any = { userId: authStore!.user.id };
 
         axios.delete(`/api/comments/${comment._id}`, body).then(res => {
-            commentStore.fetchComments();
+            commentStore!.fetchComments();
             alert('Comment Deleted');
         }).catch(err => {
             if (err) alert(err.response.data.msg);
@@ -47,7 +66,7 @@ let Comment = ({ comment, authStore, commentStore }: any) => {
                         <p className="text">{comment.text}</p>
                     </div>
 
-                    {authStore.user.id === user._id || authStore.user.role === "admin" ? <FaTimes className="del-icon" onClick={deleteHandler} /> : ''}
+                    {authStore!.user.id === user._id || authStore!.user.role === "admin" ? <FaTimes className="del-icon" onClick={deleteHandler} /> : ''}
 
                 </>
             ) : ''}
@@ -56,6 +75,7 @@ let Comment = ({ comment, authStore, commentStore }: any) => {
     )
 }
 
+// Inject Store
 Comment = inject('authStore', 'commentStore')(observer(Comment));
 
 export default Comment
