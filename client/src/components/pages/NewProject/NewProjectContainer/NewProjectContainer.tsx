@@ -1,22 +1,46 @@
-import Axios from 'axios';
-import { inject, observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
+
+// Import Axios
+import Axios from 'axios';
+
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
+// Import Icons
 import { FiPlus } from 'react-icons/fi';
+
+// Import NavLink
 import { NavLink } from 'react-router-dom';
-import { IStoreProps, Iuser } from '../../../../types';
+
+// Import Types
+import { Iuser, IUsersStore } from '../../../../types';
+
+// Import Alerts
 import ErrorAlert from '../../../alerts/ErrorAlert';
 import SuccessAlert from '../../../alerts/SuccessAlert';
 
 // Imported Styling
 import './NewProjectContainer.scss';
 
-let NewProjectContainer = ({ usersStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    usersStore?: IUsersStore
+}
+
+// User Input interface
+interface IUserInput {
+    name: string,
+    description: string,
+    owner: string
+}
+
+let NewProjectContainer = ({ usersStore }: PropsI) => {
 
     useEffect(() => {
-        usersStore.fetchUsers();
+        usersStore!.fetchUsers();
     }, [usersStore]);
 
-    const [userInput, setUserInput] = useState({
+    const [userInput, setUserInput] = useState<IUserInput>({
         name: '',
         description: '',
         owner: ''
@@ -26,18 +50,16 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value});
     }
 
-    const [errorShow, setErrorShow] = useState(false);
-    const [successShow, setSuccessShow] = useState(false);
+    const [errorShow, setErrorShow] = useState<boolean>(false);
+    const [successShow, setSuccessShow] = useState<boolean>(false);
     
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const body = {
+        const body: IUserInput = {
             ...userInput,
-            owner: userInput.owner === '' ? usersStore.users.filter((user: Iuser) => user.role === 'project-manager'|| user.role === 'admin')[0]._id : userInput.owner
+            owner: userInput.owner === '' ? usersStore!.users.filter((user: Iuser) => user.role === 'project-manager'|| user.role === 'admin')[0]._id : userInput.owner
         }
-
-        console.log(body);
 
         Axios.post('/api/projects/create', body).then(res => {
             setErrorShow(false);
@@ -86,7 +108,7 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
                         <label className="input-label">Owner</label>
                         <select className="select" onChange={onChange} id="owner" value={userInput.owner}>
 
-                        {usersStore.userCount === 0 ? '' : usersStore.users.map((user: Iuser, index: number) => {
+                        {usersStore!.userCount === 0 ? '' : usersStore!.users.map((user) => {
 
                             if (user.role === "project-manager" || user.role === "admin") {
                                 
@@ -118,6 +140,7 @@ let NewProjectContainer = ({ usersStore }: IStoreProps) => {
     )
 }
 
+// Inject Store
 NewProjectContainer = inject("usersStore")(observer(NewProjectContainer));
 
 export default NewProjectContainer;
