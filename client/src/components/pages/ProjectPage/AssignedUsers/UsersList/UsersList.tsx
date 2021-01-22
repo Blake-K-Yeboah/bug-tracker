@@ -7,7 +7,7 @@ import User from './User/User';
 import './UsersList.scss';
 
 // Import Types
-import { Iuser, Iproject } from '../../../../../types';
+import { Iproject } from '../../../../../types';
 
 // Props Interface
 interface PropsI {
