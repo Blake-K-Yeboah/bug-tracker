@@ -8,12 +8,18 @@ export class ticketstore {
     @observable tickets: Iticket[] = [];
 
     // Fetch Tickets
-    @action fetchTickets() {
-        axios.get('/api/tickets').then(res => {
+    @action async fetchTickets() {
 
+        try {
+
+            const res = await axios.get('/api/tickets');
             this.tickets = res.data;
 
-        });
+        } catch (err) {
+
+            console.log(err);
+            
+        }
     }
     
     @computed get ticketCount() {
