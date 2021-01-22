@@ -17,17 +17,28 @@ import Axios from 'axios';
 // Import Styling
 import './ProjectPage.scss';
 
-const ProjectPage = ({ match: { params: { id }} }: any) => {
+// Import Types
+import { Iproject } from '../../../types';
+
+// Props Interface
+interface PropsI {
+    match: { params: { id: string }}
+}
+
+const ProjectPage = ({ match: { params: { id }} }: PropsI) => {
 
     const projectId = id;
 
-    const [project, setProject]: any = useState(null);
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
 
-        Axios.get(`/api/projects/${projectId}`).then(res => {
-            setProject(res.data);
-        }).catch(err => console.error(err));
+        // Fetch Project
+        const fetchProject = async () => {
+            const res = await Axios.get(`/api/projects/${projectId}`);
+            setProject(res.data)
+        }
+        fetchProject()
 
     }, [projectId]);
 

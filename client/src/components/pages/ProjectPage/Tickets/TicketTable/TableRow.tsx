@@ -6,16 +6,27 @@ import Axios from 'axios';
 // Import NavLink
 import { NavLink } from 'react-router-dom';
 
-const TableRow = ({ ticket }: any) => {
+// Import Types
+import { Iticket, Iuser } from '../../../../../types';
 
-    const [user, setUser]: any = useState(null);
+// Props Interface
+interface PropsI {
+    ticket: Iticket
+}
+
+const TableRow = ({ ticket }: PropsI) => {
+
+    const [user, setUser] = useState<Iuser | null>(null);
 
     useEffect(() => {
         
-        Axios.get(`/api/users/${ticket.owner}`).then(res => {
+        // Fetch Ticket Owner
+        const fetchOwner = async () => {
+            const res = await Axios.get(`/api/users/${ticket.owner}`);
             setUser(res.data);
-        });
+        }
 
+        fetchOwner();
     }, [ticket.owner]);
 
     return (

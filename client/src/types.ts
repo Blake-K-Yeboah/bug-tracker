@@ -94,7 +94,7 @@ export interface Iticket {
     createdOn: Date,
     owner: string,
     text: string,
-    status: string,
+    status: 'not-started' | 'in-progress' | 'completed',
     dev: string,
     priority: number,
     projectId: string

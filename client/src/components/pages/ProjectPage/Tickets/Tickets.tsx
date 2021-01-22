@@ -7,7 +7,7 @@ import './Tickets.scss';
 import { inject, observer } from 'mobx-react';
 
 // Import Types
-import { IStoreProps, Iticket } from '../../../../types';
+import { Iproject, Iticket, ITicketStore } from '../../../../types';
 
 // Import Components
 import TicketTable from './TicketTable/TicketTable';
@@ -15,13 +15,19 @@ import TicketTable from './TicketTable/TicketTable';
 // Import Icons
 import { FaPlus } from 'react-icons/fa';
 
-let Tickets = ({ project, ticketStore }: IStoreProps) => {
+// Props Interface
+interface PropsI {
+    project: Iproject | null,
+    ticketStore?: ITicketStore
+}
+
+let Tickets = ({ project, ticketStore }: PropsI) => {
 
     useEffect(() => {
-        ticketStore.fetchTickets();
+        ticketStore!.fetchTickets();
     }, [ticketStore]);
 
-    const tickets: Iticket[] = ticketStore.tickets.length > 0 && project ? ticketStore.tickets.filter((ticket: Iticket) => ticket.projectId === project._id) : [];
+    const tickets = ticketStore!.tickets.length > 0 && project ? ticketStore!.tickets.filter((ticket: Iticket) => ticket.projectId === project._id) : [];
 
     return (
 
@@ -43,6 +49,7 @@ let Tickets = ({ project, ticketStore }: IStoreProps) => {
 
 }
 
+// Inject Store
 Tickets = inject('ticketStore')(observer(Tickets));
 
 export default Tickets

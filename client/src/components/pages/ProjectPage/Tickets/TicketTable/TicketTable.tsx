@@ -9,7 +9,12 @@ import { Iticket } from '../../../../../types'
 // Import Compoennts
 import TableRow from './TableRow'
 
-const TicketTable = ({ tickets }: any) => {
+// Prop Interface
+interface PropsI {
+    tickets: Iticket[]
+}
+
+const TicketTable = ({ tickets }: PropsI) => {
 
     return (
         <>
@@ -37,7 +42,7 @@ const TicketTable = ({ tickets }: any) => {
 
                 <tbody>
 
-                    {tickets.map((ticket: Iticket) => {
+                    {tickets.map((ticket) => {
 
                         return <TableRow ticket={ticket} key={ticket._id} />
 
