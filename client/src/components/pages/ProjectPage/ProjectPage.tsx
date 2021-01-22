@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import Details from './Details/Details';
-import Controls from './Comments/Comments';
+import Comments from './Comments/Comments';
 import AssignedUsers from './AssignedUsers/AssignedUsers';
 import Tickets from './Tickets/Tickets';
 
@@ -59,9 +59,9 @@ const ProjectPage = ({ match: { params: { id }} }: PropsI) => {
                 <h1 className="page-title">Project</h1>
                 
                 <div className="project-page-grid">
-
+                    
                     <Details project={project} />
-                    <Controls project={project} />
+                    <Comments project={project} />
                     <AssignedUsers project={project} />
                     <Tickets project={project} />
 
