@@ -78,6 +78,10 @@
                 &.owner-td {
                     .profileIcon {
                         width: 30px;
+                        height: 30px;
+                        object-fit: cover;
+                        object-position: 50% 50%;
+                        border-radius: 50%;
                         position: relative;
                         top: 2px;
                     }
