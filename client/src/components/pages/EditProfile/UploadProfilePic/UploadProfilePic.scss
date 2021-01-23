@@ -32,4 +32,32 @@
     .btn {
         margin: 1em 0 0 2em;
     }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1.5em 0 1em 1.5em;
+            width:250px;
+            height:40px;
+        }
+
+        &.label {
+            width: 100px;
+            height: 20px;
+            margin-left: 2.25em;
+        }
+
+        &.input {
+            width: 50%;
+            margin: 1em 2.25em;
+            height: 37.5px;
+        }
+
+        &.button {
+            width: 150px;
+            height: 32.5px;
+            margin: .5em 2.25em;
+        }
+    }
 }
