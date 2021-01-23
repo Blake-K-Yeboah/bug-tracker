@@ -30,7 +30,7 @@ let ActivityList = ({ user, changeStore }: PropsI) => {
         <ul className="activity-list">
             
             {userChanges.slice(0, 7).map(change => (
-                <ListItem change={change} />
+                <ListItem change={change} key={change._id} />
             ))}
 
             <p className="ending-text">There are <b>{userChanges.length - 7}</b> more items in user's activity.</p>
