@@ -1,0 +1,49 @@
+@import '../../../../../style/variables';
+
+.activity-list {
+    padding-left: 2em;
+    margin-top: 1em;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65%;
+
+    .list-item {
+        list-style: none;
+        display:flex;
+        height: calc(100% / 7);
+
+        .profile-icon {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            position:relative;
+            top:50%;
+            transform:translateY(-50%);
+        }
+
+        .message {
+            font-size: 1rem;
+            color: $darkGrey;
+            line-height: 60px;
+            margin-left: 10px;
+
+            .link {
+                font-weight: bold;
+                color: $darkGrey;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .ending-text {
+        color: $darkGrey;
+        font-weight: normal;
+        font-size: 1rem;
+        margin-top: 1em;
+    }
+}
