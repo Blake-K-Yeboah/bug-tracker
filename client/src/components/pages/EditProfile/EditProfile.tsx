@@ -12,6 +12,7 @@ import Navbar from '../../layout/Navbar/Navbar';
 import EditDetails from '../EditProfile/EditDetails/EditDetails';
 import UploadProfilePic from './UploadProfilePic/UploadProfilePic';
 import DeleteAccount from './DeleteAccount/DeleteAccount';
+import UserHistory from './UserHistory/UserHistory';
 
 // Import Axios
 import Axios from 'axios';
@@ -69,7 +70,7 @@ const EditProfile = ({ match: { params: { id }}}: PropsI) => {
                     <EditDetails user={user} />
                     <UploadProfilePic user={user} />
                     <DeleteAccount user={user} />
-                    <div className="placeholder"></div>
+                    <UserHistory user={user} />
 
                 </div>
 
