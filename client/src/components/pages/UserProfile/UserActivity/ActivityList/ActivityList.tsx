@@ -21,7 +21,9 @@ interface PropsI {
 let ActivityList = ({ user, changeStore }: PropsI) => {
 
     useEffect(() => {
+        
         changeStore!.fetchChanges();
+
     }, [changeStore])
 
     const userChanges = changeStore!.changes.filter(change => change.properties.userId === user._id);
@@ -29,11 +31,11 @@ let ActivityList = ({ user, changeStore }: PropsI) => {
     return (
         <ul className="activity-list">
             
-            {userChanges.slice(0, 7).map(change => (
+            {userChanges.length > 0 ? userChanges.slice(0, 7).map(change => (
                 <ListItem change={change} key={change._id} />
-            ))}
+            )) : '' }
 
-            <p className="ending-text">There are <b>{userChanges.length - 7}</b> more items in user's activity.</p>
+            {userChanges.length >= 7 ? <p className="ending-text">There are <b>{userChanges.length - 7}</b> more items in user's activity.</p> : ''}
         </ul>
     )
 }
