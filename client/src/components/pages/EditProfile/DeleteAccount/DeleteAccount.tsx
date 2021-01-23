@@ -47,17 +47,28 @@ let DeleteAccount = ({ user, authStore }: PropsI) => {
     return (
         <div className="delete-account">
 
-            <h2 className="title">Delete Account</h2>
+            {user ? <>
 
-            <div className="delete-account-content">
+                <h2 className="title">Delete Account</h2>
 
-                <h4 className="heading">Permanently Delete Account</h4>
+                <div className="delete-account-content">
 
-                <p className="desc">Permanently delete your account. There is no reverting this.</p>
+                    <h4 className="heading">Permanently Delete Account</h4>
 
-                <button className="btn danger" onClick={deletehandler}>Delete Account</button>
+                    <p className="desc">Permanently delete your account. There is no reverting this.</p>
 
-            </div>
+                    <button className="btn danger" onClick={deletehandler}>Delete Account</button>
+
+                </div>
+
+            </> : <>
+
+                <div className="loader title"></div>
+                <div className="loader heading"></div>
+                <div className="loader desc"></div>
+                <div className="loader button"></div>
+
+            </>}
 
         </div>
     )
