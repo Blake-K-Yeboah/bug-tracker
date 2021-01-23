@@ -71,6 +71,9 @@
 
             .profile-pic {
                 width:30px;
+                height: 30px;
+                object-fit: cover;
+                object-position: 50% 50%;
                 position: relative;
                 top: 10px;
                 border-radius: 50%;
