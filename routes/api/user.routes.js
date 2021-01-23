@@ -271,7 +271,15 @@ router.put('/:id/profilepic', checkObjectId('id'), async (req, res) => {
     try {
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id, { profileIcon: newFileName });
+        
+        const newChange = new Change({
+            message: "updated their profile",
+            type: "UPDATED_PROFILE",
+            properties: JSON.stringify({ userId: req.params.id})
+        });
 
+        const change = await newChange.save();
+        
         res.json(updatedUser);
 
     } catch (err) {
