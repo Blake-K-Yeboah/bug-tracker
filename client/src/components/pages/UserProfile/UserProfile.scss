@@ -1,16 +1,8 @@
 .user-profile-grid {
     display:grid;
     grid-template-columns: 2fr 5fr;
-    column-gap: 2em;
+    column-gap: 3em;
     width:70vw;
     margin-top: 2em;
     height: 70vh;  
-
-    // For testing
-    .placeholder {
-        background: #fff;
-        height:100%;
-        width:100%;
-        border-radius: 10px;
-    }
 }
