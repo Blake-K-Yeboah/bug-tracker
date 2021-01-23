@@ -21,6 +21,8 @@
         .profile-icon {
             width: 120px;
             height: 120px;
+            object-fit: cover;
+            object-position: 50% 50%;
             position:relative;
             top: 30px;
             left: 2.25em;
