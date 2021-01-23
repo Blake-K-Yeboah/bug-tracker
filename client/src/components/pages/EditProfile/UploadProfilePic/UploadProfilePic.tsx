@@ -73,7 +73,15 @@ const UploadProfilePic = ({ user }: PropsI) => {
 
                 <button className={`btn ${fileName ? 'primary' : 'disabled'}`} disabled={fileName === ''} onClick={uploadProfilePic} >Upload Profile Pic</button>
 
-            </> : <></>}
+            </> : <>
+            
+                <div className="loader title"></div>
+                <div className="loader label"></div>
+                <div className="loader input"></div>
+                <div className="loader button"></div>
+                <div className="loader button"></div>
+            
+            </>}
             
         </div>
     )
