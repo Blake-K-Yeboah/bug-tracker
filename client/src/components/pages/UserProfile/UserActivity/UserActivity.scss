@@ -1,0 +1,22 @@
+@import '../../../../style/variables';
+
+.user-activity {
+    background: #fff;
+    height:100%;
+    width:100%;
+    border-radius: 10px;
+
+    .title {
+        color: $darkGrey;
+        font-size: 1.75rem;
+        font-weight: 500;
+        padding: 1em 0 0 1em;
+    }
+
+    .divider {
+        width: 150px;
+        height: 3px;
+        background: $primary;
+        margin: 1em 0 0 2em;
+    }
+}
