@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import UserActivity from './UserActivity/UserActivity';
 
 // Import Axios
 import Axios from 'axios';
@@ -60,7 +61,7 @@ const UserProfile = ({ match: { params: { id }}}: PropsI) => {
 
                     <ProfileInfo user={user} />
                     
-                    <div className="placeholder"></div>
+                    <UserActivity user={user} />
 
                 </div>
 
