@@ -284,4 +284,25 @@ router.put('/:id/profilepic', checkObjectId('id'), async (req, res) => {
 
 });
 
+// @route DELETE api/users/:id/
+// @desc Delete User
+// @access Private
+router.delete('/:id', checkObjectId('id'), async (req, res) => {
+
+    try {
+
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+
+        res.json(deletedUser);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+        res.status(500).json({ msg: "Server error" });
+
+    }
+
+});
+
 module.exports = router;
