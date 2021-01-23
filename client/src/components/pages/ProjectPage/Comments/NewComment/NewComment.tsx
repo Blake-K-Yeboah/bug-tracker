@@ -48,7 +48,7 @@ let NewComment = ({ project, authStore, commentStore }: PropsI) => {
             commentStore!.fetchComments();
             setText('')
         }).catch(err => {
-            alert(err.response.data.msg);
+            alert(err.response.data.text);
         });
 
     };
