@@ -30,4 +30,20 @@
             transform:translate(50%, -50%);
         }
     }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1em;
+            width:250px;
+            height:40px;
+        }
+
+        &.ticket {
+            margin: 1.25em 1.5em;
+            width: 75%;
+            height: 35px;
+        }
+    }
 }
