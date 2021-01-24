@@ -1,0 +1,42 @@
+@import '../../../../style/variables';
+
+.change-table-container {
+    margin-top: 1.25em;
+    height: calc((100vh - 50px) - 19em);
+    width: 70vw;
+    background: #fff;
+    border-radius: 12.5px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: .65em;
+        padding: 1em 1.25em .25em;
+    }
+
+    .change-table {
+        width: 95%;
+        border-collapse: collapse;
+        margin: 0 auto;
+
+        .head-row {
+            height: 40px;
+            background: #F9F9F9;
+            border: .5px solid #e1e1e1;
+
+            .t-head {
+                width: 25%;
+                color: $darkGrey;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+        }        
+    }
+    
+}
