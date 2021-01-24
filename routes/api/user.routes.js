@@ -206,7 +206,7 @@ router.put('/:id/update/role', async (req, res) => {
         type: "ROLE_CHANGED",
         properties: JSON.stringify({
             userId: reqUserId,
-            changedUserId: user._id,
+            changedUserId: updatedUser._id,
             newRole: req.body.role
         })
     });
