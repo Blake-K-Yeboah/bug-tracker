@@ -12,7 +12,7 @@ import HistoryActionsBar from './HistoryActionsBar/HistoryActionsBar';
 import { RouteComponentProps } from 'react-router-dom';
 
 const History: React.FC<RouteComponentProps> = () => {
-
+    
     return (
         <>
             <Helmet>
