@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import HistoryActionsBar from './HistoryActionsBar/HistoryActionsBar';
+import ChangeTable from './ChangeTable/ChangeTable';
 
 // Import Type
 import { RouteComponentProps } from 'react-router-dom';
@@ -30,6 +31,8 @@ const History: React.FC<RouteComponentProps> = () => {
                 <h1 className="page-title">History</h1>
 
                 <HistoryActionsBar />
+
+                <ChangeTable />
 
             </div>
 
