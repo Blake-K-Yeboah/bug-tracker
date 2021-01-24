@@ -10,7 +10,7 @@ import { FaPlus } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 // Import Types
-import { IProjectStore, Iuser, IUsersStore } from '../../../../types';
+import { IProjectStore, IUsersStore } from '../../../../types';
 
 // Import Styling
 import './ProjectActionsBar.scss';
@@ -43,26 +43,6 @@ let ProjectActionsBar = ({ usersStore, projectStore }: PropsI) => {
                 
                 <option value="owner-a-z">Owner (A-Z)</option>
                 <option value="owner-z-a">Owner (Z-A)</option>
-
-            </select>
-
-            <label htmlFor="owner-filter">Filter by Owner</label>
-
-            <select id="owner-filter">
-
-                <option value="all">All</option>
-                        
-                {usersStore!.userCount === 0 ? '' : usersStore!.users.map((user: Iuser) => {
-                        
-                    if (user.role === "project-manager" || user.role === "admin") {
-                        return (
-                            <option value={user.name} key={user._id}>{user.name}</option>
-                        )
-                    } else {
-                        return ''
-                    }
-
-                })}
 
             </select>
 
