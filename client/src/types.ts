@@ -31,7 +31,9 @@ export interface IUsersStore {
 export interface IChangeStore {
     changes: IChange[],
     fetchChanges: () => void,
-    changeCount: number
+    changeCount: number,
+    changesSort: string,
+    changeSort: (newSort: string) => void
 }
 
 // Change Interface
