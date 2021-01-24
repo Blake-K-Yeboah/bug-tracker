@@ -4,7 +4,7 @@ import { IChange, IChangeStore } from '../types';
 
 export class changestore {
 
-    @observable changes: IChange[] = [];
+    @observable changes: any = [];
 
     @action async fetchChanges() {
 
@@ -28,6 +28,32 @@ export class changestore {
 
     @computed get changeCount() {
         return this.changes.length;
+    }
+
+    @observable changesSort: string = 'newest';
+
+    @action changeSort(newSort: string) {
+        this.changesSort = newSort;
+
+        switch(this.changesSort) {
+
+            case 'newest':
+                this.changes.replace(this.changes.slice().sort((a: IChange, b: IChange) => {
+                    let dateA = new Date(a.date).getTime();
+                    let dateB = new Date(b.date).getTime();
+                    return dateA > dateB ? -1 : 1;  
+                }));
+                break;
+
+            case 'oldest': 
+                this.changes.replace(this.changes.slice().sort((a: IChange, b: IChange) => {
+                    let dateA = new Date(a.date).getTime();
+                    let dateB = new Date(b.date).getTime();
+                    return dateA > dateB ? 1 : -1;  
+                }));
+                break;
+
+        }
     }
 }
 
