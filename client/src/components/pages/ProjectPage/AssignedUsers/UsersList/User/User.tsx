@@ -75,7 +75,12 @@ let User = ({ userId, project, authStore }: PropsI) => {
 
                 </>}
 
-            </> : ''}
+            </> : <>
+
+                <div className="loader user"></div>
+
+            </>}
+
         </div>
     )
 }
