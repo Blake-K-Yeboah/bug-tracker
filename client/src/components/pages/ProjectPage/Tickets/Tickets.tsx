@@ -33,7 +33,7 @@ let Tickets = ({ project, ticketStore }: PropsI) => {
 
         <div className="ticket-section">
 
-            {tickets ? <>
+            {project && tickets ? <>
             
                 <h2 className="title">Tickets ({tickets.length})</h2>
                 
@@ -41,7 +41,15 @@ let Tickets = ({ project, ticketStore }: PropsI) => {
                 
                 <button className="btn primary add-btn"><FaPlus className="icon" /></button>
 
-            </> : ''}
+            </> : <>
+                
+                <div className="loader title"></div>
+                <div className="loader ticket"></div>
+                <div className="loader ticket"></div>
+                <div className="loader ticket"></div>
+                <div className="loader ticket"></div>
+            
+            </>}
 
         </div>
 
