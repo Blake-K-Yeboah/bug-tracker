@@ -7,9 +7,20 @@
     background: #fff;
     border-radius: 12.5px;
     overflow-y: scroll;
+    position: relative;
 
     &::-webkit-scrollbar {
         width: 5px;
+    }
+
+    .blocker {
+        height: 2em;
+        background-color: transparent;
+        z-index: 1;
+        width:70vw;
+        position: sticky;
+        bottom: 0;
+        left: 0;
     }
     
     .heading {
@@ -35,8 +46,69 @@
                 color: $darkGrey;
                 font-weight: 500;
                 font-size: 1rem;
+                
+                &:not(:first-of-type) {
+                    border-left: 1px solid  #e1e1e1;
+                }
             }
-        }        
+        }   
+
+        .row {
+            height: 50px;
+            background: #FFFFFF;
+            border: .5px solid #e1e1e1;
+
+            .date {
+                text-align:center;
+                color: $grey;
+                font-weight: lighter;
+                border-left: 1px solid  #e1e1e1;
+            }
+
+            .list-item-td {
+                display:flex;
+                align-items: center;
+
+                .list-item {
+                    list-style: none;
+                    display: flex;
+                    align-items: center;
+                    min-height: 50px;
+                    width: 80%;
+                    margin: 0 10%;
+
+                    .profile-icon, .profile-icon-loader {
+                        border-radius: 50%;
+                        width: 35px;
+                        height: 35px;
+                        object-fit: cover;
+                        object-position: 50% 50%;
+                    }
+                
+                    .profile-icon-loader {
+                        animation: loader infinite 2s;
+                    }
+
+                    .message {
+                        font-size: 1rem;
+                        color: $darkGrey;
+                        line-height: 60px;
+                        margin-left: 10px;
+                
+                        .link {
+                            font-weight: bold;
+                            color: $darkGrey;
+                            text-decoration: none;
+                
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                
+                }
+            }
+        }     
     }
     
 }
