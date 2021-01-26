@@ -8,6 +8,7 @@ import { IChangeStore } from '../../../../types';
 
 // Import MobX Stuff
 import { inject, observer } from 'mobx-react';
+import TableRow from './TableRow';
 
 // Props Interface
 interface PropsI {
@@ -37,7 +38,17 @@ let ChangeTable = ({ changeStore }: PropsI) => {
                     </tr>
                 </thead>
 
+                <tbody>
+
+                    {changeStore!.changes.map(change => (
+                        <TableRow change={change} key={change._id} />
+                    ))}
+
+                </tbody>
+
             </table>}
+
+            {changeCount > 7 ? <div className="blocker"></div> : ''}
         </div>
     )
 }
