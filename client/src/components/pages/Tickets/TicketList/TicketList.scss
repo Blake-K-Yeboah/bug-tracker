@@ -1,0 +1,24 @@
+@import '../../../../style/variables';
+
+.ticket-list {    
+    margin-top: 1.25em;
+    height: calc((100vh - 50px) - 13em);
+    width: 70vw;
+    background: #fff;
+    border-radius: 12.5px;
+    overflow-y: scroll;
+    list-style: none;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: .65em;
+        padding: 1em 1.25em .25em;
+    }
+
+}
