@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Import Styling
+import './Tickets.scss'
+
 // Import Helmet to access document head
 import { Helmet } from 'react-helmet'
 
@@ -29,7 +32,13 @@ const Tickets: React.FC<RouteComponentProps> = () => {
 
                 <h1 className="page-title">My Tickets</h1>
 
-                <TicketList />
+                <div className="tickets-grid">
+                    
+                    <TicketList />
+
+                    <div className="placeholder"></div>
+
+                </div>
 
             </div>
             
