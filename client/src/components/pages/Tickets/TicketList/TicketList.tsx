@@ -17,7 +17,7 @@ interface PropsI {
 let TicketList = ({ ticketStore }: PropsI) => {
     return (
         <ul className="ticket-list">
-            <h2 className="heading">Ticket List</h2>
+            <h2 className="heading">Tickets</h2>
         </ul>
     )
 }
