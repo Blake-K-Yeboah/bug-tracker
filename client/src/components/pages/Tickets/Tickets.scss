@@ -1,0 +1,16 @@
+.tickets-grid {
+    display:grid;
+    grid-template-columns: 7fr 6fr;
+    gap: 3em;
+    width:70vw;
+    margin-top: 2em;
+    height: 70vh;  
+
+    // For Testing
+    .placeholder {
+        width:100%;
+        height:100%;
+        background: #fff;
+        border-radius: 20px;
+    }
+}
