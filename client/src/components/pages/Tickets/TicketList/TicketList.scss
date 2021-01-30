@@ -1,9 +1,8 @@
 @import '../../../../style/variables';
 
-.ticket-list {    
-    margin-top: 1.25em;
-    height: calc((100vh - 50px) - 13em);
-    width: 70vw;
+.ticket-list {
+    height: 100%;
+    width: 100%;
     background: #fff;
     border-radius: 12.5px;
     overflow-y: scroll;
