@@ -49,6 +49,15 @@
         }
     }
 
+    &.warning {
+        background:#FFCA2C;
+        color: #000;
+
+        &:hover {
+            background: #FFDB3D;
+        }
+    }
+
     &:disabled {
         color: $grey;
         background: #eee;
