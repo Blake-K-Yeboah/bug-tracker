@@ -8,6 +8,7 @@ import { IAuthStore, ITicketStore } from '../../../../types';
 
 // Import mobX Stuff
 import { inject, observer } from 'mobx-react';
+import TableRow from './TableRow';
 
 // Props Interface
 interface PropsI {
@@ -28,17 +29,17 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
             
             <h2 className="heading">Tickets</h2>
 
-            <table className="ticket-table">
+            <table className="tickets-table">
 
                 <thead>
 
                     <tr className="head-row">
 
                         <th className="t-head">
-                            Project
+                            Text
                         </th>
                         <th className="t-head">
-                            Text
+                            Project
                         </th>
                         <th className="t-head">
                             Status
@@ -46,6 +47,7 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
                         <th className="t-head">
                             Actions
                         </th>
+
                     </tr>
 
                 </thead>
@@ -54,7 +56,7 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
 
                     {activeTickets.map((ticket) => {
 
-                        return <h4>{ticket.text}</h4>
+                        return <TableRow ticket={ticket} />
 
                     })}
 
@@ -65,6 +67,7 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
     )
 }
 
+// Inject Stores
 TicketList = inject('ticketStore', 'authStore')(observer(TicketList));
 
 export default TicketList
