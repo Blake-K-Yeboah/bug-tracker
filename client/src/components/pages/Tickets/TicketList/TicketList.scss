@@ -7,10 +7,6 @@
     border-radius: 12.5px;
     overflow-y: scroll;
     list-style: none;
-
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
     
     .heading {
         color: lighten($darkGrey, 15%);
@@ -19,5 +15,94 @@
         margin-bottom: .65em;
         padding: 1em 1.25em .25em;
     }
+
+    .tickets-table {
+        width: 90%;
+        margin-left:5%;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background-color: #ccc;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: $primary;
+        }
+        
+
+        thead {
+            height: 40px;
+            width:100%;
+
+            .t-head {
+                color: $grey;
+                font-weight: 500;
+                font-size: 1rem;
+                padding-bottom: 1em;
+                text-align:left;
+            }
+        }
+
+        tbody {
+            padding-top: 1em;
+            width:100%;
+            text-align:left;
+    
+            .table-row {
+                
+                .t-data {
+                    padding-bottom: .6em;
+                    color: #6f6f6f;
+    
+                    .view-btn, .edit-btn {
+                        height: 25px;
+                        margin-top: 10px;
+                        padding-top: 6.25px;
+                        font-size: .725rem;
+                    }
+
+                    .edit-btn {
+                        margin-left: 10px;
+                    }
+
+                    &.status {
+                        
+                        .container {
+                            height: 25px;
+                            padding: 0;
+                            color: #fff;
+                            width:100px;
+                            display:flex;
+                            justify-content: center;
+                            border-radius: 5px;
+    
+                            span {
+                                line-height: 25px;
+                                font-size: .725rem;
+                                text-align: center;
+                            }
+    
+                            &.not-started {
+                                background-color: #DF4747
+                            }
+    
+                            &.in-progress {
+                                background-color: #DCB853
+                            }
+    
+                            &.completed {
+                                background-color: #10AF05
+                            }
+                        }
+    
+                    }
+                }
+            }
+        }
+        
+     }
 
 }
