@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 import Sidebar from '../../layout/Sidebar/Sidebar'
 import Navbar from '../../layout/Navbar/Navbar';
 import TicketList from './TicketList/TicketList';
+import TicketsChart from './TicketsChart/TicketsChart';
 
 // Import Types
 import { RouteComponentProps } from 'react-router-dom';
@@ -36,7 +37,7 @@ const Tickets: React.FC<RouteComponentProps> = () => {
                     
                     <TicketList />
 
-                    <div className="placeholder"></div>
+                    <TicketsChart />
 
                 </div>
 
