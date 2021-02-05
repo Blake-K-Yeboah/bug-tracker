@@ -1,0 +1,26 @@
+@import '../../../../style/variables';
+
+.tickets-chart-section {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    border-radius: 12.5px;
+    
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: .65em;
+        padding: 1em 1.25em .25em;
+    }
+
+    .chart-container {
+        width:50%;
+
+        * {
+            position: relative;
+            left:50%;
+            margin-top: 30%;
+        }
+    }
+}
