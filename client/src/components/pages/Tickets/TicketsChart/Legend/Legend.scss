@@ -1,0 +1,45 @@
+@import '../../../../../style/variables';
+
+.legend {
+    width: 50%;
+    margin-left: 2.25em;
+
+    .title {
+        font-size: 1.25rem;
+        color: $darkGrey;
+        font-weight: 500;
+        padding-bottom: 10px;
+    }
+
+    .pair {
+        display: flex;
+        align-items: center;
+        
+        &:not(:first-of-type) {
+            margin: .5em 0;
+        }
+        
+        .key {
+            width:15px;
+            height:15px;
+            margin-right: 10px;
+
+            &.red {
+                background-color: #DF4747;
+            }
+
+            &.orange {
+                background-color: #FFCA2C;
+            }
+
+            &.green {
+                background-color: #10AF05;
+            }
+        }
+
+        .value {
+            font-size: .9rem;
+            color: #444;
+        }
+    }
+}
