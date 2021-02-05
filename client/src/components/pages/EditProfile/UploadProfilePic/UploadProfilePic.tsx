@@ -22,6 +22,8 @@ const UploadProfilePic = ({ user }: PropsI) => {
 
     const fileRef = useRef<HTMLInputElement>(null);
 
+    const fileURL = file ? URL.createObjectURL(file) : `${process.env.PUBLIC_URL}/uploads/profile/default.jpg`;
+
     const fileChange = (files: FileList | null) => {
 
         let file: File | null = files ? files[0] : null;
@@ -57,21 +59,37 @@ const UploadProfilePic = ({ user }: PropsI) => {
             
                 <h2 className="title">Upload Profile Picture</h2>
 
-                <label htmlFor="file-name" className="file-name-label">File:</label>
+                <div className="grid">
+
+                    <div className="upload-section">
+
+                        <label htmlFor="file-name" className="file-name-label">File:</label>
+                        
+                        <br />
+
+                        <input type="text" className="file-name-input" placeholder="No Image Chosen" value={fileName} disabled/>
+
+                        <input type="file" ref={fileRef} style={{ display: 'none' }} accept="image/*" onChange={e => fileChange(e.target.files)} />
+
+                        <br />
+
+                        <button className="btn primary" onClick={() => { if (fileRef) fileRef.current!.click() }}>Choose Image</button>
+
+                        <br />
+
+                        <button className={`btn ${fileName ? 'primary' : 'disabled'}`} disabled={fileName === ''} onClick={uploadProfilePic} >Upload Profile Pic</button>
+
+                    </div>
+
+                    <div className="file-preview-section">
+
+                        <span className="label">Upload Preview:</span>
+
+                        <img className={`preview-img ${file ? 'uploaded' : ''}`} src={fileURL} alt="Preview" />
+
+                    </div>
                 
-                <br />
-
-                <input type="text" className="file-name-input" placeholder="No Image Chosen" value={fileName} disabled/>
-
-                <input type="file" ref={fileRef} style={{ display: 'none' }} accept="image/*" onChange={e => fileChange(e.target.files)} />
-
-                <br />
-
-                <button className="btn primary" onClick={() => { if (fileRef) fileRef.current!.click() }}>Choose Image</button>
-
-                <br />
-
-                <button className={`btn ${fileName ? 'primary' : 'disabled'}`} disabled={fileName === ''} onClick={uploadProfilePic} >Upload Profile Pic</button>
+                </div>
 
             </> : <>
             
