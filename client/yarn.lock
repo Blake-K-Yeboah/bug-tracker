@@ -9185,6 +9185,11 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.0.tgz#1ce4a8b4445168c487ed24dab886421f74d380d3"
   integrity sha512-IgmcegOSi5SNX+2Snh1vqmF0Vg/CbkycU9XZbOHJlZ6kMzTmi3yc254oB1WCkgA7OQtIAoLmcSFuHTc/tlcqXg==
 
+react-simple-pie-chart@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-simple-pie-chart/-/react-simple-pie-chart-0.5.0.tgz#207238a6fcfc268d20706894fd28169dc84b42c2"
+  integrity sha1-IHI4pvz8Jo0gcGiU/SgWnchLQsI=
+
 react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
