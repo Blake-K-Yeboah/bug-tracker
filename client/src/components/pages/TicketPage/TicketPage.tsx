@@ -9,6 +9,7 @@ import Navbar from '../../layout/Navbar/Navbar';
 
 // Import Axios
 import Axios from 'axios';
+import TicketDetails from './TicketDetails/TicketDetails';
 
 // Import Styling
 import './TicketPage.scss';
@@ -56,7 +57,7 @@ const TicketPage = ({ match: { params: { id }} }: PropsI) => {
                 
                 <div className="ticket-page-grid">
                     
-                    <div className="placeholder"></div>
+                    <TicketDetails ticket={ticket} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
