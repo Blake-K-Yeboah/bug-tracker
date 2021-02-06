@@ -13,7 +13,11 @@ interface PropsI {
 
 const Legend = ({ values }: PropsI) => {
 
+    // Total amount of tickets to determine percentage of each
     const total = Object.values(values).reduce((total, value) => total + value);
+
+    // Percentage Values to Output
+    const percentageValues = Object.values(values).map(value => Math.floor((value / total) * 100));
 
     return (
         <div className="legend">
@@ -22,17 +26,17 @@ const Legend = ({ values }: PropsI) => {
 
             <div className="pair">
                 <div className="key red"></div>
-                <span className="value">Not Started ({Math.floor((values.notStarted / total) * 100)}%)</span>
+                <span className="value">Not Started ({percentageValues[0]}%)</span>
             </div>
 
             <div className="pair">
                 <div className="key orange"></div>
-                <span className="value">In Progress ({Math.floor((values.inProgress / total) * 100)}%)</span>
+                <span className="value">In Progress ({percentageValues[1]}%)</span>
             </div>
 
             <div className="pair">
                 <div className="key green"></div>
-                <span className="value">Completed ({Math.floor((values.completed / total) * 100)}%)</span>
+                <span className="value">Completed ({percentageValues[2]}%)</span>
             </div>
 
         </div>
