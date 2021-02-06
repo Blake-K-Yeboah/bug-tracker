@@ -1,0 +1,91 @@
+@import '../../../../style/variables';
+
+.ticket-details {
+    width:100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 20px;
+    position:relative;
+    
+    .heading {
+        color: $darkGrey;
+        font-size: 1.5rem;
+        font-weight: normal;
+        padding: 1em;
+    }
+
+    .detail {
+        color: $grey;
+        margin: 1em 1.75em;
+        display:block;
+
+        &:first-of-type {
+            margin: 0 0 1em 1.75em;
+        }
+
+        &.inline {
+            display:flex;
+            align-items:center;
+
+            .priority-div, .status-div {
+                font-size: .8rem;
+                color: #fff;
+                padding: 5px 12px;
+                margin-left:10px;
+                border-radius: 5px;
+                
+                &.important, &.not-started {
+                    background-color: #DF4747;
+                }
+
+                &.not-important, &.completed {
+                    background-color: #10AF05
+                }
+
+                &.semi-important, &.in-progress {
+                    background-color: #DCB853
+                }
+            }
+        }
+    }
+
+    .edit-btn {
+        position:absolute;
+        top: 2em;
+        right: 2em;
+        width: 40px;
+        height: 40px;
+        transition: .5s ease-in-out;
+        padding: 0;
+
+        .icon {
+            right:50%;
+            top: 50%;
+            transform:translate(50%, -50%);
+        }
+    }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 2em;
+            width:250px;
+            height:40px;
+        }
+
+        &.edit {
+            position:absolute;
+            right:2em;
+            top:2em;
+            width:50px;
+            height:50px;
+        }
+
+        &.detail {
+            margin: 2em;
+            width:175px;
+            height:30px;
+        }
+    }
+}
