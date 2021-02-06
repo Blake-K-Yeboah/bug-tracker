@@ -31,6 +31,7 @@ import ManageProjectsUsers from './components/pages/ManageProjectsUsers/ManagePr
 import ManageProjectUsers from './components/pages/ManageProjectUsers/ManageProjectUsers';
 import History from './components/pages/History/History';
 import Tickets from './components/pages/Tickets/Tickets';
+import TicketPage from './components/pages/TicketPage/TicketPage';
 
 // Import Styling
 import './style/App.scss';
@@ -121,6 +122,11 @@ const App = () => {
           <Route exact path="/tickets" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <Tickets {...props} />
+          }} />
+
+          <Route exact path="/ticket/:id" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <TicketPage {...props} />
           }} />
 
         </Switch>
