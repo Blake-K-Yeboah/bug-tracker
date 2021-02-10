@@ -51,7 +51,7 @@ const TicketPage = ({ match: { params: { id }} }: PropsI) => {
         <>
             <Helmet>
 
-                <title>{ticket ? `Bug Tracker - Ticket: ${ticket.text}` : 'Loading'}</title>
+                <title>{ticket ? `Bug Tracker - Ticket For ${project ? project.name : 'Loading'}` : ''}</title>
 
             </Helmet>
 
