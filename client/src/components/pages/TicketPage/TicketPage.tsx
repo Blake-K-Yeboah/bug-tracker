@@ -15,7 +15,10 @@ import TicketDetails from './TicketDetails/TicketDetails';
 import './TicketPage.scss';
 
 // Import Types
-import { Iticket } from '../../../types';
+import { Iproject, Iticket } from '../../../types';
+import Comments from './Comments/Comments';
+import Details from '../ProjectPage/Details/Details';
+import AssignedUsers from '../ProjectPage/AssignedUsers/AssignedUsers';
 
 // Props Interface
 interface PropsI {
@@ -27,15 +30,20 @@ const TicketPage = ({ match: { params: { id }} }: PropsI) => {
     const ticketId = id;
 
     const [ticket, setTicket] = useState<Iticket | null>(null);
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
 
-        // Fetch Ticket
-        const fetchTicket = async () => {
-            const res = await Axios.get(`/api/tickets/${ticketId}`);
-            setTicket(res.data)
+        // Fetch Ticket And Project
+        const fetchTicketAndProject = async () => {
+            const ticketRes = await Axios.get(`/api/tickets/${ticketId}`);
+            setTicket(ticketRes.data);
+
+            const projectRes = await Axios.get(`/api/projects/${ticketRes.data.projectId}`);
+            setProject(projectRes.data);
         }
-        fetchTicket()
+        
+        fetchTicketAndProject();
 
     }, [ticketId]);
 
@@ -53,14 +61,14 @@ const TicketPage = ({ match: { params: { id }} }: PropsI) => {
 
                 <Sidebar />
 
-                <h1 className="page-title">Ticket</h1>
+                <h1 className="page-title">Ticket For {project ? project.name : 'Loading'}</h1>
                 
                 <div className="ticket-page-grid">
                     
                     <TicketDetails ticket={ticket} />
-                    <div className="placeholder"></div>
-                    <div className="placeholder"></div>
-                    <div className="placeholder"></div>
+                    <Comments ticket={ticket} />
+                    <Details project={project} />
+                    <AssignedUsers project={project} />
 
                 </div>
                 
