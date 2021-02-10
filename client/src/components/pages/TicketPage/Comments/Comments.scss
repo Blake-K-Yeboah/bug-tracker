@@ -1,0 +1,38 @@
+@import '../../../../style/variables';
+@import '../../../../style/animations';
+
+.comment-section {
+    background: #fff;
+    height:100%;
+    width:100%;
+    border-radius: 10px;
+
+    .title {
+        color: $darkGrey;
+        font-size: 1.5rem;
+        font-weight: normal;
+        padding: 1em 0 .5em 1em;
+    }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1em;
+            width:250px;
+            height:40px;
+        }
+
+        &.comment {
+            margin: 1.25em 1.5em;
+            width: 350px;
+            height: 35px;
+        }
+
+        &.write-a-comment {
+            margin: 1em 1.5em;
+            height: 25px;
+            width: 75%;
+        }
+    }
+}
