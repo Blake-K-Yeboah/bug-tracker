@@ -39,7 +39,7 @@ let Comment = ({ comment, authStore, commentStore }: PropsI) => {
 
         fetchUser()
 
-    }, [comment.user]);
+    }, [comment]);
 
     const deleteHandler = () => {
 
