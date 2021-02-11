@@ -35,6 +35,7 @@ import TicketPage from './components/pages/TicketPage/TicketPage';
 
 // Import Styling
 import './style/App.scss';
+import NewTicket from './components/pages/NewTicket/NewTicket';
 
 
 const App = () => {
@@ -122,6 +123,11 @@ const App = () => {
           <Route exact path="/tickets" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <Tickets {...props} />
+          }} />
+
+          <Route exact path="/tickets/new" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <NewTicket {...props} />
           }} />
 
           <Route exact path="/ticket/:id" render={(props) => {
