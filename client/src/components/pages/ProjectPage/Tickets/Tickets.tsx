@@ -14,6 +14,7 @@ import TicketTable from './TicketTable/TicketTable';
 
 // Import Icons
 import { FaPlus } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 // Props Interface
 interface PropsI {
@@ -39,7 +40,11 @@ let Tickets = ({ project, ticketStore }: PropsI) => {
                 
                 <TicketTable tickets={tickets}/>
                 
-                <button className="btn primary add-btn"><FaPlus className="icon" /></button>
+                <NavLink to="/tickets/new">
+                    <button className="btn primary add-btn">
+                        <FaPlus className="icon" />
+                    </button>
+                </NavLink>
 
             </> : <>
                 
