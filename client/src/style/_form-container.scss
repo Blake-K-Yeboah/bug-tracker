@@ -11,7 +11,7 @@
     transform:translate(-50%, -50%);
     border-radius: 10px;
 
-    &.new-project-form-container {
+    &.new-project-form-container, &.new-ticket-form-container {
         top: 55%;
     }
 
