@@ -1,0 +1,43 @@
+@import '../../../../style/variables';
+
+.new-ticket-container {
+    background: #fff;
+    width: 40vw;
+    height: calc((100vh - 50px) - 6em);
+    border-radius: 12.5px;
+    padding: 4em 2em 0em 2em;
+    position: absolute;
+    left: 60%;
+    top:53.5%;
+    transform:translate(-50%, -50%);
+
+    .heading {
+        color: lighten($darkGrey, 15%);
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: .35em;
+        text-align:center;
+    }
+
+    .new-ticket-form {
+
+        .btn {
+            position: relative;
+            top: 2em;
+            left:50%;
+            transform:translateX(-50%);
+        }
+    }
+
+    .back-to-tickets {
+        position: absolute;
+        top: 2em;
+        left: 3em;
+        color: $primary;
+        text-decoration:none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
