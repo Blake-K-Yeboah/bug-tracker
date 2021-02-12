@@ -8,7 +8,15 @@ import { IAuthStore, ITicketStore } from '../../../../types';
 
 // Import mobX Stuff
 import { inject, observer } from 'mobx-react';
+
+// Import Components
 import TableRow from './TableRow';
+
+// Import Icons
+import { FaPlus } from 'react-icons/fa';
+
+// Import NavLink
+import { NavLink } from 'react-router-dom';
 
 // Props Interface
 interface PropsI {
@@ -28,6 +36,11 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
         <ul className="ticket-list">
             
             <h2 className="heading">Tickets</h2>
+            <NavLink to="/tickets/new">
+                <button className="btn primary add-btn">
+                    <FaPlus className="icon" />
+                </button>
+            </NavLink>
 
             <table className="tickets-table">
 
