@@ -7,6 +7,11 @@
     border-radius: 12.5px;
     overflow-y: scroll;
     list-style: none;
+    position:relative;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
     
     .heading {
         color: lighten($darkGrey, 15%);
@@ -14,6 +19,22 @@
         font-size: 1.5rem;
         margin-bottom: .65em;
         padding: 1em 1.25em .25em;
+    }
+
+    .add-btn {
+        position:absolute;
+        top: 2em;
+        right: 2em;
+        width: 40px;
+        height: 40px;
+        transition: .5s ease-in-out;
+        padding: 0;
+
+        .icon {
+            right:50%;
+            top: 50%;
+            transform:translate(50%, -50%);
+        }
     }
 
     .tickets-table {
