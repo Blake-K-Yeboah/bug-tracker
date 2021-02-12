@@ -18,6 +18,7 @@ import SuccessAlert from '../../../alerts/SuccessAlert';
 
 // Import Types
 import { IAuthStore, IProjectStore, IUsersStore } from '../../../../types';
+import Axios from 'axios';
 
 // Props Interface
 interface PropsI {
@@ -46,8 +47,8 @@ let NewTicketContainer = ({ authStore, usersStore, projectStore }: PropsI) => {
     const [userInput, setUserInput] = useState<IUserInput>({
         owner: authStore!.user.id,
         text: '',
-        status: '',
-        dev: '',
+        status: 'not-started',
+        dev: usersStore!.users.length > 0 ? usersStore!.users.filter(user => user.role === "developer")[0]._id : '',
         priority: 1,
         projectId: ''
     });
@@ -61,6 +62,32 @@ let NewTicketContainer = ({ authStore, usersStore, projectStore }: PropsI) => {
     const [successShow, setSuccessShow] = useState<boolean>(false);
 
     // TODO Create Submit Handler
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const body = { 
+            ...userInput,
+            projectId: userInput.projectId === '' ? projectStore!.projects[0]._id : userInput.projectId,
+            dev: userInput.dev === '' ? usersStore!.users.filter(user => user.role === "developer")[0]._id : userInput.dev
+        };
+
+        Axios.post('/api/tickets/create', body).then(res => {
+            setErrorShow(false);
+            setSuccessShow(true);
+            setUserInput({
+                ...userInput,
+                text: '',
+                status: '',
+                dev: '',
+                priority: 1,
+                projectId: ''
+            });
+        }).catch(error => {
+            setSuccessShow(false);
+            setErrorShow(true);
+            console.log(error.response)
+        });
+    }
     
     return (
         <div className="new-ticket-container">
@@ -71,7 +98,7 @@ let NewTicketContainer = ({ authStore, usersStore, projectStore }: PropsI) => {
 
             <div className="form-container new-ticket-form-container">
 
-                <form className="new-ticket-form form">
+                <form className="new-ticket-form form" onSubmit={submitHandler}>
                     
                     {errorShow ? <ErrorAlert message="An error occured. Try again later" setShow={setErrorShow} /> : ''}
                     {successShow ? <SuccessAlert message="Successfully created!" setShow={setSuccessShow} /> : ''}
