@@ -69,7 +69,7 @@ let TicketList = ({ ticketStore, authStore }: PropsI) => {
 
                     {activeTickets.map((ticket) => {
 
-                        return <TableRow ticket={ticket} />
+                        return <TableRow ticket={ticket} key={ticket._id} />
 
                     })}
 
