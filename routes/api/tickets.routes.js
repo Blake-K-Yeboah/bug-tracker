@@ -168,4 +168,33 @@ router.delete('/:id', checkObjectId('id'), async (req, res) => {
 
 });
 
+// @route PUT api/tickets/:id/
+// @desc Update Ticket Details
+// @access Private
+router.put('/:id', checkObjectId('id'), async (req, res) => {
+
+    // Check if user is admin or project manager
+    const user = await User.findById(req.body.userId);
+
+    if (!user) return res.status(404).json({ user: "No user with that ID." });
+
+    if (user.role != "admin" && user.role != "project-manager") return res.status(401).json({ user: "You dont have permission." });
+
+    // Update Ticket
+    const updatedProperties = { [req.body.field]: req.body.value };
+    
+    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, updatedProperties);
+    
+    const newChange = new Change({
+        message: "updated a ticket",
+        type: "UPDATED_TICKET",
+        properties: JSON.stringify({ userId: req.body.userId })
+    });
+
+    const change = await newChange.save();
+
+    res.json(updatedTicket);
+
+});
+
 module.exports = router;
