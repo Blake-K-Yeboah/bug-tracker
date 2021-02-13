@@ -1,0 +1,36 @@
+@import '../../../style/variables';
+
+.not-found-section {
+    width:30vw;
+    height:40vh;
+    background: #fff;
+    border-radius:20px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+
+    .title {
+        font-weight: 500;
+        color: $darkGrey;
+        font-size: 2rem;
+        margin:0;
+    }
+
+    .text {
+        color: $grey;
+        width: 60%;
+        margin: 1.5em 0;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .btn {
+        margin-top: .5em;
+    }
+}
