@@ -36,6 +36,7 @@ import TicketPage from './components/pages/TicketPage/TicketPage';
 // Import Styling
 import './style/App.scss';
 import NewTicket from './components/pages/NewTicket/NewTicket';
+import NotFound from './components/pages/NotFound/NotFound';
 
 
 const App = () => {
@@ -135,6 +136,8 @@ const App = () => {
             return <TicketPage {...props} />
           }} />
 
+          <Route component={NotFound} />
+          
         </Switch>
 
       </Provider>
