@@ -205,6 +205,7 @@ const ListItem = ({ change }: PropsI) => {
             )
             break;
         case 'UPDATED_PROFILE':
+        case 'DELETED_TICKET':
             returnedJSX = (
                 <li className="list-item">
                     {!checkUser ? 
@@ -217,6 +218,13 @@ const ListItem = ({ change }: PropsI) => {
                 </li>
             )
             break;
+        // For Debugging
+        default:
+            returnedJSX = (
+                <li className="list-item">
+                    <p>{change.type}</p>
+                </li>
+            )
     }
 
     return returnedJSX as JSX.Element;
