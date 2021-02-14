@@ -32,11 +32,12 @@ import ManageProjectUsers from './components/pages/ManageProjectUsers/ManageProj
 import History from './components/pages/History/History';
 import Tickets from './components/pages/Tickets/Tickets';
 import TicketPage from './components/pages/TicketPage/TicketPage';
+import NewTicket from './components/pages/NewTicket/NewTicket';
+import NotFound from './components/pages/NotFound/NotFound';
+import EditTicket from './components/pages/EditTicket/EditTicket';
 
 // Import Styling
 import './style/App.scss';
-import NewTicket from './components/pages/NewTicket/NewTicket';
-import NotFound from './components/pages/NotFound/NotFound';
 
 
 const App = () => {
@@ -134,6 +135,11 @@ const App = () => {
           <Route exact path="/ticket/:id" render={(props) => {
             if (!authStore.isAuthenticated) return <Redirect to="/login" />
             return <TicketPage {...props} />
+          }} />
+
+          <Route exact path="/ticket/:id/edit" render={(props) => {
+            if (!authStore.isAuthenticated) return <Redirect to="/login" />
+            return <EditTicket {...props} />
           }} />
 
           <Route component={NotFound} />
