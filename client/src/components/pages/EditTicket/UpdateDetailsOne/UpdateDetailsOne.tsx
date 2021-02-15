@@ -103,7 +103,7 @@ let UpdateDetailsOne = ({ ticket, authStore, usersStore}: PropsI) => {
                             {usersStore!.users ? usersStore!.users.map(user => {
 
                                 if (user.role === 'developer') {
-                                    
+
                                     return <option key={user._id} value={user._id}>{user.name}</option>
 
                                 } else {
@@ -122,7 +122,17 @@ let UpdateDetailsOne = ({ ticket, authStore, usersStore}: PropsI) => {
 
                 </div>
             
-            </> : 'Loading'}
+            </> : <>
+            
+                <div className="loader title"></div>
+
+                <div className="loader input-label"></div>
+                <div className="loader input"></div>
+
+                <div className="loader input-label"></div>
+                <div className="loader input"></div>
+
+            </>}
 
         </div>
     )
