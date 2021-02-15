@@ -47,4 +47,30 @@
         }
 
     }
+
+    .loader {
+        animation: loader infinite 2s;
+
+        &.title {
+            margin: 1.5em;
+            width:250px;
+            height:40px;
+        }
+
+        &.input-label {
+            margin: 1em 2.25em;
+            width: 150px;
+            height: 25px;
+        }
+
+        &.input {
+            margin: 1em 2.25em;
+            width: 350px;
+            height: 35px;
+
+            &.larger {
+                width: 500px;
+            }
+        }
+    }
 }
