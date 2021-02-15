@@ -13,6 +13,7 @@ import './EditTicket.scss';
 // Import Types
 import { Iticket } from '../../../types';
 import Axios from 'axios';
+import UpdateDetailsOne from './UpdateDetailsOne/UpdateDetailsOne';
 
 // Props Interface
 interface PropsI {
@@ -60,7 +61,7 @@ const EditTicket = ({ match: { params: { id }}}: PropsI) => {
 
                 <div className="edit-ticket-page-grid">
 
-                    <div className="placeholder"></div>
+                    <UpdateDetailsOne ticket={ticket} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
