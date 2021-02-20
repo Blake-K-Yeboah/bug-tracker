@@ -8,15 +8,17 @@ import Navbar from '../../layout/Navbar/Navbar';
 import Sidebar from '../../layout/Sidebar/Sidebar';
 import UpdateDetailsOne from './UpdateDetailsOne/UpdateDetailsOne';
 import UpdateDetailsTwo from './UpdateDetailsTwo/UpdateDetailsTwo';
+import DangerZone from './DangerZone/DangerZone';
 
 // Import Styling
 import './EditTicket.scss';
 
 // Import Types
-import { Iticket } from '../../../types';
+import { Iproject, Iticket } from '../../../types';
 
 // Import Axios
 import Axios from 'axios';
+import Details from '../ProjectPage/Details/Details';
 
 // Props Interface
 interface PropsI {
@@ -30,18 +32,23 @@ interface PropsI {
 const EditTicket = ({ match: { params: { id }}}: PropsI) => {
 
     const [ticket, setTicket] = useState<Iticket | null>(null);
+    const [project, setProject] = useState<Iproject | null>(null);
 
     useEffect(() => {
 
-        // Fetch Ticket
-        const fetchTicket = async () => {
+        // Fetch Project And Ticket
+        const fetchProjectAndTicket = async () => {
 
             const res = await Axios.get(`/api/tickets/${id}`);
             setTicket(res.data);
 
+            const projectRes = await Axios.get(`/api/projects/${res.data.projectId}`);
+            setProject(projectRes.data);
+
         }
 
-        fetchTicket();
+        fetchProjectAndTicket();
+        
 
     }, [id]);
 
@@ -66,8 +73,8 @@ const EditTicket = ({ match: { params: { id }}}: PropsI) => {
 
                     <UpdateDetailsOne ticket={ticket} />
                     <UpdateDetailsTwo ticket={ticket} />
-                    <div className="placeholder"></div>
-                    <div className="placeholder"></div>
+                    <DangerZone ticket={ticket} />
+                    <Details project={project} />
 
                 </div>
 
