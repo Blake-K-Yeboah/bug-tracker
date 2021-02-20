@@ -17,7 +17,7 @@ const Legend = ({ values }: PropsI) => {
     const total = Object.values(values).reduce((total, value) => total + value);
 
     // Percentage Values to Output
-    const percentageValues = Object.values(values).map(value => Math.floor((value / total) * 100));
+    const percentageValues = Object.values(values).map(value => Math.round((value / total) * 1000) / 10); // Round to one decimal place for ease of reading
 
     return (
         <div className="legend">
