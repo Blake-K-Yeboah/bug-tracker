@@ -206,6 +206,7 @@ const ListItem = ({ change }: PropsI) => {
             break;
         case 'UPDATED_PROFILE':
         case 'DELETED_TICKET':
+        case 'UPDATED_TICKET':
             returnedJSX = (
                 <li className="list-item">
                     {!checkUser ? 
