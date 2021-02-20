@@ -6,14 +6,17 @@ import { Helmet } from 'react-helmet';
 // Import Components
 import Navbar from '../../layout/Navbar/Navbar';
 import Sidebar from '../../layout/Sidebar/Sidebar';
+import UpdateDetailsOne from './UpdateDetailsOne/UpdateDetailsOne';
+import UpdateDetailsTwo from './UpdateDetailsTwo/UpdateDetailsTwo';
 
 // Import Styling
 import './EditTicket.scss';
 
 // Import Types
 import { Iticket } from '../../../types';
+
+// Import Axios
 import Axios from 'axios';
-import UpdateDetailsOne from './UpdateDetailsOne/UpdateDetailsOne';
 
 // Props Interface
 interface PropsI {
@@ -62,7 +65,7 @@ const EditTicket = ({ match: { params: { id }}}: PropsI) => {
                 <div className="edit-ticket-page-grid">
 
                     <UpdateDetailsOne ticket={ticket} />
-                    <div className="placeholder"></div>
+                    <UpdateDetailsTwo ticket={ticket} />
                     <div className="placeholder"></div>
                     <div className="placeholder"></div>
 
