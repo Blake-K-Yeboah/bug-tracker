@@ -105,3 +105,32 @@
         }
     }
 }
+
+@media screen and (max-width: 602px) {
+    .form-container {
+        min-width: 300px;
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 492px) {
+    .form-container {
+        min-width: 0px;
+        width: 85vw;
+        min-height: 60vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        * { margin: 0; }
+
+        .title {
+            font-size: 1.75rem;
+        }
+
+        .sub-text {
+            font-size: .85rem;
+        }
+    }
+}
