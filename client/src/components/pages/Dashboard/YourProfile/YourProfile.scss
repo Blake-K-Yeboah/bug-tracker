@@ -33,6 +33,7 @@
             position:relative;
             left: 5em;
             top: 25px;
+            width: 45%;
 
             .profile-name {
                 color: $darkGrey;
@@ -43,7 +44,6 @@
             .profile-bio {
                 color: $grey;
                 padding-top: 5px;
-                max-width: 380px;
                 width: 100%;
                 line-height: 1.5;
             }
