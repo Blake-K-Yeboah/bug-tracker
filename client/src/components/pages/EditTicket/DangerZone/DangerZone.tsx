@@ -4,7 +4,7 @@ import React from 'react'
 import './DangerZone.scss';
 
 // Import Types
-import { Iticket } from '../../../../types';
+import { IAuthStore, Iticket } from '../../../../types';
 
 // Import Hook
 import { useHistory } from 'react-router-dom';
@@ -12,18 +12,25 @@ import { useHistory } from 'react-router-dom';
 // Import Axios
 import Axios from 'axios';
 
+// Import MobX Stuff
+import { inject, observer } from 'mobx-react';
+
 // Props Interface 
 interface PropsI {
-    ticket: Iticket | null
+    ticket: Iticket | null,
+    authStore?: IAuthStore
 }
 
-const DangerZone = ({ ticket }: PropsI) => {
+let DangerZone = ({ ticket, authStore }: PropsI) => {
 
     // Define History
     let history = useHistory();
 
     const deleteTicket = () => {
-        Axios.delete(`/api/tickets/${ticket!._id}`).then(res => {
+
+        const body = { userId: authStore!.user.id };
+
+        Axios.delete(`/api/tickets/${ticket!._id}`, { data: body }).then(res => {
             alert('Ticket Deleted');
             history.push('/tickets');
         }).catch(err => {
@@ -43,7 +50,7 @@ const DangerZone = ({ ticket }: PropsI) => {
 
                     <p className="desc">Delete entire ticket including all comments</p>
 
-                    <button className="btn danger" onClick={deleteTicket} >Delete Project</button>
+                    <button className="btn danger" onClick={deleteTicket} >Delete Ticket</button>
 
                 </div>
 
@@ -59,5 +66,8 @@ const DangerZone = ({ ticket }: PropsI) => {
         </div>
     )
 }
+
+// Inject Store
+DangerZone = inject('authStore')(observer(DangerZone));
 
 export default DangerZone
