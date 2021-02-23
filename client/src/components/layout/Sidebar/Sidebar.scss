@@ -61,9 +61,9 @@
         color: $grey;
         font-size: .75em;
         position:absolute;
-        left:50%;
         bottom: 20px;
-        transform:translateX(-50%);
+        text-align:center;
+        width:100%;
 
         &:first-of-type {
             bottom: 40px;
@@ -72,5 +72,76 @@
         .link {
             color: $primary;
         }
+    }
+
+    .sidebar-toggler {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 1419px) {
+
+    .sidebar {
+        width: 25vw;
+        
+        .sidebar-brand, .links-list{
+            margin-left: 2.5em;
+
+            .sidebar-brand-heading {
+                font-size: 1.35rem;
+            }
+
+            .links-list-item .link {
+                font-size: .9rem;
+            }
+        }
+
+    }
+
+}
+
+@media screen and (max-width:1047px) {
+
+    .sidebar {
+        width:275px;
+        height: 60px;
+        margin-top: .6em;
+        border-radius: 0px 0px 10px 0px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+        z-index: 1;
+
+        .sidebar-toggler {
+            display:block;
+            line-height: 60px;
+            text-align:center;
+            color: $darkGrey;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color .3s ease-in-out;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+
+        * {
+            display:none;
+        }
+
+        &.shown {      
+            top: 50px;
+            height: calc(100vh - 50px);
+            box-shadow: 0px 0px 100px rgba(0,0,0,0.5);
+
+            * {
+                display:block;
+            }
+
+            .small-text .link {
+                display:inline;
+            }
+
+        }
+
     }
 }
