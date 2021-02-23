@@ -45,3 +45,18 @@
         padding-right: 4em;
     }
 }
+
+@media screen and (max-width: 612px) {
+
+    .navbar {
+
+        .navbar-brand {
+            margin-left: 1.5em;
+        }
+
+        .right-side-content {
+            padding-right: 2em;
+        }
+
+    }
+}
