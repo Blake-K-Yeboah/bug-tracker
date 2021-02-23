@@ -101,3 +101,10 @@
     }
 
 }
+
+@media screen and (max-width: 554px) {
+
+    .search .search-input {
+        display:none;
+    }
+}
