@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Import Styling
 import './Sidebar.scss';
@@ -39,9 +39,13 @@ let Sidebar = ({ authStore }: PropsI) => {
     )
 
     const year: number = new Date().getFullYear();
+    
+    const [mobileShow, setMobileShow] = useState<boolean>(false);
 
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${mobileShow ? 'shown' : ''}`}>
+
+            <h3 className="sidebar-toggler" onClick={() => setMobileShow(!mobileShow)}>{mobileShow ? '< CLOSE SIDEBAR' : 'OPEN SIDEBAR >'}</h3>
 
             <div className="sidebar-brand">
 
