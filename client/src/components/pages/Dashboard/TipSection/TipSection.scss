@@ -31,3 +31,31 @@
         }
     }
 }
+
+@media screen and (max-width:1419px) {
+    .tip-section {
+        
+        .tip {
+            width: 75%;
+        }
+        
+        .tip:first-of-type {
+            display:none;
+        }
+    }
+}
+
+@media screen and (max-width: 1272px) {
+
+    .tip-section .tip:first-of-type {
+        display:block;
+    }
+}
+
+@media screen and (max-width: 1047px) {
+
+    .tip-section .tip {
+        font-size: .8rem;
+        width: 90%;
+    }
+}
