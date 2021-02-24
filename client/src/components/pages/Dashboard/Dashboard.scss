@@ -60,3 +60,22 @@
         }
     }
 }
+
+@media screen and (max-width: 865px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        width: calc(100vw - 4em);
+        margin-left: -2em;
+
+        .grid-item-container {
+            display:block;
+
+            & > * {
+                margin-bottom: 2em;
+                height: 60%;
+            }
+        }
+    }
+
+}
