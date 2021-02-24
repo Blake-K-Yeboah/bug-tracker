@@ -20,7 +20,6 @@
         color: $primary;
         text-decoration: none;
         margin: 1em 0 0 2em;
-        width: 75px;
 
         &:hover {
             text-decoration: underline;
@@ -31,5 +30,19 @@
         color: lighten($grey, 20%);
         margin: 1em 0 0 2em;
         cursor: default;
+    }
+}
+
+@media screen and (max-width: 595px) {
+    .latest-activity-container {
+        text-align:center;
+
+        .view-all-link {
+            margin-left: 0;
+        }
+
+        .heading {
+            padding-left: 0;
+        }
     }
 }

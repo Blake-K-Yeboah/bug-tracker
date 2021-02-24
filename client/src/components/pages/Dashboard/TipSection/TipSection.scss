@@ -59,3 +59,17 @@
         width: 90%;
     }
 }
+
+@media screen and (max-width:502px) {
+    .tip-section {
+
+        .heading {
+            text-align:center;
+            padding: 2em 0 0 0;
+        }
+
+        .tip {
+            text-align:center;
+        }
+    }
+}

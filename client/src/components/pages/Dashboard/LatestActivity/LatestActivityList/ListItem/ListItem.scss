@@ -39,3 +39,19 @@
     }
 
 }
+
+@media screen and (max-width: 595px) {
+    .latest-activity-list .list-item {
+        justify-content: center;
+        
+    }
+}
+
+@media screen and (max-width:502px) {
+    .latest-activity-list .list-item {
+
+        .message {
+            font-size: .75rem;
+        }
+    }
+}

@@ -74,3 +74,38 @@
     }
 
 }
+
+@media screen and (max-width:502px) {
+
+    .your-profile {
+
+        .your-profile-grid {
+            display:block;
+
+            .profile-icon {
+                position:relative;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-bottom: 20px;
+            }
+
+            .content {
+                margin: 0 auto;
+                text-align:center;
+                left:0;
+            }
+        }
+
+        .heading {
+            text-align:center;
+            padding-left: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .your-profile .your-profile-grid .content {
+        width: 80%;
+    }
+}
