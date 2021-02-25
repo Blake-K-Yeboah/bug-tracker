@@ -45,6 +45,15 @@
 @media screen and (max-width: 865px) {
     .page-content .page-title {
         text-align:center;
-        margin-left: calc(-1 * (50px + 5vh));
+        margin: 0 auto;
+        width: 70%;
+        position:relative;
+        left: -1em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .page-content .page-title {
+        width: 85%;
     }
 }
