@@ -114,7 +114,7 @@
 }
 
 @media screen and (max-width: 492px) {
-    .form-container {
+    .form-container:not(.special) {
         min-width: 0px;
         width: 85vw;
         min-height: 60vh;
