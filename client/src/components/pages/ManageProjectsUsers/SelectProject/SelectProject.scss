@@ -10,6 +10,7 @@
     left: 60%;
     top:53.5%;
     transform:translate(-50%, -50%);
+    min-width:300px;
 
     .heading {
         color: lighten($darkGrey, 15%);
@@ -24,5 +25,24 @@
         left:50%;
         transform:translateX(-50%);
         margin-top: 2em;
+    }
+
+    .form-container {
+        margin-top: 2em;
+    }
+}
+
+@media screen and (max-width: 1047px) {
+    .select-project {
+        left:50%;
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 502px) {
+    .select-project {
+        width: 85vw;
+        height: 60vh;
+        top: 57%;
     }
 }

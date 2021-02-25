@@ -40,7 +40,7 @@ let SelectProject = ({ projectStore }: PropsI) => {
 
             <h2 className="heading">Select A Project</h2>
 
-            <div className="form-container">
+            <div className="form-container special">
 
                 <form className="form">
 

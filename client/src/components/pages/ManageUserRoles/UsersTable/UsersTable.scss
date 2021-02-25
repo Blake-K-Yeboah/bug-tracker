@@ -92,3 +92,69 @@
         }
     }
 }
+
+@media screen and (max-width:1420px) {
+    .users-table-container {
+        width:65vw;
+    }
+}
+
+@media screen and (max-width: 1323px) {
+    .users-table-container .users-table .row .table-data {
+        font-size: .75rem;
+
+        select {
+            font-size: .65rem;
+            width: 100px;
+        }
+
+        .btn {
+            font-size: .65rem;
+            margin-left: 7.5px;
+        }
+    }
+}
+
+@media screen and (max-width: 1105px) {
+    .users-table-container {
+
+        .table-title {
+            position:fixed;
+        }
+
+        .users-table {
+            min-width: 700px;
+            margin-top: 3em;
+        }
+    }
+}
+
+@media screen and (max-width:1047px) {
+    .users-table-container {
+        width: calc(100% - 4em);
+        margin-left: 0em;
+    }
+}
+
+@media screen and (max-width:865px) {
+    .users-table-container {
+        .table-title {
+            text-align:center;
+            left:50%;
+            transform:translateX(-50%);
+        }
+
+        .users-table {
+            margin-top: 4em;
+            margin-left: -1em;
+        }
+    }
+}
+
+@media screen and (max-width: 502px) {
+    .users-table-container {
+        .users-table {
+            margin-top: 6em;
+        }
+    }
+}
