@@ -36,3 +36,34 @@
         transform:translateY(-50%);
     }
 }
+
+@media screen and (max-width:1420px) {
+    .project-actions-bar {
+        width:65vw;
+    }
+}
+
+@media screen and (max-width:1047px) {
+    .project-actions-bar {
+        width: calc(100% - 4em);
+        margin-left: 0em;
+    }
+}
+
+@media screen and (max-width: 865px) {
+    .project-actions-bar {
+        margin-top: 2em;
+    }
+}
+
+@media screen and (max-width: 569px) {
+    .project-actions-bar {
+        min-height: 150px;
+
+        .btn {
+            position:relative;
+            top: 2em;
+            left:0;
+        }
+    }
+}
