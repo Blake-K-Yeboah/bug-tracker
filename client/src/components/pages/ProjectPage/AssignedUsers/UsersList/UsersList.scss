@@ -24,3 +24,16 @@
         }
     }
 }
+
+@media screen and (max-width:1639px) {
+    .users-list {
+        column-gap: 1.5em;
+    }    
+}
+
+@media screen and (max-width:1420px) {
+    .users-list {
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 3em;
+    }
+}

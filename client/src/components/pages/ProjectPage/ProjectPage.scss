@@ -4,6 +4,26 @@
     grid-template-rows: 1fr 1fr;
     width:70vw;
     margin-top: 2em;
-    height: 70vh;  
+    min-height: 70vh;  
     gap: 2em;
+}
+
+@media screen and (max-width:1420px) {
+    .project-page-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        width:65vw;
+        margin-bottom: 5em;
+        gap: 4em;
+
+        & > div {
+            height: 110%;
+        }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .project-page-grid {
+        width: 87.5vw;
+    }
 }
