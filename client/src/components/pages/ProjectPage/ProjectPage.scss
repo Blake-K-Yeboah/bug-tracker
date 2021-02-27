@@ -1,7 +1,6 @@
 .project-page-grid {
     display:grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     width:70vw;
     margin-top: 2em;
     min-height: 70vh;  
@@ -11,7 +10,6 @@
 @media screen and (max-width:1420px) {
     .project-page-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
         width:65vw;
         margin-bottom: 5em;
         gap: 4em;
