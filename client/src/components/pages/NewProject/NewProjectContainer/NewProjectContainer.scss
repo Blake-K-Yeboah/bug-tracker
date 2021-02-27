@@ -41,3 +41,34 @@
         }
     }
 }
+
+@media screen and (max-width:1420px) {
+    .new-project-container {
+        width: 45vw;
+    }
+}
+
+@media screen and (max-width:1050px) {
+    .new-project-container {
+        left:50%;
+        top:56.67%;
+        width: 80vw;
+
+        .back-to-projects {
+            top: 1.25em;
+        }
+    }
+}
+
+@media screen and (max-width:552px) {
+    .new-project-container {
+        min-height: 75vh;
+        width: 90vw;
+
+        .back-to-projects {
+            left: 50%;
+            transform:translateX(-50%);
+            top: 2em;
+        }
+    }
+}
