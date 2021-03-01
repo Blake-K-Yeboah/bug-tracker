@@ -65,3 +65,28 @@
         gap: 2em;
     }
 }
+
+@media screen and (max-width:555px) {
+    .assigned-users {
+
+        .title {
+            font-size: 1.25rem;
+        } 
+
+        .sub-text {
+            font-size: .9rem;
+            margin: .5em 0em 1em 1.35em;
+        }
+
+        .edit-btn {
+            height: 30px;
+            width: 30px;
+            top: 1em;
+            right: 2em;
+
+            .icon {
+                font-size: 1.15rem;
+            }
+        }
+    }
+}

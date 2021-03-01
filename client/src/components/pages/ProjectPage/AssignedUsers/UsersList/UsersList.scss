@@ -37,3 +37,15 @@
         column-gap: 3em;
     }
 }
+
+@media screen and (max-width: 802px) {
+    .users-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 593px) {
+    .users-list {
+        grid-template-columns: 1fr;
+    }
+}

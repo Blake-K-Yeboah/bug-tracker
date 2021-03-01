@@ -1,13 +1,12 @@
 @import '../../../../../style/variables';
 
 .ticket-table {
-    margin: -.5em auto 0 auto;
-    width: calc(100% - 3.25em);
+    margin: -.5em 0 0 1.75em;
+    width: 600px;
     text-align:left;
     overflow-y: scroll;
     height: 195px;
     display: block;
-    white-space: nowrap;
 
     &::-webkit-scrollbar {
         width: 5px;
@@ -133,5 +132,23 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width:1420px) {
+    .ticket-table {
+        width: 62.5vw;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .ticket-table {
+        width: 83.5vw;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .ticket-table {
+        width: 600px;
     }
 }

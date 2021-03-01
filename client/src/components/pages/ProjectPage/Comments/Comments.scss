@@ -4,7 +4,7 @@
 .comment-section {
     background: #fff;
     height:100%;
-    width:100%;
+    min-width:100%;
     border-radius: 10px;
 
     .title {
@@ -33,6 +33,15 @@
             margin: 1em 1.5em;
             height: 25px;
             width: 75%;
+        }
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .comment-section {
+
+        .title {
+            font-size: 1.25rem !important;
         }
     }
 }

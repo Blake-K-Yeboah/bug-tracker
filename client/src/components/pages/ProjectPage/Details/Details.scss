@@ -65,3 +65,27 @@
         }
     }
 }
+
+@media screen and (max-width: 555px) {
+    .project-details {
+
+        .project-title {
+            font-size: 1.25rem;
+        } 
+
+        .project-detail {
+            font-size: .85rem;
+        }
+
+        .edit-btn {
+            height: 30px;
+            width: 30px;
+            top: 1em;
+            right: 2em;
+
+            .icon {
+                font-size: 1.15rem;
+            }
+        }
+    }
+}

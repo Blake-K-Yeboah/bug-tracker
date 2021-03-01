@@ -26,3 +26,17 @@
         padding: 0;
     }
 }
+
+@media screen and (max-width:555px) {
+    .new-comment {
+        width: 100% !important;
+
+        .comment-input {
+            width: 75% !important;
+        }
+
+        .btn {
+            width: 20% !important;
+        }
+    }
+}
