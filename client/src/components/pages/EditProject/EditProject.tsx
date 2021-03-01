@@ -17,9 +17,6 @@ import History from './ProjectHistory/History';
 // Import Axios
 import Axios from 'axios';
 
-// Import NavLink
-import { NavLink } from 'react-router-dom';
-
 // Import Types
 import { Iproject } from '../../../types';
 
@@ -72,8 +69,6 @@ const EditProject = ({ match: { params: { id }} }: PropsI) => {
                     <AssignedUsers project={project} />
 
                 </div>
-
-                <NavLink to={`/project/${id}`} className="page-link">&lt; Back to project</NavLink>
                 
             </div>
 
