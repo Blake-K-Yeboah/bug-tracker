@@ -7,6 +7,7 @@
     width:100%;
     border-radius: 10px;
     position:relative;
+    overflow-x:auto;
 
     .title {
         color: $darkGrey;
@@ -44,6 +45,26 @@
             margin: 1.25em 1.5em;
             width: 75%;
             height: 35px;
+        }
+    }
+}
+
+@media screen and (max-width:555px) {
+    .ticket-section {
+
+        .title {
+            font-size: 1.25rem;
+        }
+
+        .add-btn {
+            height: 30px;
+            width: 30px;
+            top: 1em;
+            right: 2em;
+
+            .icon {
+                font-size: 1.15rem;
+            }
         }
     }
 }
