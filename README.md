@@ -25,10 +25,7 @@ A full stack application built with the MERN stack that has features like user r
 - Track all changes made including (created elements, edited and deleted)
 - Search users and projects
 - Edit profile information (including uploading a profile picture)
-
-## Future Features
 - Create, edit and delete tickets
-
 
 ## Technologies
 - MERN Stack (MongoDB, Express, React and Node.js)
