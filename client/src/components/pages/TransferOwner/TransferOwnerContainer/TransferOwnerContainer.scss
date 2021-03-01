@@ -24,4 +24,33 @@
         left:50%;
         transform:translateX(-50%);
     }
+
+    .form-container {
+        margin-top: 2em;
+    }
+}
+
+@media screen and (max-width:1047px) {
+    .transfer-owner-container {
+        left: 50%;
+        width: 65vw;
+        top: 56.67%;
+    }
+}
+
+@media screen and (max-width: 682px) {
+    .transfer-owner-container {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 494px) {
+    .transfer-owner-container {
+        height: 75vh;
+        width:90vw;
+
+        .form-container {
+            margin-top: 4em;
+        }
+    }
 }
