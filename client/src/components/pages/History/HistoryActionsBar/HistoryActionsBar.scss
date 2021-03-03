@@ -29,3 +29,28 @@
         border-radius: 5px;
    }
 }
+
+@media screen and (max-width:1420px) {
+    .history-actions-bar {
+        width:65vw;
+    }
+}
+
+@media screen and (max-width: 1047px) {
+    .history-actions-bar {
+        width: calc(100% - 4em);
+    }
+}
+
+@media screen and (max-width:865px) {
+    .history-actions-bar {
+        margin-top: 2em;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .history-actions-bar {
+        width: calc(100% - 2em);
+        margin-left: -1em;
+    }
+}

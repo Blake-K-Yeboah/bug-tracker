@@ -94,6 +94,7 @@
                         color: $darkGrey;
                         line-height: 60px;
                         margin-left: 10px;
+                        line-height: 1.2em;
                 
                         .link {
                             font-weight: bold;
@@ -111,4 +112,52 @@
         }     
     }
     
+}
+
+@media screen and (max-width: 1420px) {
+    .change-table-container {
+        width:65vw;
+    }
+}
+
+@media screen and (max-width: 1332px) {
+    .change-table-container .change-table .row .list-item-td .list-item {
+
+        .profile-icon {
+            width: 30px;
+            height:30px
+        }
+
+        .message {
+            font-size: .85rem;
+        }
+    }
+}
+
+@media screen and (max-width: 1141px) {
+    .change-table-container .change-table .row .date {
+        font-size: .85rem;
+    }
+}
+
+@media screen and (max-width: 1047px) {
+    .change-table-container {
+        width: calc(100% - 4em);
+
+        .change-table {
+            min-width: 600px;
+            margin-left:2em;
+        }
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .change-table-container {
+        width: calc(100% - 2em);
+        margin-left:-1em;
+
+        .heading {
+            text-align:center;
+        }
+    }
 }
