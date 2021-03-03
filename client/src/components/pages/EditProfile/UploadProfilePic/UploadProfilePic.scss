@@ -99,3 +99,25 @@
         }
     }
 }
+
+@media screen and (max-width:555px) {
+    .upload-profile-pic {
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .file-preview-section {
+            padding-left:2em;
+            margin-top: 2em;
+
+            .preview-img {
+                left:0;
+                top: 1em;
+                transform:none;
+                width:125px;
+                height:125px;
+            }
+        }
+    }
+}
