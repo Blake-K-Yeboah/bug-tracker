@@ -17,9 +17,6 @@ import UserHistory from './UserHistory/UserHistory';
 // Import Axios
 import Axios from 'axios';
 
-// Import NavLink
-import { NavLink } from 'react-router-dom';
-
 // Import Types
 import { Iuser } from '../../../types';
 
@@ -73,8 +70,6 @@ const EditProfile = ({ match: { params: { id }}}: PropsI) => {
                     <UserHistory user={user} />
 
                 </div>
-
-                <NavLink to={`/profile/${id}`} className="page-link">&lt; Back to profile</NavLink>
                 
             </div>
 
