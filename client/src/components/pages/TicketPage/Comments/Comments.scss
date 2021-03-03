@@ -36,3 +36,12 @@
         }
     }
 }
+
+@media screen and (max-width: 555px) {
+    .comment-section {
+
+        .title {
+            font-size: 1.25rem !important;
+        }
+    }
+}
