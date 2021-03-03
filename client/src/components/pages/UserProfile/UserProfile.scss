@@ -6,3 +6,40 @@
     margin-top: 2em;
     height: 70vh;  
 }
+
+@media screen and (max-width: 1420px) {
+    .user-profile-grid {
+        width: 65vw;
+        column-gap: 1.5em;
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media screen and (max-width: 1047px) {
+    .user-profile-grid {
+        width: calc(100% - 4em);
+    }
+}
+
+@media screen and (max-width: 865px) {
+    .user-profile-grid {
+        grid-template-columns: 1fr;
+        gap: 3em;
+        width: 50vw;
+        margin-left: calc(25vw - 4em);
+    }
+}
+
+@media screen and (max-width: 763px) {
+    .user-profile-grid {
+        width: 75vw;
+        margin-left: calc(12.5vw - 4em);
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .user-profile-grid {
+        width: calc(100% - 2em);
+        margin-left: -1em;
+    }
+}
