@@ -74,3 +74,13 @@
         }
     }
 }
+
+@media screen and (max-width: 555px) {
+    .update-details-one .input-container {
+        width: 85%;
+    }
+
+    .update-details-one .title {
+        width:90%;
+    }
+}

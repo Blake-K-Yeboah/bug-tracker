@@ -7,3 +7,30 @@
     height: 70vh;  
     gap: 2em;
 }
+
+@media screen and (max-width:1420px) {
+    .edit-ticket-page-grid {
+        grid-template-columns: 1fr;
+        width:65vw;
+        margin-bottom: 5em;
+        gap: 4em;
+
+        & > div {
+            height: 110%;
+        }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .edit-ticket-page-grid {
+        width: calc(100% - 4em);
+        margin-left: -0em;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .edit-ticket-page-grid {
+        width: 100%;
+        margin-left: -2em;
+    }
+}
