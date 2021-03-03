@@ -2,8 +2,6 @@
 
 A full stack application built with the MERN stack that has features like user roles, authentication, crud functionality and more.
 
-> This project is still being built
-
 ## Getting Started
 1. Either fork or download the app and open the folder in the cli
 2. Install all dependencies using either `npi i` or `yarn install`
