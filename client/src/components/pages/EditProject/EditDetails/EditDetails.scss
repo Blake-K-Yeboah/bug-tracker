@@ -90,9 +90,26 @@
     }
 }
 
+@media screen and (max-width: 1420px) {
+    .edit-details .edit-input-container.large {
+        width: 60%;
+
+        .input-group {
+
+            input {
+                width: 75%;
+            }
+
+            .input-group-btn {
+                width: 25%;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 701px) {
     .edit-details {
-        .edit-input-container {
+        .edit-input-container, .edit-input-container.large {
             width: 85%;
         }
     }
