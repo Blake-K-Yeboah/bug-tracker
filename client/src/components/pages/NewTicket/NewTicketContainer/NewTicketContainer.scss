@@ -41,3 +41,23 @@
         }
     }
 }
+
+@media screen and (max-width: 1047px) {
+    .new-ticket-container {
+        width: 60vw;
+        left:50%;
+        top: 56.67%;
+    }
+}
+
+@media screen and (max-width: 672px) {
+    .new-ticket-container {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 498px) {
+    .new-ticket-container {
+        width: 90vw;
+    }
+}
