@@ -47,3 +47,28 @@
         margin-top: 1em;
     }
 }
+
+@media screen and (max-width: 555px) {
+    .activity-list {
+        justify-content: center;
+        align-items:center;
+        padding-left: 0;
+        margin: 3em 0 0 0;
+
+        .list-item {
+            .message {
+                font-size: .75rem;
+            }
+            .profile-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        .ending-text {
+            font-size: .9rem;
+            width: 75%;
+            text-align:center;
+        }
+    }
+}

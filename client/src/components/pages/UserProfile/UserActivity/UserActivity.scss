@@ -20,3 +20,17 @@
         margin: 1em 0 0 2em;
     }
 }
+
+@media screen and (max-width:555px) {
+    .user-activity {
+
+        .title {
+            text-align:center;
+            padding: 1em 0 0 0;
+        }
+
+        .divider {
+            margin: 1em auto 0 auto;
+        }
+    }
+}
