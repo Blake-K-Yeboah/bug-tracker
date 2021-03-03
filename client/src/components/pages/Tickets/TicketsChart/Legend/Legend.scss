@@ -43,3 +43,23 @@
         }
     }
 }
+
+@media screen and (max-width:555px) {
+    .legend {
+        margin:0 auto;
+
+        .title {
+            text-align:center;
+        }
+
+        .pair {
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width:400px) {
+    .legend {
+        width:60%;
+    }
+}

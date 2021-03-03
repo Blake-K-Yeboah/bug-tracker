@@ -40,6 +40,7 @@
     .tickets-table {
         width: 90%;
         margin-left:5%;
+        min-width: 500px;
 
         &::-webkit-scrollbar {
             width: 5px;
@@ -125,4 +126,15 @@
         
      }
 
+}
+
+@media screen and (max-width: 865px) {
+    .ticket-list {
+        min-height: 35vh;
+        width: 100%;
+
+        .tickets-table {
+            margin-top: 2em;
+        }
+    }
 }
