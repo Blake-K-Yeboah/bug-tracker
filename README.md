@@ -4,7 +4,7 @@ A full stack application built with the MERN stack that has features like user r
 
 ## Getting Started
 1. Either fork or download the app and open the folder in the cli
-2. Install all dependencies using either `npi i` or `yarn install`
+2. Install all dependencies using either `npm i` or `yarn install`
 3. Start the server using the `yarn dev` command. (or using npm: `npm run dev`)
 4. Go to http://localhost:3000/ to view the app. The server is hosted on port 5000.
 
