@@ -78,6 +78,11 @@
                         border-color: #ffbb00;
                     }
 
+                    &:focus {
+                        color: $primary;
+                        border-color: $primary;
+                    }
+
                     option {
                         color: #000;
                     }
