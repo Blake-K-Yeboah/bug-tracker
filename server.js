@@ -22,15 +22,15 @@ const passport = require('passport');
 // Require fileUplaod
 const fileUpload = require('express-fileupload');
 
-// Require Helmet
-const helmet = require('helmet');
-
 // Require Routers
 const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
 const projects = require('./routes/api/projects.routes');
 const comments = require('./routes/api/comments.routes');
 const tickets = require('./routes/api/tickets.routes');
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 // Bodyparser middleware
 app.use(
@@ -42,10 +42,10 @@ app.use(
 app.use(bodyParser.json());
 
 // CORS
-app.use(cors());
-
-// Use Helpmet for improved security
-app.use(helmet());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 // DB Config
 const db = process.env.MONGOURI || require("./config/keys").mongoURI;
@@ -79,8 +79,6 @@ app.use('/api/comments', comments);
 app.use('/api/tickets', tickets);
 
 // Serve React App
-app.use(express.static(path.join(__dirname, "client", "build")));
-
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
