@@ -16,6 +16,9 @@ const passport = require('passport');
 // Require fileUplaod
 const fileUpload = require('express-fileupload');
 
+// Require Helmet
+const helmet = require('helmet');
+
 // Require Routers
 const users = require('./routes/api/user.routes');
 const changes = require('./routes/api/changes.routes');
@@ -34,6 +37,9 @@ app.use(bodyParser.json());
 
 // CORS
 app.use(cors());
+
+// Use Helpmet for improved security
+app.use(helmet());
 
 // DB Config
 const db = process.env.MONGOURI || require("./config/keys").mongoURI;
@@ -66,7 +72,14 @@ app.use('/api/projects', projects);
 app.use('/api/comments', comments);
 app.use('/api/tickets', tickets);
 
-// Port Environment Variable or 5000
-const port = process.env.PORT || '5000';
+// Serve React App
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+// Port Environment Variable or 8000
+const port = process.env.PORT || '8000';
 
 app.listen(port, () => console.log(`Server Listening on Port: ${port}`));
