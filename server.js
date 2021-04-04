@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// Setup Environment Variables
+require("dotenv").config();
+
 // Require Mongoose for DB
 const mongoose = require('mongoose');
 
