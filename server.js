@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 // Require Body Parser
 const bodyParser = require('body-parser');
 
+// Require Path
+const path = require("path");
+
 // Require Cors
 const cors = require('cors');
 
