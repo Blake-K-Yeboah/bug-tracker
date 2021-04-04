@@ -46,7 +46,7 @@ let SelectProject = ({ projectStore }: PropsI) => {
 
                     <div className="form-group">
 
-                        <label className="input-label" htmlFor="project">Project</label>
+                        <label className="input-label" htmlFor="project">Select Project</label>
 
                         <select className="select" id="project" value={projectId} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setProjectId(e.target.value)}>
 
