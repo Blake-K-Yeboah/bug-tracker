@@ -33,4 +33,8 @@ A full stack application built with the MERN stack that has features like user r
 
 ## What the app looks like
 ### Dashboard
-![Dashboard](https://github.com/Blake-K-Yeboah/bug-tracker/blob/master/Bug%20Tracker.png?raw=true)
+![Dashboard](https://github.com/Blake-K-Yeboah/bug-tracker/blob/master/readme_screenshots/Dashboard.jpg?raw=true)
+### Tickets
+![Tickets](https://github.com/Blake-K-Yeboah/bug-tracker/blob/master/readme_screenshots/Tickets.jpg?raw=true)
+### Profile
+![Profile](https://github.com/Blake-K-Yeboah/bug-tracker/blob/master/readme_screenshots/Profile.jpg?raw=true)
