@@ -34,6 +34,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && yarn install && yarn run build"
   },
   "engines": {
-    "node": "12.19.0"
+    "node": "12.19.0",
+    "yarn": "1.22.5"
   }
 }
