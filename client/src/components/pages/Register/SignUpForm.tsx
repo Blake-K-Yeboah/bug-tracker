@@ -97,31 +97,36 @@ let SignUpForm = ({ authStore }: PropsI) => {
             password: "1234abcd",
         };
 
-        axios.post("/api/users/login", demoUserDetails).then((res) => {
-            // Set token to localStorage
-            const { token }: { token: string } = res.data;
+        axios
+            .post("/api/users/login", demoUserDetails)
+            .then((res) => {
+                // Set token to localStorage
+                const { token }: { token: string } = res.data;
 
-            localStorage.setItem("jwtToken", token);
+                localStorage.setItem("jwtToken", token);
 
-            authStore!.setToken(token);
+                authStore!.setToken(token);
 
-            // Set token to Auth header
-            if (token) {
-                // Apply authorization token to every request if logged in
-                axios.defaults.headers.common["Authorization"] = token;
-            } else {
-                // Delete auth header
-                delete axios.defaults.headers.common["Authorization"];
-            }
+                // Set token to Auth header
+                if (token) {
+                    // Apply authorization token to every request if logged in
+                    axios.defaults.headers.common["Authorization"] = token;
+                } else {
+                    // Delete auth header
+                    delete axios.defaults.headers.common["Authorization"];
+                }
 
-            // Decode token to get user data
-            const decoded: Iuser = jwt_decode(token);
+                // Decode token to get user data
+                const decoded: Iuser = jwt_decode(token);
 
-            // Set current user
-            authStore!.setCurrentUser(decoded);
+                // Set current user
+                authStore!.setCurrentUser(decoded);
 
-            history.push("/dashboard");
-        });
+                history.push("/dashboard");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
