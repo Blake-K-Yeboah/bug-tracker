@@ -6,9 +6,6 @@ import { inject, observer } from "mobx-react";
 // Import Styling
 import "./ListItem.scss";
 
-// Import Axios
-import Axios from "axios";
-
 // Import Nav Link
 import { NavLink } from "react-router-dom";
 
