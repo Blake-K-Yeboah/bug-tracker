@@ -1,62 +1,90 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 // Import Styling
-import './ListItem.scss';
+import "./ListItem.scss";
 
 // Import Axios
-import Axios from 'axios';
+import Axios from "axios";
 
 // Import NavLink
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 // Import MobX Stuff
-import { inject, observer } from 'mobx-react';
+import { inject, observer } from "mobx-react";
 
-let ListItem = ({ userId, authStore, projectId }: any) => {
+// Import Types
+import { IAuthStore, Iuser, IUsersStore } from "../../../../../../types";
 
-    const [user, setUser]: any = useState('');
+// Props Interface
+interface IProps {
+    userId: string;
+    authStore?: IAuthStore;
+    projectId: string;
+    usersStore?: IUsersStore;
+}
+let ListItem = ({ userId, authStore, projectId, usersStore }: IProps) => {
+    const [user, setUser]: any = useState<Iuser | {}>(
+        usersStore!.users
+            ? usersStore!.users.filter((user) => user._id === userId)[0]
+            : {}
+    );
 
     useEffect(() => {
-        Axios.get(`/api/users/${userId}`).then(res => {
-            setUser(res.data);
-        });
-    }, [userId]);
+        usersStore!.fetchUsers();
+    }, [usersStore]);
 
     const removeUserHandler = () => {
         const body = {
-            userId: authStore.user.id,
-            removedUserId: user._id
-        }
+            userId: authStore!.user.id,
+            removedUserId: user._id,
+        };
 
-        Axios.put(`/api/projects/${projectId}/removeuser`, body).then(res => {
-            window.location.reload();
-        }).catch(err => {
-            alert("An error Occured")
-        })
-    }
+        Axios.put(`/api/projects/${projectId}/removeuser`, body)
+            .then((res) => {
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("An error Occured");
+            });
+    };
 
     return (
         <>
-            {user ? <>
-                <li className="list-item">
-                    
-                        
-                        <NavLink to={`/profile/${user._id}`} className="content">
+            {user ? (
+                <>
+                    <li className="list-item">
+                        <NavLink
+                            to={`/profile/${user._id}`}
+                            className="content"
+                        >
+                            <img
+                                className="profile-icon"
+                                src={
+                                    user !== {}
+                                        ? `${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`
+                                        : ""
+                                }
+                                alt="Profile Icon"
+                            />
 
-                            <img className="profile-icon" src={`${process.env.PUBLIC_URL}/uploads/profile/${user.profileIcon}`} alt="Profile Icon" />                
-                            
                             <p className="name">{user.name}</p>
-
                         </NavLink>
 
-                        <button className="btn danger" onClick={removeUserHandler}>Remove</button>
-                    
-                </li>
-            </> : ''}
+                        <button
+                            className="btn danger"
+                            onClick={removeUserHandler}
+                        >
+                            Remove
+                        </button>
+                    </li>
+                </>
+            ) : (
+                ""
+            )}
         </>
-    )
-}
+    );
+};
 
-ListItem = inject('authStore')(observer(ListItem));
+ListItem = inject("authStore", "usersStore")(observer(ListItem));
 
-export default ListItem
+export default ListItem;
